@@ -36,7 +36,21 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-replace-this')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', default=True)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
+# ---------------------------railway------------------------------
+CSRF_TRUSTED_ORIGINS = [
+    "https://zorvex-production.up.railway.app"
+]
+
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=["zorvex-production.up.railway.app",
+    "localhost",
+    "127.0.0.1"])
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+# ---------------------------railway end------------------------------
+
+# ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
 
 # Application definition

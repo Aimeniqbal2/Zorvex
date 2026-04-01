@@ -1,0 +1,173 @@
+"""
+services/models.py
+3-Phase Service Order System:
+  Phase 1 - Entry: Create order with device info, issues, department
+  Phase 2 - Working: Technician adds parts, work logs, video evidence
+  Phase 3 - Final: Delivery, payment, and invoice generation
+"""
+from django.db import models
+from django.conf import settings
+from erp_core.models import BaseModel
+
+
+class ServiceOrder(BaseModel):
+    STATUS_CHOICES = (
+        ('pending', 'Pending'),         # Phase 1 - just created
+        ('in_progress', 'In Progress'), # Phase 2 - technician working
+        ('ready', 'Ready'),             # Phase 3 - repair done, awaiting payment
+        ('return', 'Return'),           # Phase 3 - being returned unfixed
+        ('delivered', 'Delivered'),     # Phase 3 - completed and paid
+    )
+    DEPARTMENT_CHOICES = (
+        ('hardware', 'Hardware'),
+        ('software', 'Software'),
+    )
+    SCREEN_CONDITION_CHOICES = (
+        ('ok', 'OK / Undamaged'),
+        ('damaged', 'Screen Damaged'),
+        ('cracked', 'Cracked'),
+        ('missing', 'Screen Missing'),
+    )
+
+    # --- Phase 1: Entry Fields ---
+    # Customer Info
+    customer_name = models.CharField(max_length=200)
+    customer_phone = models.CharField(max_length=20)
+
+    # Device Details
+    device_brand = models.CharField(max_length=100)
+    device_model = models.CharField(max_length=100)
+    device_color = models.CharField(max_length=50, blank=True)
+    device_imei = models.CharField(max_length=20, blank=True, help_text="IMEI or serial number")
+    quantity = models.PositiveIntegerField(default=1)
+
+    # Condition & Issues
+    screen_condition = models.CharField(max_length=20, choices=SCREEN_CONDITION_CHOICES, default='ok')
+    device_appearance = models.TextField(blank=True, help_text="Screen look or device damages upon receipt")
+    screen_condition_notes = models.TextField(blank=True)
+    issues = models.TextField(help_text="Comma-separated list of issues reported by customer")
+
+    # Assignment
+    department = models.CharField(max_length=50, choices=DEPARTMENT_CHOICES)
+    technician = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True, blank=True,
+        related_name='assigned_services'
+    )
+
+    # Pricing & Time Estimates
+    estimated_cost = models.DecimalField(max_length=10, max_digits=10, decimal_places=2, default=0)
+    estimated_minutes = models.IntegerField(default=60, help_text="Estimated repair time in minutes")
+    technician_comments_initial = models.TextField(blank=True, help_text="Initial comment for the technician")
+    commission = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text="Technician commission")
+
+    # --- Phase 2: Working Fields ---
+    technician_comments = models.TextField(blank=True)
+
+    # --- Phase 3: Final Fields ---
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    delivery_status = models.CharField(
+        max_length=20,
+        choices=(('in_stock', 'In Stock'), ('delivered', 'Delivered')),
+        default='in_stock'
+    )
+    payment_method = models.CharField(
+        max_length=20,
+        choices=(('cash', 'Cash'), ('card', 'Card'), ('split', 'Split'), ('credit', 'Credit')),
+        blank=True
+    )
+    final_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    is_paid = models.BooleanField(default=False)
+
+    # Timing
+    start_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
+    hours_worked = models.DecimalField(max_digits=6, decimal_places=2, default=0.0)
+
+    def __str__(self):
+        return f"SVC-{str(self.id)[:8].upper()} | {self.customer_name} | {self.device_brand} {self.device_model} ({self.status})"
+
+    class Meta(BaseModel.Meta):
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['status', 'department']),
+            models.Index(fields=['customer_phone']),
+        ]
+
+
+class ServiceMedia(BaseModel):
+    """Phase 2: Store images and short videos (max 30s) as evidence."""
+    service_order = models.ForeignKey(ServiceOrder, on_delete=models.CASCADE, related_name='media')
+    file = models.FileField(upload_to='service_media/%Y/%m/')
+    media_type = models.CharField(max_length=20, choices=(('image', 'Image'), ('video', 'Video')))
+    caption = models.CharField(max_length=200, blank=True)
+    uploaded_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL, null=True,
+        related_name='uploaded_media'
+    )
+
+    def __str__(self):
+        return f"{self.media_type.upper()} for SVC-{str(self.service_order_id)[:8].upper()}"
+
+
+class ServiceWorkLog(BaseModel):
+    """Phase 2: Chronological ledger of technician activity on a repair."""
+    service_order = models.ForeignKey(ServiceOrder, on_delete=models.CASCADE, related_name='work_logs')
+    technician = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    status_change = models.CharField(max_length=20, blank=True, help_text="If this log triggered a status change")
+    notes = models.TextField()
+
+    def __str__(self):
+        return f"Log for SVC-{str(self.service_order_id)[:8].upper()} by {self.technician.username}"
+
+    class Meta(BaseModel.Meta):
+        ordering = ['-created_at']
+
+
+class ServicePartUsed(BaseModel):
+    """Phase 2: Tracks physical inventory or external vendor parts consumed during a repair."""
+    SOURCE_CHOICES = (
+        ('inventory', 'Internal Inventory'),
+        ('vendor', 'External Vendor/Service'),
+    )
+    service_order = models.ForeignKey(ServiceOrder, on_delete=models.CASCADE, related_name='parts_used')
+    source = models.CharField(max_length=20, choices=SOURCE_CHOICES, default='inventory')
+    product = models.ForeignKey('inventory.Product', on_delete=models.CASCADE, null=True, blank=True)
+    part_name = models.CharField(max_length=200, blank=True, help_text="Required if source is vendor")
+    quantity = models.IntegerField(default=1)
+    unit_cost = models.DecimalField(max_digits=10, decimal_places=2, help_text="Captured at time of use")
+
+    @property
+    def total_cost(self):
+        return self.quantity * self.unit_cost
+
+    @property
+    def get_product_name(self):
+        if self.source == 'vendor':
+            return self.part_name
+        return self.product.model_name if self.product else 'Unknown Part'
+
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
+        if is_new and self.source == 'inventory' and self.product:
+            # Atomically decrement stock and record movement
+            from inventory.models import StockMovement
+            self.product.stock_quantity -= self.quantity
+            self.product.save()
+            StockMovement.objects.create(
+                company_id=self.company_id,
+                product=self.product,
+                quantity=self.quantity,
+                movement_type='OUT',
+                reference=f"SVC-{str(self.service_order_id)[:8].upper()}",
+                notes=f"Part used in Service Order {self.service_order_id}"
+            )
+
+    def __str__(self):
+        return f"{self.quantity} x {self.get_product_name} for SVC-{str(self.service_order_id)[:8].upper()}"
+
+    class Meta(BaseModel.Meta):
+        ordering = ['-created_at']

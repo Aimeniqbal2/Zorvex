@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendors & Procurement – Zorvex ERP</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(8px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: all 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-box {
+            background: #fff; width: 500px; max-height: 90vh; overflow-y: auto;
+            border-radius: 24px; padding: 35px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            transform: translateY(30px) scale(0.95); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.active .modal-box { transform: translateY(0) scale(1); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .modal-header h3 { font-size: 22px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px;}
+        .close-btn { background: none; border: none; font-size: 24px; color: var(--text-muted); cursor: pointer; transition: 0.2s;}
+        .close-btn:hover { color: var(--danger); transform: scale(1.1); }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;}
+        .form-input { width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--border-light); font-size: 14px; font-weight: 500; outline: none; transition: 0.2s; background: #f8fafc; color: var(--text-main); box-sizing: border-box;}
+        .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); background: #fff;}
+        select.form-input { cursor: pointer; }
+        .primary-btn { width: 100%; padding: 16px; border-radius: 12px; background: var(--primary); color: #fff; font-size: 15px; font-weight: 700; border: none; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .primary-btn:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(67,24,255,0.3); }
+        .form-row { display: flex; gap: 15px; }
+        .form-row .form-group { flex: 1; }
+        .tab-bar { display: flex; gap: 8px; margin-bottom: 24px; }
+        .tab-btn { padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border-light); background: #fff; font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: 0.2s; }
+        .tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+        .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge-draft { background: #f1f5f9; color: #64748b; }
+        .badge-ordered { background: #eff6ff; color: #2563eb; }
+        .badge-received { background: #f0fdf4; color: #16a34a; }
+        .badge-cancelled { background: #fef2f2; color: #dc2626; }
+        .vendor-card { background: #fff; border-radius: 16px; border: 1px solid var(--border-light); padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; transition: 0.2s; }
+        .vendor-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
+        .vendor-meta h4 { font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+        .vendor-meta p { font-size: 13px; color: var(--text-muted); }
+        .vendor-actions { display: flex; gap: 8px; }
+        .action-btn { padding: 8px 16px; border-radius: 10px; border: 1px solid var(--border-light); background: #f8fafc; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; color: var(--text-main); }
+        .action-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .action-btn.danger:hover { background: var(--danger); border-color: var(--danger); }
+    </style>
+</head>
+<body>
+    
+
+    <div class="content-wrapper">
+        <header class="top-header">
+            <div>
+                <p style="color:var(--text-muted); font-size:14px; font-weight:500;">Operations / Supply Chain</p>
+                <h1 class="page-title">Vendors & Procurement</h1>
+            </div>
+            <div class="header-actions">
+                <button class="export-btn" id="openVendorModalBtn">+ Add Vendor</button>
+                <button class="export-btn" id="openPOModalBtn" style="background:var(--success, #05cd99); margin-left:8px;">+ New Purchase Order</button>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=4318ff&color=fff&rounded=true" alt="Admin">
+                </div>
+            </div>
+        </header>
+
+        <main class="main-canvas">
+
+            <div class="kpi-grid" style="grid-template-columns: repeat(3, minmax(220px, 1fr));">
+                <div class="kpi-card">
+                    <div class="kpi-icon" style="color:#4318ff; background:#e9e3ff;">🏭</div>
+                    <div class="kpi-info">
+                        <p class="kpi-title">Total Vendors</p>
+                        <span class="kpi-value" id="totalVendors">0</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon" style="color:#2563eb; background:#eff6ff;">📋</div>
+                    <div class="kpi-info">
+                        <p class="kpi-title">Open Orders</p>
+                        <span class="kpi-value" id="openOrders">0</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon" style="color:#16a34a; background:#f0fdf4;">✅</div>
+                    <div class="kpi-info">
+                        <p class="kpi-title">Received This Month</p>
+                        <span class="kpi-value" id="receivedOrders">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tab-bar">
+                <button class="tab-btn active" data-tab="vendors-panel">Vendors</button>
+                <button class="tab-btn" data-tab="po-panel">Purchase Orders</button>
+            </div>
+
+            <!-- Vendors Panel -->
+            <div class="tab-panel active" id="vendors-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <h3>Vendor Directory</h3>
+                    </div>
+                    <div id="vendorList" style="padding: 8px 0;">
+                        <p style="text-align:center; color:var(--text-muted); padding: 30px;">Loading vendors...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Purchase Orders Panel -->
+            <div class="tab-panel" id="po-panel">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <h3>Purchase Orders</h3>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ORDER ID</th>
+                                    <th>VENDOR</th>
+                                    <th>TOTAL VALUE</th>
+                                    <th>STATUS</th>
+                                    <th>DATE</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="poTableBody">
+                                <tr><td colspan="6" style="text-align:center; padding:25px; color:var(--text-muted);">Loading orders...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Add Vendor Modal -->
+    <div class="modal-overlay" id="vendorModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Add Vendor</h3>
+                <button class="close-btn" id="closeVendorModal">×</button>
+            </div>
+            <form id="vendorForm">
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" id="vendorName" class="form-input" required placeholder="e.g. Tech Distributors Ltd">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Contact Email</label>
+                        <input type="email" id="vendorEmail" class="form-input" placeholder="info@vendor.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" id="vendorPhone" class="form-input" placeholder="+92 300 0000000">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" id="vendorAddress" class="form-input" placeholder="Street, City">
+                </div>
+                <p id="vendorError" style="color:var(--danger); font-size:12px; margin-bottom:10px; font-weight:600; display:none;"></p>
+                <button type="submit" class="primary-btn">Save Vendor</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- New Purchase Order Modal -->
+    <div class="modal-overlay" id="poModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>New Purchase Order</h3>
+                <button class="close-btn" id="closePOModal">×</button>
+            </div>
+            <form id="poForm">
+                <div class="form-group">
+                    <label>Vendor</label>
+                    <select id="poVendor" class="form-input" required>
+                        <option value="">Select a Vendor...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Total Amount (PKR)</label>
+                    <input type="number" step="0.01" id="poTotal" class="form-input" required placeholder="0.00">
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <input type="text" id="poNotes" class="form-input" placeholder="Optional order notes">
+                </div>
+                <p id="poError" style="color:var(--danger); font-size:12px; margin-bottom:10px; font-weight:600; display:none;"></p>
+                <button type="submit" class="primary-btn">Create Order (Draft)</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="vendors.js"></script>
+<script src="shared-nav.js"></script>
+</body>
+</html>

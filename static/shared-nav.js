@@ -1,3 +1,4 @@
+
 /**
  * shared-nav.js
  * Role-aware sidebar navigation for Zorvex ERP.
@@ -63,7 +64,7 @@
     const sidebarHTML = `
     <aside class="sidebar" id="mainSidebar">
         <div class="brand">
-            <img src="{% static 'assets/logo-full.png' %}" alt="Zorvex ERP" style="width: 200px; margin-bottom: -20px; animation: gentleFloat 4s ease-in-out infinite; filter: drop-shadow(0 4px 10px rgba(67,24,255,0.2));">
+            <img src="/static/assets/logo-full.png" alt="Zorvex ERP" style="width: 200px; margin-bottom: -20px; animation: gentleFloat 4s ease-in-out infinite; filter: drop-shadow(0 4px 10px rgba(67,24,255,0.2));">
         </div>
 
         <p class="section-label">Main Menu</p>

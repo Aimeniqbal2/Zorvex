@@ -7266,3 +7266,44 @@ Not Found: /transactions/assets/logo-full.png
 "GET /api/sales/customers/ HTTP/1.1" 200 1257
 Not Found: /credit/assets/logo-full.png
 "GET /credit/assets/logo-full.png HTTP/1.1" 404 6201
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8161
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 200 15353
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+- Broken pipe from ('127.0.0.1', 60163)
+"GET /login/ HTTP/1.1" 200 3217
+"GET /static/login.js HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 3217
+"GET /login/ HTTP/1.1" 200 3217
+"GET /static/login.js HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 8161
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 200 15353
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+"GET /login/ HTTP/1.1" 200 3217
+"GET / HTTP/1.1" 200 8161
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET / HTTP/1.1" 200 8161
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+Not Found: /logout/
+"GET /logout/ HTTP/1.1" 404 6141
+"GET /login/ HTTP/1.1" 200 3217
+Not Found: /logout/
+"GET /logout/ HTTP/1.1" 404 6141
+"GET / HTTP/1.1" 200 8161
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 3217
+"GET /login/ HTTP/1.1" 200 3217
+"GET /login/ HTTP/1.1" 200 3217
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 3169
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/login.js HTTP/1.1" 304 0
+Watching for file changes with StatReloader

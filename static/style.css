@@ -130,7 +130,7 @@ body {
 .logo-section {
     text-align: center;
     margin-bottom: 40px;
-    animation: gentlePulse 4s infinite alternate;
+    animation: gentleFloat 4s ease-in-out infinite;
 }
 
 .subtitle {
@@ -143,8 +143,13 @@ body {
 }
 
 @keyframes gentlePulse {
-    from { filter: drop-shadow(0 0 10px rgba(67, 24, 255, 0.2)); }
-    to { filter: drop-shadow(0 0 25px rgba(67, 24, 255, 0.6)); }
+    0%, 100% { transform: translateY(0); filter: drop-shadow(0 0 10px rgba(67, 24, 255, 0.2)); }
+    50% { transform: translateY(-10px); filter: drop-shadow(0 0 25px rgba(67, 24, 255, 0.6)); }
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0); filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); }
+    50% { transform: translateY(-10px); filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2)); }
 }
 
 /* Clean Input Fields */

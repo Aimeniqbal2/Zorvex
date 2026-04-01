@@ -1,3 +1,4 @@
+
 /**
  * shared-nav.js
  * Role-aware sidebar navigation for Zorvex ERP.
@@ -63,7 +64,7 @@
     const sidebarHTML = `
     <aside class="sidebar" id="mainSidebar">
         <div class="brand">
-            <img src="assets/logo-full.png" alt="Zorvex ERP" style="width: 200px; margin-bottom: -20px; animation: gentleFloat 4s ease-in-out infinite; filter: drop-shadow(0 4px 10px rgba(67,24,255,0.2));">
+            <img src="/static/assets/logo-full.png" alt="Zorvex ERP" style="width: 200px; margin-bottom: -20px; animation: gentleFloat 4s ease-in-out infinite; filter: drop-shadow(0 4px 10px rgba(67,24,255,0.2));">
         </div>
 
         <p class="section-label">Main Menu</p>
@@ -205,7 +206,7 @@
             sales.forEach(s => {
                 const badge = s.payment_method === 'cash' ? '<span style="color:#05cd99">CASH</span>' : '<span style="color:#ffb547">CREDIT</span>';
                 html += `<div class="search-result-item" onclick="window.location.href='/'" style="padding:10px 12px;border-radius:10px;cursor:pointer;transition:0.15s;">
-                    <div style="font-size:13px;font-weight:800;color:var(--primary);">#SAL-${s.id.substring(0,8).toUpperCase()}</div>
+                    <div style="font-size:13px;font-weight:800;color:var(--primary);">#SAL-${s.id.substring(0, 8).toUpperCase()}</div>
                     <div style="font-size:11px;color:#64748b;">${badge} &bull; PKR${parseFloat(s.total_amount).toLocaleString()}</div>
                 </div>`;
             });
@@ -228,7 +229,7 @@
     userProfileNodes.forEach(node => {
         node.style.position = 'relative';
         node.style.cursor = 'pointer';
-        
+
         // Dynamically correct the display image using JWT values
         const img = node.querySelector('img');
         if (img) img.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(username)}&background=4318ff&color=fff&rounded=true`;
@@ -251,15 +252,15 @@
             <a href="/team/" style="text-decoration:none; color:var(--text-main); font-size:14px; font-weight:600; padding:10px; border-radius:8px; display:block; transition:0.2s; background:#f4f7fe; text-align:center;">Manage HR Access Settings</a>
         `;
         node.appendChild(drop);
-        
+
         node.addEventListener('click', (e) => {
             if (drop.contains(e.target)) return; // prevent closing if clicking inside
             drop.style.display = drop.style.display === 'none' ? 'flex' : 'none';
             e.stopPropagation();
         });
-        
+
         document.addEventListener('click', (e) => {
-            if(!node.contains(e.target)) drop.style.display = 'none';
+            if (!node.contains(e.target)) drop.style.display = 'none';
         });
     });
 
@@ -279,15 +280,15 @@
             <p style="margin:5px 0 0 0; font-size:12px; font-weight:500; color:var(--text-muted);">We'll notify you if any POS anomalies or inventory limits trigger.</p>
         `;
         btn.appendChild(notiDrop);
-        
+
         btn.addEventListener('click', (e) => {
             if (notiDrop.contains(e.target)) return;
             notiDrop.style.display = notiDrop.style.display === 'none' ? 'flex' : 'none';
             e.stopPropagation();
         });
-        
+
         document.addEventListener('click', (e) => {
-            if(!btn.contains(e.target)) notiDrop.style.display = 'none';
+            if (!btn.contains(e.target)) notiDrop.style.display = 'none';
         });
     });
 

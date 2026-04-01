@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Instantly check if user is already authenticated
     if(localStorage.getItem('access_token')) {
-        window.location.href = 'dashboard.html';
+        window.location.href = '/';
     }
 
     // Load saved username if exists
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Talk directly to our robust Django APIs
-            const response = await fetch('http://127.0.0.1:8000/api/auth/login/', {
+            const response = await fetch('/api/auth/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 minimalCard.style.opacity = '0';
                 
                 setTimeout(() => {
-                    window.location.href = 'dashboard.html';
+                    window.location.href = '/';
                 }, 400); // 400ms CSS match
             } else {
                 showError(data.detail || 'Access Denied. Account expired or invalid credentials.');

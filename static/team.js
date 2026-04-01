@@ -1,9 +1,9 @@
-const API = 'http://127.0.0.1:8000/api';
+const API = '/api';
 
 function getToken() { return localStorage.getItem('access_token'); }
 function authHeaders() { return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` }; }
 
-if(!getToken()) { window.location.href = 'index.html'; }
+if(!getToken()) { window.location.href = '/login/'; }
 
 let allUsers = [];
 
@@ -24,7 +24,7 @@ async function syncIdentities() {
         const resp = await fetch(`${API}/accounts/users/`, { headers: authHeaders() });
         if(!resp.ok) {
             if(resp.status === 401 || resp.status === 402) {
-                alert('Session Token Voided.'); window.location.href='index.html'; 
+                alert('Session Token Voided.'); window.location.href='/login/'; 
             }
             throw new Error("Access API Refused");
         }

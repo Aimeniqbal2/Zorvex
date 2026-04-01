@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Session Guard
     const token = localStorage.getItem('access_token');
-    if(!token) { window.location.href = 'index.html'; return; }
+    if(!token) { window.location.href = '/login/'; return; }
 
     const fetchConfig = { headers: { 'Authorization': `Bearer ${token}` } };
     const salesTableBody = document.getElementById('salesTableBody');
@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadTransactions() {
         try {
-            const resp = await fetch('http://127.0.0.1:8000/api/sales/sales/', fetchConfig);
+            const resp = await fetch('/api/sales/sales/', fetchConfig);
             if(resp.status === 401 || resp.status === 402) {
                 alert("Security Gateway Terminated Process. Re-auth required.");
-                localStorage.clear(); window.location.href = 'index.html'; return;
+                localStorage.clear(); window.location.href = '/login/'; return;
             }
 
             const data = await resp.json();
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cloning Receipt Thermal Print Engine from Dashboard module
     window.viewReceipt = async function(saleId) {
         try {
-            const r = await fetch(`http://127.0.0.1:8000/api/sales/sales/${saleId}/`, fetchConfig);
+            const r = await fetch(`/api/sales/sales/${saleId}/`, fetchConfig);
             if (!r.ok) throw new Error("Failed fetching sale");
             const sale = await r.json();
             

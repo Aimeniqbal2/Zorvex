@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
     <title>Zorvex ERP - Authenticate</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     <!-- Live Animated Background -->
@@ -23,7 +24,7 @@
             <div class="logo-section">
                 <!-- Using a vibrant glowing text rendering since the PNG might clash with the fluid background -->
                 <div class="brand-glow">
-                    <img src="assets/logo-full.png" alt="Zorvex" style="width: 200px; filter: drop-shadow(0 0 15px rgba(255,255,255,0.4));">
+                    <img src="{% static 'assets/logo-full.png' %}" alt="Zorvex" style="width: 200px; filter: drop-shadow(0 0 15px rgba(255,255,255,0.4));">
                 </div>
                 <p class="subtitle">Secure Operational Matrix</p>
             </div>
@@ -65,6 +66,6 @@
     </div>
 
     <!-- The logic script handles the API mappings flawlessly without DOM breakage -->
-    <script src="login.js"></script>
+    <script src="{% static 'login.js' %}"></script>
 </body>
 </html>

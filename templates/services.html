@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Desk - Services</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
     <style>
         .service-layout { height: auto; margin-bottom: 20px;}
         .work-card { background: #fff; border: 1px solid var(--border-light); border-radius: 16px; padding: 25px; margin-bottom: 20px; box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; transition: 0.2s cubic-bezier(0.16, 1, 0.3, 1);}
@@ -58,7 +59,7 @@
     </div>
 
     <!-- Integrates with identical underlying backend constraints -->
-    <script src="services.js"></script>
-<script src="shared-nav.js"></script>
+    <script src="{% static 'services.js' %}"></script>
+<script src="{% static 'shared-nav.js' %}"></script>
 </body>
 </html>

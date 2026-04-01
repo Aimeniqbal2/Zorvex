@@ -4,10 +4,10 @@ function formatCurrency(amount) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('access_token');
-    if (!token) { window.location.href = 'index.html'; return; }
+    if (!token) { window.location.href = '/login/'; return; }
 
     const headersJSON = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
-    const API = 'http://127.0.0.1:8000/api';
+    const API = '/api';
 
     let products = [], cart = [], customers = [], activeSession = null;
     let selectedCustomerId = null;

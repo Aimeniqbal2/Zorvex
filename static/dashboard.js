@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Session Guard
     const token = localStorage.getItem('access_token');
-    if(!token) { window.location.href = 'index.html'; return; }
+    if(!token) { window.location.href = '/login/'; return; }
 
     // Handlers
     const logoutBtn = document.getElementById('logoutBtn');
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function igniteEngine() {
         try {
-            const resp = await fetch('http://127.0.0.1:8000/api/reports/dashboard/', fetchConfig);
+            const resp = await fetch('/api/reports/dashboard/', fetchConfig);
             if(resp.status === 401 || resp.status === 402) {
                 alert("Security Gateway Terminated Process. Re-auth required.");
                 fireLogout(); return;
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.viewReceipt = async function(saleId) {
         try {
-            const r = await fetch(`http://127.0.0.1:8000/api/sales/sales/${saleId}/`, fetchConfig);
+            const r = await fetch(`/api/sales/sales/${saleId}/`, fetchConfig);
             if (!r.ok) throw new Error("Failed fetching sale");
             const sale = await r.json();
             
@@ -185,14 +185,14 @@ document.addEventListener('DOMContentLoaded', () => {
         window.requestAnimationFrame(step);
     }
 
-    function fireLogout() { localStorage.clear(); window.location.href = 'index.html'; }
+    function fireLogout() { localStorage.clear(); window.location.href = '/login/'; }
 
     if(logoutBtn) logoutBtn.addEventListener('click', fireLogout);
 
     if(exportBtn) exportBtn.addEventListener('click', async () => {
         exportBtn.textContent = 'Crunching CSV...';
         try {
-            const r = await fetch('http://127.0.0.1:8000/api/reports/export/?type=sales', fetchConfig);
+            const r = await fetch('/api/reports/export/?type=sales', fetchConfig);
             if(r.ok) {
                 const url = window.URL.createObjectURL(await r.blob());
                 const a = document.createElement('a'); a.href = url; a.download = `Fleet_CSV_${Date.now()}.csv`;

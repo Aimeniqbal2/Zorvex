@@ -1,10 +1,10 @@
-const API = 'http://127.0.0.1:8000/api';
+const API = '/api';
 
 function getToken() { return localStorage.getItem('access_token'); }
 function authHeaders() { return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` }; }
 
 // ─── Auth Guard ────────────────────────────────────────────────────────────────
-if (!getToken()) { window.location.href = 'index.html'; }
+if (!getToken()) { window.location.href = '/login/'; }
 
 
 // ─── State ─────────────────────────────────────────────────────────────────────

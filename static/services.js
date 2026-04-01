@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('access_token');
-    if(!token) { window.location.href = 'index.html'; return; }
+    if(!token) { window.location.href = '/login/'; return; }
 
     const fetchConfig = { headers: { 'Authorization': `Bearer ${token}` } };
     const patchConfig = { 
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function hydrateWorkbench() {
         try {
-            const resp = await fetch('http://127.0.0.1:8000/api/services/orders/', fetchConfig);
+            const resp = await fetch('/api/services/orders/', fetchConfig);
             if(!resp.ok) throw new Error("Django Refusal API Endpoint Disconnected.");
             
             const raw = await resp.json();
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(targetStatus === 'delivered') payload.end_time = timeISO;
 
             const pConf = { ...patchConfig, body: JSON.stringify(payload) };
-            const resp = await fetch(`http://127.0.0.1:8000/api/services/orders/${orderId}/`, pConf);
+            const resp = await fetch(`/api/services/orders/${orderId}/`, pConf);
             
             if(!resp.ok) throw new Error("State Transition Denied by Backend Pipeline.");
             

@@ -7,12 +7,12 @@
 (function () {
     'use strict';
 
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPage = window.location.pathname;
     const token = localStorage.getItem('access_token');
 
-    // Auth guard — redirect to login if no token
-    if (currentPage !== 'index.html' && !token) {
-        window.location.href = 'index.html';
+    // Auth guard — redirect to login if no token and not already on login page
+    if (currentPage !== '/login/' && !token) {
+        window.location.href = '/login/';
         return;
     }
 
@@ -38,14 +38,14 @@
     }
 
     const navItems = [
-        { href: 'dashboard.html', icon: '📊', label: 'Dashboard', minRole: 'staff' },
-        { href: 'pos.html', icon: '💳', label: 'POS Sales', minRole: 'cashier' },
-        { href: 'service-logs.html', icon: '🛠️', label: 'Service Orders', minRole: 'cashier' },
-        { href: 'sales-history.html', icon: '🧾', label: 'Transactions', minRole: 'cashier' },
-        { href: 'inventory.html', icon: '📦', label: 'Inventory', minRole: 'manager' },
-        { href: 'vendors.html', icon: '🏭', label: 'Vendors', minRole: 'manager' },
-        { href: 'credit.html', icon: '📒', label: 'Credit Ledger', minRole: 'manager' },
-        { href: 'team.html', icon: '👥', label: 'Team', minRole: 'admin' },
+        { href: '/', icon: '📊', label: 'Dashboard', minRole: 'staff' },
+        { href: '/pos/', icon: '💳', label: 'POS Sales', minRole: 'cashier' },
+        { href: '/service-logs/', icon: '🛠️', label: 'Service Orders', minRole: 'cashier' },
+        { href: '/transactions/', icon: '🧾', label: 'Transactions', minRole: 'cashier' },
+        { href: '/inventory/', icon: '📦', label: 'Inventory', minRole: 'manager' },
+        { href: '/vendors/', icon: '🏭', label: 'Vendors', minRole: 'manager' },
+        { href: '/credit/', icon: '📒', label: 'Credit Ledger', minRole: 'manager' },
+        { href: '/team/', icon: '👥', label: 'Team', minRole: 'admin' },
     ];
 
     function buildNav() {
@@ -103,7 +103,7 @@
         logoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.clear();
-            window.location.href = 'index.html';
+            window.location.href = '/login/';
         });
     }
 
@@ -124,7 +124,7 @@
     // Global Search with Debounce (300ms)
     // -------------------------------------------------------
     const searchBoxes = document.querySelectorAll('.search-box[data-global-search], .global-search-input');
-    const API = 'http://127.0.0.1:8000/api';
+    const API = '/api';
 
     searchBoxes.forEach(box => {
         let debounceTimer;
@@ -176,7 +176,7 @@
         if (products.length) {
             html += `<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;padding:8px 12px;">Products</div>`;
             products.forEach(p => {
-                html += `<div class="search-result-item" onclick="window.location.href='inventory.html'" style="padding:10px 12px;border-radius:10px;cursor:pointer;transition:0.15s;">
+                html += `<div class="search-result-item" onclick="window.location.href='/inventory/'" style="padding:10px 12px;border-radius:10px;cursor:pointer;transition:0.15s;">
                     <div style="font-size:13px;font-weight:700;color:#0f172a;">${p.brand} ${p.model_name}</div>
                     <div style="font-size:11px;color:#64748b;">Stock: ${p.stock_quantity} &bull; PKR${parseFloat(p.sale_price).toLocaleString()}</div>
                 </div>`;
@@ -185,7 +185,7 @@
         if (customers.length) {
             html += `<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;padding:8px 12px;margin-top:4px;">Customers</div>`;
             customers.forEach(c => {
-                html += `<div class="search-result-item" onclick="window.location.href='credit.html'" style="padding:10px 12px;border-radius:10px;cursor:pointer;transition:0.15s;">
+                html += `<div class="search-result-item" onclick="window.location.href='/credit/'" style="padding:10px 12px;border-radius:10px;cursor:pointer;transition:0.15s;">
                     <div style="font-size:13px;font-weight:700;color:#0f172a;">${c.name}</div>
                     <div style="font-size:11px;color:#64748b;">${c.phone || ''} &bull; Balance: PKR${parseFloat(c.balance || 0).toLocaleString()}</div>
                 </div>`;
@@ -194,7 +194,7 @@
         if (orders.length) {
             html += `<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;padding:8px 12px;margin-top:4px;">Service Orders</div>`;
             orders.forEach(o => {
-                html += `<div class="search-result-item" onclick="window.location.href='service-logs.html'" style="padding:10px 12px;border-radius:10px;cursor:pointer;transition:0.15s;">
+                html += `<div class="search-result-item" onclick="window.location.href='/service-logs/'" style="padding:10px 12px;border-radius:10px;cursor:pointer;transition:0.15s;">
                     <div style="font-size:13px;font-weight:700;color:#0f172a;">${o.customer_name} — ${o.device_brand} ${o.device_model}</div>
                     <div style="font-size:11px;color:#64748b;">Status: <strong>${o.status}</strong> &bull; ${o.phone || ''}</div>
                 </div>`;
@@ -204,7 +204,7 @@
             html += `<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;padding:8px 12px;margin-top:4px;">Historical Sales</div>`;
             sales.forEach(s => {
                 const badge = s.payment_method === 'cash' ? '<span style="color:#05cd99">CASH</span>' : '<span style="color:#ffb547">CREDIT</span>';
-                html += `<div class="search-result-item" onclick="window.location.href='dashboard.html'" style="padding:10px 12px;border-radius:10px;cursor:pointer;transition:0.15s;">
+                html += `<div class="search-result-item" onclick="window.location.href='/'" style="padding:10px 12px;border-radius:10px;cursor:pointer;transition:0.15s;">
                     <div style="font-size:13px;font-weight:800;color:var(--primary);">#SAL-${s.id.substring(0,8).toUpperCase()}</div>
                     <div style="font-size:11px;color:#64748b;">${badge} &bull; PKR${parseFloat(s.total_amount).toLocaleString()}</div>
                 </div>`;
@@ -248,7 +248,7 @@
                     <p style="margin:2px 0 0 0; font-size:12px; font-weight:700; color:var(--primary); text-transform:uppercase;">${userRole.replace('_', ' ')}</p>
                 </div>
             </div>
-            <a href="team.html" style="text-decoration:none; color:var(--text-main); font-size:14px; font-weight:600; padding:10px; border-radius:8px; display:block; transition:0.2s; background:#f4f7fe; text-align:center;">Manage HR Access Settings</a>
+            <a href="/team/" style="text-decoration:none; color:var(--text-main); font-size:14px; font-weight:600; padding:10px; border-radius:8px; display:block; transition:0.2s; background:#f4f7fe; text-align:center;">Manage HR Access Settings</a>
         `;
         node.appendChild(drop);
         

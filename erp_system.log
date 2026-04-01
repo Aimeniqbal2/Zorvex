@@ -7196,3 +7196,73 @@ Bad Request: /api/services/servicelogs/
 "GET /api/accounts/users/ HTTP/1.1" 200 1052
 "OPTIONS /api/accounts/users/ HTTP/1.1" 200 0
 "GET /api/accounts/users/ HTTP/1.1" 200 1052
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /admin/ HTTP/1.1" 200 26243
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+"GET /static/admin/css/base.css HTTP/1.1" 304 0
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+"GET /static/admin/js/theme.js HTTP/1.1" 304 0
+"GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+"GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 8161
+"GET /static/shared-nav.js HTTP/1.1" 200 15380
+"GET /static/dashboard.js HTTP/1.1" 200 10401
+"GET /static/dashboard.css HTTP/1.1" 200 8190
+"GET /login/ HTTP/1.1" 200 3114
+"GET /static/style.css HTTP/1.1" 200 7360
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+"GET / HTTP/1.1" 200 8161
+"GET /static/dashboard.css HTTP/1.1" 200 8190
+"GET /static/dashboard.js HTTP/1.1" 200 10401
+"GET /static/shared-nav.js HTTP/1.1" 200 15380
+"GET /login/ HTTP/1.1" 200 3114
+"GET /static/style.css HTTP/1.1" 200 7360
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET / HTTP/1.1" 200 8161
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 3114
+"GET /static/login.js HTTP/1.1" 304 0
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8161
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 304 0
+Not Found: /assets/logo-full.png
+"GET /assets/logo-full.png HTTP/1.1" 404 6180
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /admin/ HTTP/1.1" 200 26243
+"GET /login/ HTTP/1.1" 200 3114
+"GET /static/login.js HTTP/1.1" 304 0
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8161
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+Not Found: /assets/logo-full.png
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /assets/logo-full.png HTTP/1.1" 404 6180
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /static/pos.js HTTP/1.1" 200 21493
+Not Found: /pos/assets/logo-full.png
+"GET /pos/assets/logo-full.png HTTP/1.1" 404 6192
+"GET /api/sales/sessions/ HTTP/1.1" 200 2780
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /transactions/ HTTP/1.1" 200 6473
+"GET /static/sales-history.js HTTP/1.1" 200 8232
+Not Found: /transactions/assets/logo-full.png
+"GET /transactions/assets/logo-full.png HTTP/1.1" 404 6219
+"GET /api/sales/sales/ HTTP/1.1" 200 12716
+"GET /credit/ HTTP/1.1" 200 10038
+"GET /static/credit.js HTTP/1.1" 200 8259
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+Not Found: /credit/assets/logo-full.png
+"GET /credit/assets/logo-full.png HTTP/1.1" 404 6201

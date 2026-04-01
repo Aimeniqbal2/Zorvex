@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('access_token');
-    if (!token) { window.location.href = 'index.html'; return; }
+    if (!token) { window.location.href = '/login/'; return; }
 
     const fetchConfig = { headers: { 'Authorization': `Bearer ${token}` } };
     const postConfig = {
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Hydrate the Category Foreign Keys
     async function loadCategories() {
         try {
-            const resp = await fetch('http://127.0.0.1:8000/api/inventory/categorys/', fetchConfig);
+            const resp = await fetch('/api/inventory/categorys/', fetchConfig);
             if (!resp.ok) return;
             const dataRaw = await resp.json();
             const data = dataRaw.results || dataRaw;
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Master Product Sync
     async function syncDatabase() {
         try {
-            const resp = await fetch('http://127.0.0.1:8000/api/inventory/products/', fetchConfig);
+            const resp = await fetch('/api/inventory/products/', fetchConfig);
             if (!resp.ok) throw new Error("Core API Refusal");
 
             const results = await resp.json();
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const pConf = { ...postConfig, body: JSON.stringify(payload) };
-            const r = await fetch('http://127.0.0.1:8000/api/inventory/products/', pConf);
+            const r = await fetch('/api/inventory/products/', pConf);
 
             if (!r.ok) {
                 const data = await r.json();

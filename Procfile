@@ -1,1 +1,1 @@
-web: gunicorn ERP.wsgi --bind 0.0.0.0:$PORT
+web: gunicorn erp_core.wsgi --bind 0.0.0.0:$PORT

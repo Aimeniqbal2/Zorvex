@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
+
 <body>
     <!-- Live Animated Background -->
     <div class="animated-bg">
@@ -24,7 +26,8 @@
             <div class="logo-section">
                 <!-- Using a vibrant glowing text rendering since the PNG might clash with the fluid background -->
                 <div class="brand-glow">
-                    <img src="{% static 'assets/logo-full.png' %}" alt="Zorvex" style="width: 200px; filter: drop-shadow(0 0 15px rgba(255,255,255,0.4));">
+                    <img src="{% static 'assets/logo-full.png' %}" alt="Zorvex"
+                        style="width: 200px; animation: gentleFloat 4s ease-in-out infinite; filter: drop-shadow(0 0 15px rgba(255,255,255,0.4));">
                 </div>
                 <p class="subtitle">Secure Operational Matrix</p>
             </div>
@@ -51,7 +54,8 @@
                     <label class="checkbox-container">
                         <input type="checkbox" id="rememberMe">
                         <span class="checkmark"></span>
-                        <span style="margin-left:8px; color:var(--text-dark); font-size:13px; font-weight:600;">Trust this device</span>
+                        <span style="margin-left:8px; color:var(--text-dark); font-size:13px; font-weight:600;">Trust
+                            this device</span>
                     </label>
                 </div>
 
@@ -68,4 +72,5 @@
     <!-- The logic script handles the API mappings flawlessly without DOM breakage -->
     <script src="{% static 'login.js' %}"></script>
 </body>
+
 </html>

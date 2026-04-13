@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Category, Product, StockMovement, Vendor, PurchaseOrder, PurchaseOrderItem
+from django.db.models import Sum
+from .models import Category, Product, StockMovement, Vendor, VendorLedger, PurchaseOrder, PurchaseOrderItem
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -52,10 +53,52 @@ class StockMovementSerializer(serializers.ModelSerializer):
 
 
 class VendorSerializer(serializers.ModelSerializer):
+    """
+    Vendor with aggregates computed live from VendorLedger entries.
+    Ensures correctness even when stored fields are stale.
+    """
+    total_purchases = serializers.SerializerMethodField()
+    total_paid      = serializers.SerializerMethodField()
+    balance_due     = serializers.SerializerMethodField()
+
     class Meta:
         model = Vendor
-        fields = ['id', 'name', 'contact_email', 'contact_phone', 'address']
-        read_only_fields = ['company']
+        fields = [
+            'id', 'name', 'contact_email', 'contact_phone', 'address',
+            'balance_due', 'total_purchases', 'total_paid',
+            'created_at',
+        ]
+        read_only_fields = ['company', 'balance_due', 'total_purchases', 'total_paid']
+
+    def _get_qs(self, obj):
+        return VendorLedger._default_manager.filter(vendor_id=obj.pk, is_deleted=False)
+
+    def get_total_purchases(self, obj):
+        total = self._get_qs(obj).filter(transaction_type='DEBIT').aggregate(
+            s=Sum('amount'))['s']
+        return float(total or 0)
+
+    def get_total_paid(self, obj):
+        total = self._get_qs(obj).filter(transaction_type='CREDIT').aggregate(
+            s=Sum('amount'))['s']
+        return float(total or 0)
+
+    def get_balance_due(self, obj):
+        purch = self._get_qs(obj).filter(transaction_type='DEBIT').aggregate(
+            s=Sum('amount'))['s'] or 0
+        paid  = self._get_qs(obj).filter(transaction_type='CREDIT').aggregate(
+            s=Sum('amount'))['s'] or 0
+        return float(purch - paid)
+
+
+class VendorLedgerSerializer(serializers.ModelSerializer):
+    vendor_name = serializers.CharField(source='vendor.name', read_only=True)
+
+    class Meta:
+        model = VendorLedger
+        fields = ['id', 'vendor', 'vendor_name', 'transaction_type', 'amount',
+                  'reference', 'notes', 'created_at']
+        read_only_fields = ['company', 'created_at']
 
 
 class PurchaseOrderItemSerializer(serializers.ModelSerializer):

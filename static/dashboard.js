@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="font-weight:700;">${s.customer_name}</div>
                     <div style="font-size:11px; color:var(--text-muted);">${s.customer_phone || ''}</div>
                 </td>
-                <td><span class="badge" style="background:#f4f7fe; color:var(--text-muted); font-size:11px;">${s.sale_type.toUpperCase()}</span></td>
+                <td><span class="badge" style="background:var(--bg-secondary); color:var(--text-muted); font-size:11px;">${s.sale_type.toUpperCase()}</span></td>
                 <td style="font-weight:800; color:var(--text-main);">PKR${parseFloat(s.amount).toFixed(2)}</td>
                 <td><button onclick="viewReceipt('${s.id}')" style="background:var(--primary-light); color:var(--primary); border:none; padding:6px 12px; border-radius:8px; cursor:pointer; font-weight:700; font-size:12px;">📄 View</button></td>
             `;
@@ -135,43 +135,110 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch(e) { alert("Could not load full receipt details."); }
     };
 
-    // ChartJS Enterprise Generator
+    // ChartJS — Real Data from Dashboard API
+    let revenueChartInstance = null;
+    let statusChartInstance  = null;
+
     function paintCharts(payload) {
-        const revCtx = document.getElementById('revenueChart').getContext('2d');
-        const grad = revCtx.createLinearGradient(0, 0, 0, 300);
-        grad.addColorStop(0, 'rgba(67, 24, 255, 0.4)');
-        grad.addColorStop(1, 'rgba(67, 24, 255, 0.0)');
+        // Read computed CSS vars so charts respect dark/light theme
+        const style        = getComputedStyle(document.documentElement);
+        const primaryColor = style.getPropertyValue('--primary').trim() || '#4318ff';
+        const textMuted    = style.getPropertyValue('--text-muted').trim() || '#a3aed1';
+        const borderColor  = style.getPropertyValue('--border-color').trim() || '#e0e5f2';
+        const successColor = style.getPropertyValue('--success').trim() || '#05cd99';
+        const warningColor = style.getPropertyValue('--warning').trim() || '#ffb547';
+        const dangerColor  = style.getPropertyValue('--danger').trim() || '#ee5d50';
 
-        // Emulate some previous days and cap off with true today value for Wow effect
-        const trueRev = parseFloat(payload.total_revenue) || 800;
-        new Chart(revCtx, {
-            type: 'line',
-            data: {
-                labels: ['15th', '16th', '17th', '18th', '19th', '20th', 'Today'],
-                datasets: [{
-                    label: 'Revenue',
-                    data: [1420, 1920, parseInt(trueRev*0.4), parseInt(trueRev*0.6), parseInt(trueRev*0.9), parseInt(trueRev*0.8), trueRev],
-                    borderColor: '#4318ff', backgroundColor: grad, borderWidth: 4, fill: true, tension: 0.4, pointRadius: 0, pointHitRadius: 10
-                }]
-            },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
-                scales: { x: { grid: { display: false } }, y: { grid: { borderDash: [5, 5] }, beginAtZero: true } }
-            }
-        });
+        // ── Revenue Trend (7-day real data) ─────────────────────────────────
+        const revCtx = document.getElementById('revenueChart')?.getContext('2d');
+        if (revCtx) {
+            const isHex = primaryColor.startsWith('#');
+            const grad = revCtx.createLinearGradient(0, 0, 0, 300);
+            grad.addColorStop(0, isHex ? primaryColor + '66' : 'rgba(67, 24, 255, 0.4)');
+            grad.addColorStop(1, isHex ? primaryColor + '00' : 'rgba(67, 24, 255, 0)');
 
-        const statusCtx = document.getElementById('statusChart').getContext('2d');
-        const trueRep = parseInt(payload.active_repairs) || 10;
-        new Chart(statusCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Pending', 'Completed', 'In Progress'],
-                datasets: [{
-                    data: [trueRep, 45, 12],
-                    backgroundColor: ['#ffb547', '#05cd99', '#4318ff'], borderWidth: 0, cutout: '75%'
-                }]
-            },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
-        });
+            const trends = payload.revenue_trends || { labels: [], data: [] };
+
+            if (revenueChartInstance) revenueChartInstance.destroy();
+            revenueChartInstance = new Chart(revCtx, {
+                type: 'line',
+                data: {
+                    labels: trends.labels,
+                    datasets: [{
+                        label: 'Revenue (PKR)',
+                        data: trends.data,
+                        borderColor: primaryColor,
+                        backgroundColor: grad,
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 4,
+                        pointBackgroundColor: primaryColor,
+                        pointHoverRadius: 7,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => ` PKR ${ctx.parsed.y.toLocaleString()}`
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: textMuted } },
+                        y: {
+                            grid: { color: borderColor, borderDash: [5, 5] },
+                            ticks: { color: textMuted, callback: v => `PKR ${v.toLocaleString()}` },
+                            beginAtZero: true,
+                        }
+                    }
+                }
+            });
+        }
+
+        // ── Service Order Status Distribution ────────────────────────────────
+        const statusCtx = document.getElementById('statusChart')?.getContext('2d');
+        if (statusCtx) {
+            const stats = payload.repair_stats || {};
+            const labels = ['Pending', 'In Progress', 'Ready', 'Completed', 'Returned'];
+            const dataset = [
+                stats.pending     || 0,
+                stats.in_progress || 0,
+                stats.ready       || 0,
+                stats.completed   || 0,
+                stats.return      || 0,
+            ];
+            const colors = [warningColor, primaryColor, successColor, '#38bdf8', dangerColor];
+
+            if (statusChartInstance) statusChartInstance.destroy();
+            statusChartInstance = new Chart(statusCtx, {
+                type: 'doughnut',
+                data: {
+                    labels,
+                    datasets: [{
+                        data: dataset,
+                        backgroundColor: colors,
+                        borderWidth: 0,
+                        cutout: '72%',
+                        hoverOffset: 8,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: textMuted, font: { size: 12, weight: '600' }, padding: 14, boxWidth: 12, usePointStyle: true }
+                        }
+                    }
+                }
+            });
+        }
     }
 
     function animateCounter(el, target, duration=1500) {

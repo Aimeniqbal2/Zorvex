@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="kpi-card">
-                    <div class="kpi-icon" style="color: #ffb547; background: #fff8eb;">🛠️</div>
+                    <div class="kpi-icon" style="color: var(--warning); background: var(--warning-light);">🛠️</div>
                     <div class="kpi-info">
                         <p class="kpi-title">Active Work Orders</p>
                         <div class="kpi-row">
@@ -121,7 +121,7 @@
                             </tr>
                         </thead>
                         <tbody id="salesTableBody">
-                            <tr><td colspan="6" style="color:#a3aed1; text-align:center; padding: 25px;">Waiting for Django API Intercept...</td></tr>
+                            <tr><td colspan="6" style="color:var(--text-muted); text-align:center; padding: 25px;">Waiting for Django API Intercept...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -139,7 +139,7 @@
         }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         .modal-box {
-            background: #fff; width: 450px; border-radius: 28px; padding: 40px;
+            background: var(--modal-bg); width: 450px; border-radius: 28px; padding: 40px;
             transform: translateY(20px); transition: 0.3s; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
         }
         .modal-overlay.active .modal-box { transform: translateY(0); }
@@ -152,22 +152,23 @@
             body * { visibility: hidden; }
             #receiptModal { background: none !important; backdrop-filter: none !important; position: absolute; left: 0; top: 0; width: 80mm; }
             #receiptModal .modal-box { box-shadow: none; padding: 0; border-radius: 0; width: 100%; transform: none; }
-            #receiptContent, #receiptContent * { visibility: visible; color: #000; background: #fff; }
+            #receiptContent, #receiptContent * { visibility: visible; color: #000; background: var(--modal-bg); }
             #receiptContent { position: absolute; left: 0; top: 0; width: 80mm; padding: 5mm; margin: 0; border: none; }
             #receiptModal .modal-box > div:last-child { display: none !important; }
         }
     </style>
     <div class="modal-overlay" id="receiptModal">
         <div class="modal-box" style="width:400px; padding:0; overflow:hidden;">
-            <div id="receiptContent" style="background:#fff; padding:30px; font-family:'Courier New', monospace; font-size:13px; color:#111;">
+            <div id="receiptContent" style="background:var(--modal-bg); padding:30px; font-family:'Courier New', monospace; font-size:13px; color:var(--text-main);">
             </div>
-            <div style="padding:20px; background:#f8fafc; border-top:1px dashed #e2e8f0; display:flex; gap:10px;">
+            <div style="padding:20px; background:var(--bg-secondary); border-top:1px dashed var(--border-light); display:flex; gap:10px;">
                 <button class="primary-btn" style="margin-top:0;" onclick="window.print()">Print Document</button>
                 <button class="primary-btn" style="margin-top:0; background:var(--text-muted);" id="closeReceiptBtn">Dismiss</button>
             </div>
         </div>
     </div>
 
+    <button id="themeToggleBtn" title="Toggle dark/light mode">🌙</button>
     <script src="{% static 'dashboard.js' %}"></script>
 <script src="{% static 'shared-nav.js' %}"></script>
 </body>

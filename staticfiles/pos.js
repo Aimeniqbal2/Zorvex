@@ -203,8 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="ci-info">
                     <h5>${item.name}</h5>
                     <div class="ci-controls">
-                        <button class="qty-btn" onclick="updateQty('${item.id}', -1)" style="background:#f1f5f9; color:#475569;">-</button>
-                        <span style="font-weight:800; min-width:20px; text-align:center;">${item.quantity}</span>
+                        <button class="qty-btn" onclick="updateQty('${item.id}', -1)" style="background:var(--input-bg); color:var(--text-main);">-</button>
+                        <span style="font-weight:800; min-width:20px; text-align:center; color:var(--text-main);">${item.quantity}</span>
                         <button class="qty-btn" onclick="updateQty('${item.id}', 1)" style="background:var(--primary);">+</button>
                     </div>
                 </div>
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const row = document.createElement('div');
                 row.style.padding = '12px 15px';
                 row.style.cursor = 'pointer';
-                row.style.borderBottom = '1px dashed #eee';
+                row.style.borderBottom = '1px dashed var(--border-light)';
                 row.style.fontSize = '13px';
                 row.style.fontWeight = '600';
                 row.innerHTML = `${c.name} <span style="float:right; color:var(--text-muted); font-size:11px;">${c.phone || 'No Phone'}</span>`;

@@ -26,6 +26,88 @@ class CustomerViewSet(TenantModelViewSet):
     def perform_create(self, serializer):
         serializer.save(company_id=self.request.user.company_id)
 
+    @action(detail=True, methods=['post'])
+    def receive_payment(self, request, pk=None):
+        """
+        Record a cash/card payment received from a credit customer.
+        Creates a CREDIT entry in CustomerCreditLedger and reduces balance.
+        Payload: { amount, notes }
+        """
+        customer = self.get_object()
+        amount_raw = request.data.get('amount')
+        notes = request.data.get('notes', '').strip()
+        if not amount_raw:
+            return Response({'error': 'amount is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        import decimal
+        try:
+            amount = decimal.Decimal(str(amount_raw))
+        except decimal.InvalidOperation:
+            return Response({'error': 'Invalid amount'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if amount <= 0:
+            return Response({'error': 'Amount must be positive'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # This automatically deducts from customer.balance via CustomerCreditLedger.save()
+        entry = CustomerCreditLedger.objects.create(
+            company_id=request.user.company_id,
+            customer=customer,
+            transaction_type='CREDIT',
+            amount=amount,
+            notes=notes or f'Payment received from {customer.name}'
+        )
+
+        # Also create a finance journal entry for revenue tracking
+        try:
+            from finance.models import JournalEntry
+            JournalEntry.objects.create(
+                company_id=request.user.company_id,
+                entry_type='REVENUE',
+                amount=amount,
+                profit=amount,
+                reference=f"PMT-{str(entry.id)[:8].upper()}",
+                description=f"Credit payment received from {customer.name}"
+            )
+        except Exception as e:
+            logger.warning(f"Finance journal entry failed for payment {entry.id}: {e}")
+
+        # Refresh from DB to get updated balance after F() expression update
+        customer.refresh_from_db()
+        return Response({
+            'status': 'payment_recorded',
+            'customer_id': str(customer.id),
+            'new_balance': self.get_serializer(customer).data['balance'],
+            'entry_id': str(entry.id)
+        })
+
+    @action(detail=False, methods=['post'])
+    def recalculate_balances(self, request):
+        """
+        Admin utility: Recalculates total_credit, total_paid, balance for ALL
+        customers from their ledger entries. Use to fix stale data.
+        POST /api/sales/customers/recalculate_balances/
+        """
+        from django.db.models import Sum
+        company_id = request.user.company_id
+        customers = Customer.objects.filter(company_id=company_id)
+        fixed = 0
+        for c in customers:
+            qs = CustomerCreditLedger._default_manager.filter(
+                customer_id=c.pk, is_deleted=False
+            )
+            total_credit = qs.filter(transaction_type='DEBIT').aggregate(
+                s=Sum('amount'))['s'] or 0
+            total_paid = qs.filter(transaction_type='CREDIT').aggregate(
+                s=Sum('amount'))['s'] or 0
+            balance = total_credit - total_paid
+            Customer._default_manager.filter(pk=c.pk).update(
+                total_credit=total_credit,
+                total_paid=total_paid,
+                balance=balance,
+            )
+            fixed += 1
+        return Response({'status': 'ok', 'customers_fixed': fixed})
+
 
 class CustomerCreditLedgerViewSet(TenantModelViewSet):
     queryset = CustomerCreditLedger.objects.select_related('customer', 'sale').all()
@@ -34,6 +116,14 @@ class CustomerCreditLedgerViewSet(TenantModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(company_id=self.request.user.company_id)
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        # Allow filtering by customer: GET /api/sales/ledger/?customer=<id>
+        customer_id = self.request.query_params.get('customer')
+        if customer_id:
+            qs = qs.filter(customer_id=customer_id)
+        return qs.order_by('-created_at')
 
 
 class POSSessionViewSet(TenantModelViewSet):

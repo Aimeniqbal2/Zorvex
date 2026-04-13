@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+
 
 def index_view(request):
     return render(request, 'index.html')
@@ -35,8 +37,9 @@ def sales_history_view(request):
 class TenantModelViewSet(viewsets.ModelViewSet):
     """
     Base ViewSet for all tenant-specific models.
-    Automatically assigns the logged-in user's company on record creation.
-    (Read isolation is already handled by TenantManager globally via Middleware).
+    - Automatically assigns the logged-in user's company on record creation.
+    - Soft-deletes on destroy() — sets is_deleted=True instead of hard DELETE.
+    - Read isolation handled by TenantManager + is_deleted filter globally.
     """
     def perform_create(self, serializer):
         user = self.request.user
@@ -47,19 +50,31 @@ class TenantModelViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """
-        Dynamically strips DRF's cached global module-load view scopes.
-        Strictly forces ORM querysets to isolate to the active user's company payload.
+        Forces all queries to be scoped to the authenticated user's company.
+        is_deleted=False is handled automatically by TenantManager.
         """
         qs = super().get_queryset()
         user = self.request.user
         if not user.is_authenticated:
             return qs.none()
-            
+
         if getattr(user, 'company_id', None):
             return qs.filter(company_id=user.company_id)
-            
-        # Admin / SaaS owners with no physical bound can inspect the full table if designed so
+
         if getattr(user, 'is_superuser', False):
             return qs
-            
+
         return qs.none()
+
+    def destroy(self, request, *args, **kwargs):
+        """
+        Soft delete — sets is_deleted=True rather than issuing a SQL DELETE.
+        Financial history (Sales, Ledger entries) remains intact for reporting.
+        """
+        instance = self.get_object()
+        instance.is_deleted = True
+        instance.save(update_fields=['is_deleted', 'updated_at'])
+        return Response(
+            {'status': 'deleted', 'id': str(instance.id)},
+            status=status.HTTP_200_OK
+        )

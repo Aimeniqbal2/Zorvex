@@ -1,5 +1,14 @@
+"""
+sales/models.py
+POS Sales, Customer Credit Ledger, and POS Session management.
+FIXED: CustomerCreditLedger.save() now uses direct F() expressions and
+       _base_manager to bypass TenantManager's company-scoped filtering
+       which fails when called outside a request context.
+"""
 import logging
+import decimal
 from django.db import models, transaction
+from django.db.models import F
 from django.conf import settings
 from erp_core.models import BaseModel
 from inventory.models import Product
@@ -29,7 +38,33 @@ class Customer(BaseModel):
     name = models.CharField(max_length=150)
     phone = models.CharField(max_length=50, blank=True, null=True, db_index=True)
     email = models.EmailField(blank=True, null=True)
+    # Running balance = total_credit - total_paid (positive = owes money)
     balance = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_credit = models.DecimalField(max_digits=12, decimal_places=2, default=0,
+                                       help_text='Total amount of credit (purchases) issued')
+    total_paid = models.DecimalField(max_digits=12, decimal_places=2, default=0,
+                                     help_text='Total amount paid back by the customer')
+
+    def recalculate_totals(self):
+        """
+        Re-aggregate totals from ledger entries. Call this to fix stale data.
+        Uses _default_manager to bypass tenant scoping issues.
+        """
+        from django.db.models import Sum
+        # Use the table-level query bypassing TenantManager via filter on customer FK
+        qs = CustomerCreditLedger._default_manager.filter(
+            customer_id=self.pk, is_deleted=False
+        )
+        self.total_credit = qs.filter(transaction_type='DEBIT').aggregate(
+            s=Sum('amount'))['s'] or decimal.Decimal('0')
+        self.total_paid = qs.filter(transaction_type='CREDIT').aggregate(
+            s=Sum('amount'))['s'] or decimal.Decimal('0')
+        self.balance = self.total_credit - self.total_paid
+        Customer._default_manager.filter(pk=self.pk).update(
+            total_credit=self.total_credit,
+            total_paid=self.total_paid,
+            balance=self.balance,
+        )
 
     def __str__(self):
         return f"{self.name} ({self.phone or 'No Phone'}) - Bal: {self.balance}"
@@ -47,23 +82,45 @@ class CustomerCreditLedger(BaseModel):
     sale = models.ForeignKey('Sale', on_delete=models.SET_NULL, null=True, blank=True)
     transaction_type = models.CharField(
         max_length=20,
-        choices=(('DEBIT', 'Debit (Purchase)'), ('CREDIT', 'Credit (Payment)'))
+        choices=(('DEBIT', 'Debit (Purchase on Credit)'), ('CREDIT', 'Credit (Payment Received)'))
     )
     amount = models.DecimalField(max_digits=12, decimal_places=2)
     notes = models.TextField(blank=True)
 
     def save(self, *args, **kwargs):
-        is_new = self.pk is None
+        is_new = self._state.adding
         super().save(*args, **kwargs)
         if is_new:
-            if self.transaction_type == 'DEBIT':
-                self.customer.balance += self.amount
-            else:
-                self.customer.balance -= self.amount
-            self.customer.save()
+            try:
+                # Use F() expressions + _default_manager to bypass TenantManager
+                # This works even outside a request context (no company_id in thread)
+                with transaction.atomic():
+                    if self.transaction_type == 'DEBIT':
+                        Customer._default_manager.filter(pk=self.customer_id).update(
+                            total_credit=F('total_credit') + self.amount,
+                            balance=F('balance') + self.amount,
+                        )
+                        logger.info(
+                            f"[LEDGER] DEBIT +{self.amount} → Customer {self.customer_id} "
+                            f"(total_credit & balance increased)"
+                        )
+                    else:
+                        Customer._default_manager.filter(pk=self.customer_id).update(
+                            total_paid=F('total_paid') + self.amount,
+                            balance=F('balance') - self.amount,
+                        )
+                        logger.info(
+                            f"[LEDGER] CREDIT -{self.amount} → Customer {self.customer_id} "
+                            f"(total_paid increased, balance decreased)"
+                        )
+            except Exception as e:
+                logger.error(f"[LEDGER] Failed to update Customer aggregates for entry {self.pk}: {e}")
 
     def __str__(self):
         return f"{self.transaction_type} {self.amount} for {self.customer.name}"
+
+    class Meta(BaseModel.Meta):
+        ordering = ['-created_at']
 
 
 class Sale(BaseModel):
@@ -102,18 +159,25 @@ class Sale(BaseModel):
     )
 
     def save(self, *args, **kwargs):
-        is_new = self.pk is None
+        is_new = self._state.adding
         super().save(*args, **kwargs)
         if is_new:
-            # Create credit ledger entry for B2B sales
-            if self.payment_method == 'credit' and self.customer:
-                CustomerCreditLedger.objects.create(
+            # Create credit ledger entry for B2B credit sales
+            if self.payment_method == 'credit' and self.customer_id:
+                ledger_entry = CustomerCreditLedger.objects.create(
                     company_id=self.company_id,
-                    customer=self.customer,
+                    customer_id=self.customer_id,
                     sale=self,
                     transaction_type='DEBIT',
                     amount=self.total_amount,
-                    notes=f"Auto-debit from Sale #{str(self.id)[:8].upper()}"
+                    notes=(
+                        f"POS Credit Checkout #{str(self.id)[:8]} - "
+                        f"{self.created_at.strftime('%d/%m/%Y') if self.created_at else ''} "
+                        f"· Ref: SAL-{str(self.id)[:8].upper()}"
+                    )
+                )
+                logger.info(
+                    f"[SALE] Credit ledger entry created: {ledger_entry.id} for sale {self.id}"
                 )
 
             # Auto-create Finance Journal Entry

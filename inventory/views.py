@@ -1,13 +1,13 @@
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from erp_core.permissions import RolePermission
 from erp_core.views import TenantModelViewSet
-from .models import Category, Product, StockMovement, Vendor, PurchaseOrder, PurchaseOrderItem
+from .models import Category, Product, StockMovement, Vendor, VendorLedger, PurchaseOrder, PurchaseOrderItem
 from .serializers import (
     CategorySerializer, ProductSerializer, StockMovementSerializer,
-    VendorSerializer, PurchaseOrderSerializer, PurchaseOrderItemSerializer
+    VendorSerializer, VendorLedgerSerializer, PurchaseOrderSerializer, PurchaseOrderItemSerializer
 )
 
 
@@ -75,7 +75,91 @@ class VendorViewSet(TenantModelViewSet):
     serializer_class = VendorSerializer
     permission_classes = [IsAuthenticated, RolePermission]
     allowed_roles = ['admin', 'manager']
-    allowed_reads = ['admin', 'manager', 'staff']
+    allowed_reads = ['admin', 'manager', 'staff', 'technician']
+
+
+class VendorLedgerViewSet(TenantModelViewSet):
+    """View and record vendor payable transactions."""
+    queryset = VendorLedger.objects.select_related('vendor').all()
+    serializer_class = VendorLedgerSerializer
+    permission_classes = [IsAuthenticated, RolePermission]
+    allowed_roles = ['admin', 'manager']
+    allowed_reads = ['admin', 'manager', 'technician']
+
+    def perform_create(self, serializer):
+        serializer.save(company_id=self.request.user.company_id)
+
+    def get_queryset(self):
+        qs = super().get_queryset().order_by('-created_at')
+        vendor_id = self.request.query_params.get('vendor')
+        if vendor_id:
+            qs = qs.filter(vendor_id=vendor_id)
+        return qs
+
+    @action(detail=False, methods=['post'])
+    def pay_vendor(self, request):
+        """
+        Record a payment to a vendor — creates a CREDIT entry and reduces balance.
+        Payload: { vendor_id, amount, notes }
+        """
+        vendor_id = request.data.get('vendor_id')
+        amount = request.data.get('amount')
+        notes = request.data.get('notes', '')
+
+        if not vendor_id or not amount:
+            return Response({'error': 'vendor_id and amount required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            vendor = Vendor.objects.get(pk=vendor_id, company_id=request.user.company_id)
+        except Vendor.DoesNotExist:
+            return Response({'error': 'Vendor not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        import decimal
+        amount_dec = decimal.Decimal(str(amount))
+        # Create CREDIT ledger entry — VendorLedger.save() auto-updates balance_due/total_paid
+        entry = VendorLedger.objects.create(
+            company_id=request.user.company_id,
+            vendor=vendor,
+            transaction_type='CREDIT',
+            amount=amount_dec,
+            reference=f"PMT-{str(vendor.id)[:8].upper()}",
+            notes=notes or f"Payment to {vendor.name}"
+        )
+        # Refresh vendor from DB to get updated balance_due after F() expressions
+        vendor.refresh_from_db()
+        return Response({
+            'status': 'paid',
+            'vendor_id':  str(vendor.id),
+            'vendor_name': vendor.name,
+            'balance_due': float(vendor.balance_due),
+            'total_paid': float(vendor.total_paid),
+            'total_purchases': float(vendor.total_purchases),
+            'entry_id': str(entry.id)
+        })
+
+    @action(detail=False, methods=['post'])
+    def recalculate_balances(self, request):
+        """
+        Admin utility: Re-aggregate all vendor balances from VendorLedger entries.
+        POST /api/inventory/vendorledger/recalculate_balances/
+        """
+        from django.db.models import Sum
+        company_id = request.user.company_id
+        vendors = Vendor.objects.filter(company_id=company_id)
+        fixed = 0
+        for v in vendors:
+            qs = VendorLedger._default_manager.filter(vendor_id=v.pk, is_deleted=False)
+            total_purchases = qs.filter(transaction_type='DEBIT').aggregate(
+                s=Sum('amount'))['s'] or 0
+            total_paid = qs.filter(transaction_type='CREDIT').aggregate(
+                s=Sum('amount'))['s'] or 0
+            Vendor._default_manager.filter(pk=v.pk).update(
+                total_purchases=total_purchases,
+                total_paid=total_paid,
+                balance_due=total_purchases - total_paid,
+            )
+            fixed += 1
+        return Response({'status': 'ok', 'vendors_fixed': fixed})
 
 
 class PurchaseOrderViewSet(TenantModelViewSet):

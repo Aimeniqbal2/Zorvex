@@ -7307,3 +7307,1769 @@ Watching for file changes with StatReloader
 "GET /login/ HTTP/1.1" 200 3169
 "GET /static/login.js HTTP/1.1" 304 0
 Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 3169
+"GET /login/ HTTP/1.1" 200 3169
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/login.js HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 3169
+"GET /login/ HTTP/1.1" 200 3169
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8238
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 200 16793
+"GET /static/dashboard.css HTTP/1.1" 200 10887
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /static/login.js HTTP/1.1" 304 0
+"GET /static/style.css HTTP/1.1" 200 7635
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"GET /admin/ HTTP/1.1" 200 26243
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+"GET /static/admin/js/theme.js HTTP/1.1" 304 0
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+"GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+"GET /static/admin/css/base.css HTTP/1.1" 304 0
+"GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 304 0
+"GET /admin/accounts/user/ HTTP/1.1" 200 27755
+"GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+"GET /static/admin/js/actions.js HTTP/1.1" 304 0
+"GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+"GET /static/admin/js/core.js HTTP/1.1" 304 0
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+"GET /static/admin/img/search.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+"GET /static/admin/js/filters.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+"POST /admin/logout/ HTTP/1.1" 200 3475
+"GET /admin/accounts/user/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/accounts/user/ HTTP/1.1" 200 4108
+"POST /admin/login/?next=/admin/accounts/user/ HTTP/1.1" 302 0
+"GET /admin/accounts/user/ HTTP/1.1" 200 27755
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET / HTTP/1.1" 200 8238
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 3169
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"GET /admin/accounts/user/c79dca9b-9472-4ba6-8710-4acd695bf7d9/change/ HTTP/1.1" 200 46622
+"GET /static/admin/js/SelectBox.js HTTP/1.1" 304 0
+"GET /static/admin/css/forms.css HTTP/1.1" 304 0
+"GET /static/admin/js/calendar.js HTTP/1.1" 304 0
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 304 0
+"GET /static/admin/js/SelectFilter2.js HTTP/1.1" 304 0
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+"GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 304 0
+"GET /static/admin/img/selector-icons.svg HTTP/1.1" 304 0
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8238
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/service-logs.js HTTP/1.1" 200 35611
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1375
+"POST /api/services/serviceorders/ HTTP/1.1" 201 910
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1713
+"GET /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 910
+"GET /api/services/technicians/ HTTP/1.1" 200 115
+"POST /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/assign_technician/ HTTP/1.1" 200 1116
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1798
+"GET /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 1116
+"GET / HTTP/1.1" 200 8238
+"GET /static/dashboard.css HTTP/1.1" 200 10887
+"GET /static/dashboard.js HTTP/1.1" 200 10401
+"GET /static/shared-nav.js HTTP/1.1" 200 16793
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/style.css HTTP/1.1" 200 7635
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+"GET /admin/accounts/user/ HTTP/1.1" 200 27755
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/user/10ab8585-2f85-4644-b11e-244048bef9e3/change/ HTTP/1.1" 200 46563
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/user/ HTTP/1.1" 200 27755
+"GET /admin/accounts/user/6fdf96ea-e428-4fb5-87aa-4fd3a1b5da4e/change/ HTTP/1.1" 200 46633
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /api/auth/login/ HTTP/1.1" 200 774
+"GET / HTTP/1.1" 200 8238
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/service-logs.js HTTP/1.1" 200 35611
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/services/serviceorders/ HTTP/1.1" 200 424
+"GET /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 1116
+"POST /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/start_technical_phase/ HTTP/1.1" 200 1169
+"GET /api/services/serviceorders/ HTTP/1.1" 200 427
+"GET /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 1506
+"POST /api/services/serviceparts/ HTTP/1.1" 201 343
+"GET /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 1849
+"POST /api/services/servicemedias/ HTTP/1.1" 201 365
+"GET /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 2214
+"GET /media/service_media/2026/04/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 200 5965153
+"POST /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/update_status/ HTTP/1.1" 200 2212
+"GET /api/services/serviceorders/ HTTP/1.1" 200 421
+"GET /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 2547
+"GET /media/service_media/2026/04/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 304 0
+"GET /media/service_media/2026/04/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 304 0
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/vendors.js HTTP/1.1" 200 9155
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 2
+"GET /credit/ HTTP/1.1" 200 10115
+"GET /static/credit.js HTTP/1.1" 200 8937
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 2
+"POST /api/inventory/purchase-orders/ HTTP/1.1" 201 220
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 222
+"PATCH /api/inventory/purchase-orders/34463acd-f0ea-4be6-aca1-3a044b0745e6/ HTTP/1.1" 200 222
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 224
+"PATCH /api/inventory/purchase-orders/34463acd-f0ea-4be6-aca1-3a044b0745e6/ HTTP/1.1" 200 223
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 225
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/inventory.js HTTP/1.1" 200 8034
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1795
+"GET /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 2547
+- Broken pipe from ('127.0.0.1', 57578)
+"GET /transactions/ HTTP/1.1" 200 6473
+"GET /static/sales-history.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/sales/sales/ HTTP/1.1" 200 12716
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1795
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /static/pos.js HTTP/1.1" 304 0
+"GET /api/sales/sessions/ HTTP/1.1" 200 2780
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 225
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /credit/ HTTP/1.1" 200 10115
+"GET /static/credit.js HTTP/1.1" 304 0
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1795
+"GET /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 2547
+- Broken pipe from ('127.0.0.1', 60751)
+"GET /login/ HTTP/1.1" 200 3169
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8238
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"POST /api/auth/login/ HTTP/1.1" 200 774
+"GET / HTTP/1.1" 200 8238
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 225
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1795
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1795
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"POST /api/services/serviceorders/ HTTP/1.1" 201 895
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2133
+"GET /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/ HTTP/1.1" 200 895
+"GET /api/services/technicians/ HTTP/1.1" 200 115
+"POST /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/assign_technician/ HTTP/1.1" 200 1101
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2218
+"GET /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/ HTTP/1.1" 200 1101
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 844
+"GET /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/ HTTP/1.1" 200 1101
+"POST /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/start_technical_phase/ HTTP/1.1" 200 1154
+"GET /api/services/serviceorders/ HTTP/1.1" 200 847
+"GET /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/ HTTP/1.1" 200 1491
+"POST /api/services/serviceparts/ HTTP/1.1" 201 343
+"GET /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/ HTTP/1.1" 200 1834
+"POST /api/services/servicemedias/ HTTP/1.1" 201 373
+"GET /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/ HTTP/1.1" 200 2207
+"GET /media/service_media/2026/04/1196530-hd_1920_1080_30fps_oztfSxF.mp4 HTTP/1.1" 200 5965153
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+"POST /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/update_status/ HTTP/1.1" 200 2205
+"GET /api/services/serviceorders/ HTTP/1.1" 200 841
+"GET /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/ HTTP/1.1" 200 2540
+"GET /media/service_media/2026/04/1196530-hd_1920_1080_30fps_oztfSxF.mp4 HTTP/1.1" 304 0
+"GET /media/service_media/2026/04/1196530-hd_1920_1080_30fps_oztfSxF.mp4 HTTP/1.1" 304 0
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 225
+"POST /api/inventory/purchase-orders/ HTTP/1.1" 201 219
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 445
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2215
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/ HTTP/1.1" 200 2540
+"GET / HTTP/1.1" 200 8238
+- Broken pipe from ('127.0.0.1', 56883)
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 445
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2215
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 774
+"GET / HTTP/1.1" 200 8238
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET / HTTP/1.1" 200 8238
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2215
+"POST /api/services/serviceorders/ HTTP/1.1" 201 898
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2556
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 898
+"GET /api/services/technicians/ HTTP/1.1" 200 115
+"POST /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/assign_technician/ HTTP/1.1" 200 1104
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2641
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 1104
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1267
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 1104
+"POST /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/start_technical_phase/ HTTP/1.1" 200 1157
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1270
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 1494
+"POST /api/services/serviceparts/ HTTP/1.1" 201 344
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 1838
+"POST /api/services/servicemedias/ HTTP/1.1" 201 373
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 2211
+"GET /media/service_media/2026/04/1196530-hd_1920_1080_30fps_g1XQUGS.mp4 HTTP/1.1" 200 5965153
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+"POST /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/update_status/ HTTP/1.1" 200 2209
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1264
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 2544
+"GET /media/service_media/2026/04/1196530-hd_1920_1080_30fps_g1XQUGS.mp4 HTTP/1.1" 304 0
+"GET /media/service_media/2026/04/1196530-hd_1920_1080_30fps_g1XQUGS.mp4 HTTP/1.1" 304 0
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 445
+"PATCH /api/inventory/purchase-orders/1e3f5536-e379-4960-874f-883c6eed0475/ HTTP/1.1" 200 221
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 447
+"PATCH /api/inventory/purchase-orders/1e3f5536-e379-4960-874f-883c6eed0475/ HTTP/1.1" 200 222
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 448
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2638
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8238
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+Not Found: /favicon.ico
+Unauthorized: /api/reports/dashboard/
+"GET /favicon.ico HTTP/1.1" 404 6153
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/login.js HTTP/1.1" 304 0
+"GET /static/style.css HTTP/1.1" 304 0
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /static/pos.js HTTP/1.1" 304 0
+"GET /api/sales/sessions/ HTTP/1.1" 200 2780
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /transactions/ HTTP/1.1" 200 6473
+"GET /static/sales-history.js HTTP/1.1" 304 0
+"GET /api/sales/sales/ HTTP/1.1" 200 12716
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /static/inventory.js HTTP/1.1" 304 0
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /static/vendors.js HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 448
+"GET /credit/ HTTP/1.1" 200 10115
+"GET /static/credit.js HTTP/1.1" 304 0
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 301
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2638
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /team/ HTTP/1.1" 200 9635
+"GET /static/team.js HTTP/1.1" 200 8392
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /credit/ HTTP/1.1" 200 10115
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 448
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /transactions/ HTTP/1.1" 200 6473
+"GET /api/sales/sales/ HTTP/1.1" 200 12716
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1671
+"GET /team/ HTTP/1.1" 200 9635
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 448
+"POST /api/inventory/purchase-orders/ HTTP/1.1" 201 221
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 670
+"PATCH /api/inventory/purchase-orders/54deead2-6136-4f3b-be01-fbbc18f1a2d9/ HTTP/1.1" 200 223
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /credit/ HTTP/1.1" 200 10115
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /api/sales/sessions/ HTTP/1.1" 200 2780
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"POST /api/sales/sales/ HTTP/1.1" 201 808
+"POST /api/sales/saleitems/ HTTP/1.1" 201 327
+"POST /api/sales/saleitems/ HTTP/1.1" 201 330
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /credit/ HTTP/1.1" 200 10115
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 301
+"GET /api/sales/ledger/?customer=ae3cd741-e8c3-461f-9a1f-0fc8fde0a1b1 HTTP/1.1" 200 2
+"GET /api/sales/ledger/?customer=83870e31-9ca2-4f6d-830c-f132715156a1 HTTP/1.1" 200 2
+"GET /api/sales/ledger/?customer=b8f76ffd-6165-4042-a6bd-a1c190856ea4 HTTP/1.1" 200 2
+"GET /api/sales/ledger/?customer=12597637-db87-462c-9f8f-147e1da7cbe4 HTTP/1.1" 200 2
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 301
+"GET /team/ HTTP/1.1" 200 9635
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /credit/ HTTP/1.1" 200 10115
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /transactions/ HTTP/1.1" 200 6473
+"GET /api/sales/sales/ HTTP/1.1" 200 13528
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 321
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2638
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1672
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /api/sales/sessions/ HTTP/1.1" 200 2780
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1672
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /api/sales/sessions/ HTTP/1.1" 200 2780
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1672
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /api/sales/sessions/ HTTP/1.1" 200 2780
+"GET /api/sales/customers/ HTTP/1.1" 200 1257
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1672
+"GET /api/sales/sales/92834c18-c863-4890-b920-e91339913ecd/ HTTP/1.1" 200 540
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8238
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/dashboard.css HTTP/1.1" 200 11902
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1802
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/sales/sessions/ HTTP/1.1" 200 2913
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/service-logs.js HTTP/1.1" 200 36923
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2638
+"GET /inventory/ HTTP/1.1" 200 12561
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /credit/ HTTP/1.1" 200 11911
+"GET /static/credit.js HTTP/1.1" 200 10239
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /api/sales/sessions/ HTTP/1.1" 200 2913
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"POST /api/sales/sales/ HTTP/1.1" 201 887
+"POST /api/sales/saleitems/ HTTP/1.1" 201 349
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /credit/ HTTP/1.1" 200 11911
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"GET /api/sales/ledger/?customer=ae3cd741-e8c3-461f-9a1f-0fc8fde0a1b1 HTTP/1.1" 200 2
+"GET /api/sales/ledger/?customer=83870e31-9ca2-4f6d-830c-f132715156a1 HTTP/1.1" 200 2
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 320
+"GET /inventory/ HTTP/1.1" 200 12561
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1802
+"GET /transactions/ HTTP/1.1" 200 6473
+"GET /api/sales/sales/ HTTP/1.1" 200 15409
+"GET /inventory/ HTTP/1.1" 200 12561
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /team/ HTTP/1.1" 200 9635
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /service-logs/ HTTP/1.1" 200 25678
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2638
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 2544
+"POST /api/services/serviceparts/ HTTP/1.1" 201 341
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 2886
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET / HTTP/1.1" 200 8238
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1802
+- Broken pipe from ('127.0.0.1', 60466)
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8238
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1802
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/sales/sessions/ HTTP/1.1" 200 2913
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /vendors/ HTTP/1.1" 200 11453
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+C:\Users\Admin\Desktop\ERP\sales\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\ERP\services\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8284
+"GET /static/dashboard.css HTTP/1.1" 200 12234
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1802
+"GET /pos/ HTTP/1.1" 200 20880
+"GET /api/sales/sessions/ HTTP/1.1" 200 2913
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"GET / HTTP/1.1" 200 8284
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1802
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2638
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /api/sales/sales/ HTTP/1.1" 200 15409
+"GET /inventory/ HTTP/1.1" 200 12594
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /vendors/ HTTP/1.1" 200 11497
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /credit/ HTTP/1.1" 200 11966
+"GET /static/credit.js HTTP/1.1" 304 0
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 320
+"GET /team/ HTTP/1.1" 200 9670
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /inventory/ HTTP/1.1" 200 12594
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1802
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2638
+"GET / HTTP/1.1" 200 8284
+"GET /static/dashboard.js HTTP/1.1" 200 11310
+"GET /static/dashboard.css HTTP/1.1" 200 12234
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/style.css HTTP/1.1" 304 0
+"GET /static/login.js HTTP/1.1" 304 0
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"GET /inventory/ HTTP/1.1" 200 12594
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /credit/ HTTP/1.1" 200 11966
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"GET /pos/ HTTP/1.1" 200 20880
+"GET /api/sales/sessions/ HTTP/1.1" 200 2913
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"POST /api/sales/sales/ HTTP/1.1" 201 888
+"POST /api/sales/saleitems/ HTTP/1.1" 201 349
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /credit/ HTTP/1.1" 200 11966
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/sales/customers/ HTTP/1.1" 200 1562
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 702
+"GET / HTTP/1.1" 200 8284
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1805
+Watching for file changes with StatReloader
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"POST /api/auth/login/ HTTP/1.1" 200 774
+"GET / HTTP/1.1" 200 8284
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1805
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/service-logs.js HTTP/1.1" 200 36923
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1264
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 2886
+"GET /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/ HTTP/1.1" 200 2540
+"GET /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 2547
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 2886
+Forbidden: /api/services/serviceorders/
+"POST /api/services/serviceorders/ HTTP/1.1" 403 63
+Forbidden: /api/services/serviceorders/
+"POST /api/services/serviceorders/ HTTP/1.1" 403 63
+"GET /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/ HTTP/1.1" 200 2540
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2638
+"POST /api/services/serviceorders/ HTTP/1.1" 201 927
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2986
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 927
+"GET /api/services/technicians/ HTTP/1.1" 200 115
+"POST /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/assign_technician/ HTTP/1.1" 200 1133
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3071
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 1133
+"GET / HTTP/1.1" 200 8284
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1805
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1805
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1697
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 1133
+"POST /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/start_technical_phase/ HTTP/1.1" 200 1186
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1700
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 1523
+"POST /api/services/serviceparts/ HTTP/1.1" 201 343
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 1866
+"POST /api/services/servicemedias/ HTTP/1.1" 201 373
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 2239
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 315
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3074
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+Watching for file changes with StatReloader
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/dashboard.css HTTP/1.1" 200 22346
+"GET /static/service-logs.js HTTP/1.1" 200 36659
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3074
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/sales/sessions/ HTTP/1.1" 200 2913
+"GET /api/sales/customers/ HTTP/1.1" 200 1467
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /vendors/ HTTP/1.1" 200 12738
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /credit/ HTTP/1.1" 200 13904
+"GET /static/credit.js HTTP/1.1" 200 16853
+"GET /api/sales/customers/ HTTP/1.1" 200 1467
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 670
+"GET /vendors/ HTTP/1.1" 200 12738
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /api/sales/sales/ HTTP/1.1" 200 25662
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3074
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 2239
+- Broken pipe from ('127.0.0.1', 61741)
+"POST /api/services/serviceparts/ HTTP/1.1" 201 339
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 2579
+"GET /vendors/ HTTP/1.1" 200 12738
+- Broken pipe from ('127.0.0.1', 60725)
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /credit/ HTTP/1.1" 200 13904
+"GET /static/credit.js HTTP/1.1" 304 0
+"GET /api/sales/customers/ HTTP/1.1" 200 1467
+"GET /team/ HTTP/1.1" 200 9670
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /credit/ HTTP/1.1" 200 13904
+"GET /api/sales/customers/ HTTP/1.1" 200 1467
+"GET /api/sales/ledger/?customer=ae3cd741-e8c3-461f-9a1f-0fc8fde0a1b1 HTTP/1.1" 200 2
+"GET /api/sales/ledger/?customer=83870e31-9ca2-4f6d-830c-f132715156a1 HTTP/1.1" 200 2
+"DELETE /api/sales/customers/83870e31-9ca2-4f6d-830c-f132715156a1/ HTTP/1.1" 200 64
+"GET /api/sales/customers/ HTTP/1.1" 200 1177
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /api/sales/sales/ HTTP/1.1" 200 25662
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3074
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/sales/sessions/ HTTP/1.1" 200 2913
+"GET /api/sales/customers/ HTTP/1.1" 200 1177
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /vendors/ HTTP/1.1" 200 12738
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /credit/ HTTP/1.1" 200 13904
+"GET /static/credit.js HTTP/1.1" 304 0
+"GET /api/sales/customers/ HTTP/1.1" 200 1177
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 670
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/dashboard.css HTTP/1.1" 200 22346
+"GET /static/service-logs.js HTTP/1.1" 200 36659
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1700
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /static/sales-history.js HTTP/1.1" 200 8232
+Forbidden: /api/sales/sales/
+"GET /api/sales/sales/ HTTP/1.1" 403 63
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /static/pos.js HTTP/1.1" 200 21493
+"GET /api/sales/sessions/ HTTP/1.1" 200 2913
+"GET /api/sales/customers/ HTTP/1.1" 200 1177
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /transactions/ HTTP/1.1" 200 6519
+Forbidden: /api/sales/sales/
+"GET /api/sales/sales/ HTTP/1.1" 403 63
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /api/services/serviceorders/ HTTP/1.1" 200 1700
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 2579
+- Broken pipe from ('127.0.0.1', 58222)
+Watching for file changes with StatReloader
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+Unauthorized: /api/sales/sessions/
+"GET /api/sales/sessions/ HTTP/1.1" 401 172
+"GET /pos/ HTTP/1.1" 200 20302
+Unauthorized: /api/sales/sessions/
+"GET /api/sales/sessions/ HTTP/1.1" 401 172
+"GET / HTTP/1.1" 200 8284
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /credit/ HTTP/1.1" 200 13904
+"GET /static/credit.js HTTP/1.1" 304 0
+"GET /api/sales/customers/ HTTP/1.1" 200 1177
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 670
+"GET /vendors/ HTTP/1.1" 200 12738
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3074
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /api/sales/sessions/ HTTP/1.1" 200 2913
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1177
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3074
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 2579
+"GET /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 2547
+"DELETE /api/services/serviceorders/6a731a66-e920-4cc0-b75d-9d588506c1e3/ HTTP/1.1" 200 64
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2654
+"GET /transactions/ HTTP/1.1" 200 6519
+- Broken pipe from ('127.0.0.1', 59903)
+- Broken pipe from ('127.0.0.1', 59411)
+"GET /api/sales/sales/ HTTP/1.1" 200 25662
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /vendors/ HTTP/1.1" 200 12738
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /credit/ HTTP/1.1" 200 13904
+"GET /api/sales/customers/ HTTP/1.1" 200 1177
+"GET /team/ HTTP/1.1" 200 9670
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /vendors/ HTTP/1.1" 200 12738
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /team/ HTTP/1.1" 200 9670
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /api/sales/sales/ HTTP/1.1" 200 25662
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2654
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /vendors/ HTTP/1.1" 200 12738
+"GET /api/inventory/vendors/ HTTP/1.1" 200 505
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /api/sales/sales/ HTTP/1.1" 200 25662
+"GET /credit/ HTTP/1.1" 200 13904
+"GET /api/sales/customers/ HTTP/1.1" 200 1177
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 670
+"GET /team/ HTTP/1.1" 200 9670
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /api/sales/sessions/ HTTP/1.1" 200 2913
+"GET /api/sales/customers/ HTTP/1.1" 200 1177
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+C:\Users\Admin\Desktop\ERP\sales\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\ERP\services\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\ERP\inventory\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\ERP\sales\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\ERP\sales\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\ERP\inventory\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\ERP\inventory\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\ERP\inventory\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+"PATCH /api/sales/sessions/4881ff88-e4fc-4491-83dc-0e3d99284224/ HTTP/1.1" 200 420
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /api/sales/sessions/ HTTP/1.1" 200 2948
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /api/sales/sessions/ HTTP/1.1" 200 2948
+"POST /api/sales/sessions/ HTTP/1.1" 201 385
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+Bad Request: /api/sales/sessions/
+"POST /api/sales/sessions/ HTTP/1.1" 400 66
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /static/dashboard.css HTTP/1.1" 200 22884
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /login/ HTTP/1.1" 200 3169
+- Broken pipe from ('127.0.0.1', 50953)
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8284
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /vendors/ HTTP/1.1" 200 16286
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+"GET /credit/ HTTP/1.1" 200 14725
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 670
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /vendors/ HTTP/1.1" 200 16286
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+"GET /credit/ HTTP/1.1" 200 14725
+"GET /static/credit.js HTTP/1.1" 200 17934
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 670
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/sales/sales/ HTTP/1.1" 200 25586
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /vendors/ HTTP/1.1" 200 16286
+"GET /api/inventory/purchase-orders/ HTTP/1.1" 200 672
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+Unauthorized: /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 401 172
+Unauthorized: /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/
+"GET /api/services/serviceorders/458cd314-7b07-4fe6-be69-77f947120c29/ HTTP/1.1" 401 172
+Unauthorized: /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 401 172
+Watching for file changes with StatReloader
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/dashboard.css HTTP/1.1" 200 22884
+"GET /static/service-logs.js HTTP/1.1" 304 0
+Unauthorized: /api/services/serviceorders/
+Unauthorized: /api/inventory/products/
+"GET /api/services/serviceorders/ HTTP/1.1" 401 172
+"GET /api/inventory/products/ HTTP/1.1" 401 172
+Unauthorized: /api/inventory/vendors/
+"GET /api/inventory/vendors/ HTTP/1.1" 401 172
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 8284
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 200 13314
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/login.js HTTP/1.1" 304 0
+"GET /static/style.css HTTP/1.1" 304 0
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /static/pos.js HTTP/1.1" 200 21493
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /static/sales-history.js HTTP/1.1" 304 0
+"GET /api/sales/sales/ HTTP/1.1" 200 25586
+"GET /credit/ HTTP/1.1" 200 14725
+"GET /static/credit.js HTTP/1.1" 304 0
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 670
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /static/inventory.js HTTP/1.1" 200 15811
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /inventory/ HTTP/1.1" 200 12512
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2654
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 2579
+"POST /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/update_status/ HTTP/1.1" 200 2579
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2649
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 2915
+- Broken pipe from ('127.0.0.1', 57406)
+"GET / HTTP/1.1" 200 8284
+- Broken pipe from ('127.0.0.1', 49167)
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2649
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 2915
+- Broken pipe from ('127.0.0.1', 49957)
+"GET /vendors/ HTTP/1.1" 200 16286
+"GET /static/vendors.js HTTP/1.1" 200 23413
+Not Found: /api/inventory/vendorledger/recalculate_balances/
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 404 21410
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+Not Found: /api/inventory/purchaseorders/
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 404 21352
+Not Found: /api/inventory/vendorledger/
+"GET /api/inventory/vendorledger/?vendor=fc4154fe-4111-4925-9e6d-01aa5e787736 HTTP/1.1" 404 21390
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /pos/ HTTP/1.1" 200 20302
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET / HTTP/1.1" 200 8284
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2649
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2649
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 2915
+"GET /vendors/ HTTP/1.1" 200 16286
+- Broken pipe from ('127.0.0.1', 59322)
+Not Found: /api/inventory/vendorledger/recalculate_balances/
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 404 21410
+Not Found: /api/inventory/purchaseorders/
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 404 21352
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+Not Found: /api/inventory/vendorledger/
+"GET /api/inventory/vendorledger/?vendor=fc4154fe-4111-4925-9e6d-01aa5e787736 HTTP/1.1" 404 21390
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 670
+"GET /team/ HTTP/1.1" 200 9670
+"GET /static/team.js HTTP/1.1" 304 0
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /vendors/ HTTP/1.1" 200 16286
+Not Found: /api/inventory/purchaseorders/
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 404 21352
+Not Found: /api/inventory/vendorledger/recalculate_balances/
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 404 21410
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+Not Found: /api/inventory/vendorledger/
+"GET /api/inventory/vendorledger/?vendor=fc4154fe-4111-4925-9e6d-01aa5e787736 HTTP/1.1" 404 21390
+Not Found: /api/inventory/vendorledger/
+"GET /api/inventory/vendorledger/?vendor=15657923-22d1-46d0-9a3c-f29ae99f93c3 HTTP/1.1" 404 21390
+Not Found: /api/inventory/vendorledger/
+"GET /api/inventory/vendorledger/?vendor=fc4154fe-4111-4925-9e6d-01aa5e787736 HTTP/1.1" 404 21390
+Not Found: /api/inventory/vendorledger/pay_vendor/
+"POST /api/inventory/vendorledger/pay_vendor/ HTTP/1.1" 404 21380
+Not Found: /api/inventory/vendorledger/pay_vendor/
+"POST /api/inventory/vendorledger/pay_vendor/ HTTP/1.1" 404 21380
+Not Found: /api/inventory/purchaseorders/
+"POST /api/inventory/purchaseorders/ HTTP/1.1" 404 21353
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1872
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2649
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"POST /api/sales/sales/ HTTP/1.1" 201 559
+"POST /api/sales/saleitems/ HTTP/1.1" 201 425
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /api/sales/sales/ HTTP/1.1" 200 26574
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1873
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /team/ HTTP/1.1" 200 9670
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1873
+"GET /vendors/ HTTP/1.1" 200 16286
+Not Found: /api/inventory/purchaseorders/
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 404 21352
+Not Found: /api/inventory/vendorledger/recalculate_balances/
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 404 21410
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+Not Found: /api/inventory/vendorledger/pay_vendor/
+"POST /api/inventory/vendorledger/pay_vendor/ HTTP/1.1" 404 21380
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 670
+"POST /api/sales/customers/abbc6b45-bbd7-46c4-9799-c6582412bcc0/receive_payment/ HTTP/1.1" 200 153
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 995
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1873
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2649
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /vendors/ HTTP/1.1" 200 16286
+Not Found: /api/inventory/purchaseorders/
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 404 21352
+Not Found: /api/inventory/vendorledger/recalculate_balances/
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 404 21410
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+Not Found: /api/inventory/purchaseorders/
+"POST /api/inventory/purchaseorders/ HTTP/1.1" 404 21353
+Not Found: /api/inventory/purchaseorders/
+"POST /api/inventory/purchaseorders/ HTTP/1.1" 404 21353
+Not Found: /api/inventory/purchaseorders/
+"POST /api/inventory/purchaseorders/ HTTP/1.1" 404 21353
+Not Found: /api/inventory/purchaseorders/
+"POST /api/inventory/purchaseorders/ HTTP/1.1" 404 21353
+Not Found: /api/inventory/purchaseorders/
+"POST /api/inventory/purchaseorders/ HTTP/1.1" 404 21353
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /api/sales/sales/ HTTP/1.1" 200 26574
+"GET /api/sales/sales/7fec9546-1cff-4e9b-957b-ad40b5bd914a/ HTTP/1.1" 200 987
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /vendors/ HTTP/1.1" 200 16286
+Not Found: /api/inventory/purchaseorders/
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 404 21352
+Not Found: /api/inventory/vendorledger/recalculate_balances/
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 404 21410
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+Not Found: /api/inventory/vendorledger/pay_vendor/
+"POST /api/inventory/vendorledger/pay_vendor/ HTTP/1.1" 404 21380
+Not Found: /api/inventory/purchaseorders/
+"POST /api/inventory/purchaseorders/ HTTP/1.1" 404 21353
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 995
+"GET /api/sales/ledger/?customer=ae3cd741-e8c3-461f-9a1f-0fc8fde0a1b1 HTTP/1.1" 200 2
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"POST /api/sales/sales/ HTTP/1.1" 201 870
+"POST /api/sales/saleitems/ HTTP/1.1" 201 425
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/sales/ledger/?customer=ae3cd741-e8c3-461f-9a1f-0fc8fde0a1b1 HTTP/1.1" 200 2
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 995
+"GET /api/sales/ledger/?customer=ae3cd741-e8c3-461f-9a1f-0fc8fde0a1b1 HTTP/1.1" 200 2
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"POST /api/sales/sales/ HTTP/1.1" 201 870
+"POST /api/sales/saleitems/ HTTP/1.1" 201 425
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/sales/ledger/?customer=ae3cd741-e8c3-461f-9a1f-0fc8fde0a1b1 HTTP/1.1" 200 2
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1149
+"GET /api/sales/ledger/?customer=abbc6b45-bbd7-46c4-9799-c6582412bcc0 HTTP/1.1" 200 995
+C:\Users\Admin\Desktop\ERP\inventory\urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /credit/ HTTP/1.1" 200 14725
+Unauthorized: /api/sales/customers/recalculate_balances/
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 401 172
+Unauthorized: /api/sales/customers/
+"GET /api/sales/customers/ HTTP/1.1" 401 172
+"GET /pos/ HTTP/1.1" 200 20506
+Unauthorized: /api/sales/sessions/
+"GET /api/sales/sessions/ HTTP/1.1" 401 172
+"GET / HTTP/1.1" 200 8337
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /vendors/ HTTP/1.1" 200 16286
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/vendors/ HTTP/1.1" 200 491
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"POST /api/inventory/vendorledger/pay_vendor/ HTTP/1.1" 200 200
+"GET /api/inventory/vendors/ HTTP/1.1" 200 492
+"GET /api/inventory/vendorledger/?vendor=fc4154fe-4111-4925-9e6d-01aa5e787736 HTTP/1.1" 200 543
+"GET /api/inventory/vendorledger/?vendor=15657923-22d1-46d0-9a3c-f29ae99f93c3 HTTP/1.1" 200 2
+"GET /api/inventory/vendorledger/?vendor=fc4154fe-4111-4925-9e6d-01aa5e787736 HTTP/1.1" 200 543
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2649
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"GET /api/inventory/vendors/ HTTP/1.1" 200 492
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 2915
+- Broken pipe from ('127.0.0.1', 62234)
+Internal Server Error: /api/services/serviceparts/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\services\views.py", line 283, in perform_create
+    serializer.save(company_id=self.request.user.company_id)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\serializers.py", line 1011, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\services\models.py", line 207, in save
+    logger.info(
+    ^^^^^^
+NameError: name 'logger' is not defined
+"POST /api/services/serviceparts/ HTTP/1.1" 500 138836
+Internal Server Error: /api/services/serviceparts/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\services\views.py", line 283, in perform_create
+    serializer.save(company_id=self.request.user.company_id)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\serializers.py", line 1011, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\services\models.py", line 207, in save
+    logger.info(
+    ^^^^^^
+NameError: name 'logger' is not defined
+"POST /api/services/serviceparts/ HTTP/1.1" 500 138886
+Internal Server Error: /api/services/serviceparts/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\services\views.py", line 283, in perform_create
+    serializer.save(company_id=self.request.user.company_id)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\rest_framework\serializers.py", line 1011, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\venv\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\ERP\services\models.py", line 207, in save
+    logger.info(
+    ^^^^^^
+NameError: name 'logger' is not defined
+"POST /api/services/serviceparts/ HTTP/1.1" 500 138929
+"POST /api/services/servicemedias/ HTTP/1.1" 201 363
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4302
+- Broken pipe from ('127.0.0.1', 61735)
+- Broken pipe from ('127.0.0.1', 51039)
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /api/sales/sales/ HTTP/1.1" 200 29208
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4246
+"POST /api/inventory/products/ HTTP/1.1" 201 439
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET /api/sales/ledger/?customer=ae3cd741-e8c3-461f-9a1f-0fc8fde0a1b1 HTTP/1.1" 200 404
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /vendors/ HTTP/1.1" 200 16286
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2649
+Watching for file changes with StatReloader
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /login/ HTTP/1.1" 200 3169
+- Broken pipe from ('127.0.0.1', 59809)
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4302
+"GET /api/services/technicians/ HTTP/1.1" 200 115
+"POST /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/assign_technician/ HTTP/1.1" 200 4260
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4302
+- Broken pipe from ('127.0.0.1', 63105)
+- Broken pipe from ('127.0.0.1', 50137)
+- Broken pipe from ('127.0.0.1', 54568)
+- Broken pipe from ('127.0.0.1', 56033)
+"GET /vendors/ HTTP/1.1" 200 16286
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/vendorledger/?vendor=15657923-22d1-46d0-9a3c-f29ae99f93c3 HTTP/1.1" 200 326
+"GET /api/inventory/vendorledger/?vendor=fc4154fe-4111-4925-9e6d-01aa5e787736 HTTP/1.1" 200 1193
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4302
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 2886
+- Broken pipe from ('127.0.0.1', 53891)
+- Broken pipe from ('127.0.0.1', 62190)
+- Broken pipe from ('127.0.0.1', 55918)
+"POST /api/services/serviceparts/ HTTP/1.1" 201 337
+"GET /api/services/serviceorders/75a2f1b2-099a-4287-a643-84081bbba04f/ HTTP/1.1" 200 3224
+- Broken pipe from ('127.0.0.1', 55257)
+"GET /vendors/ HTTP/1.1" 200 16286
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /vendors/ HTTP/1.1" 200 16286
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8337
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4302
+- Broken pipe from ('127.0.0.1', 53764)
+- Broken pipe from ('127.0.0.1', 51962)
+"POST /api/services/serviceparts/ HTTP/1.1" 201 339
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4642
+"GET /vendors/ HTTP/1.1" 200 16286
+- Broken pipe from ('127.0.0.1', 58350)
+- Broken pipe from ('127.0.0.1', 50154)
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/inventory/vendorledger/?vendor=fc4154fe-4111-4925-9e6d-01aa5e787736 HTTP/1.1" 200 1839
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+Watching for file changes with StatReloader
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4642
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4642
+"GET /api/services/technicians/ HTTP/1.1" 200 115
+"POST /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/assign_technician/ HTTP/1.1" 200 4600
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4642
+- Broken pipe from ('127.0.0.1', 55985)
+- Broken pipe from ('127.0.0.1', 58342)
+- Broken pipe from ('127.0.0.1', 63139)
+- Broken pipe from ('127.0.0.1', 61294)
+- Broken pipe from ('127.0.0.1', 64915)
+- Broken pipe from ('127.0.0.1', 50779)
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8337
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 200 13372
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /static/service-logs.js HTTP/1.1" 200 36718
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4642
+"GET /transactions/ HTTP/1.1" 200 6519
+- Broken pipe from ('127.0.0.1', 63253)
+- Broken pipe from ('127.0.0.1', 49336)
+"GET /api/sales/sales/ HTTP/1.1" 200 29208
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /static/inventory.js HTTP/1.1" 304 0
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /vendors/ HTTP/1.1" 200 16286
+"GET /static/vendors.js HTTP/1.1" 304 0
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"GET /api/inventory/vendorledger/?vendor=fc4154fe-4111-4925-9e6d-01aa5e787736 HTTP/1.1" 200 1839
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4642
+- Broken pipe from ('127.0.0.1', 56986)
+- Broken pipe from ('127.0.0.1', 54468)
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /static/pos.js HTTP/1.1" 200 21549
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET /team/ HTTP/1.1" 200 9670
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /credit/ HTTP/1.1" 200 14725
+"GET /static/credit.js HTTP/1.1" 304 0
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET /vendors/ HTTP/1.1" 200 16286
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /team/ HTTP/1.1" 200 9670
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /vendors/ HTTP/1.1" 200 16286
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /api/sales/sales/ HTTP/1.1" 200 29208
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /team/ HTTP/1.1" 200 9670
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /api/sales/sales/ HTTP/1.1" 200 29208
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /vendors/ HTTP/1.1" 200 16286
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/vendorledger/?vendor=fc4154fe-4111-4925-9e6d-01aa5e787736 HTTP/1.1" 200 1839
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET /team/ HTTP/1.1" 200 9670
+"GET /api/accounts/users/ HTTP/1.1" 200 1059
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET /vendors/ HTTP/1.1" 200 16286
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /transactions/ HTTP/1.1" 200 6519
+"GET /api/sales/sales/ HTTP/1.1" 200 29208
+"GET /service-logs/ HTTP/1.1" 200 25790
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /credit/ HTTP/1.1" 200 14725
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET /credit/ HTTP/1.1" 200 15783
+"GET /static/dashboard.css HTTP/1.1" 200 23803
+"GET /static/credit.js HTTP/1.1" 200 17934
+"GET /static/shared-nav.js HTTP/1.1" 200 16721
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Unauthorized: /api/sales/customers/recalculate_balances/
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 401 172
+Unauthorized: /api/sales/customers/
+"GET /api/sales/customers/ HTTP/1.1" 401 172
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+"GET /credit/ HTTP/1.1" 200 15783
+Unauthorized: /api/sales/customers/recalculate_balances/
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 401 172
+Unauthorized: /api/sales/customers/
+"GET /api/sales/customers/ HTTP/1.1" 401 172
+"GET /credit/ HTTP/1.1" 200 15783
+Unauthorized: /api/sales/customers/recalculate_balances/
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 401 172
+- Broken pipe from ('127.0.0.1', 64408)
+"GET /credit/ HTTP/1.1" 200 15783
+Unauthorized: /api/sales/customers/
+- Broken pipe from ('127.0.0.1', 62423)
+Unauthorized: /api/sales/customers/recalculate_balances/
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 401 172
+Unauthorized: /api/sales/customers/
+"GET /api/sales/customers/ HTTP/1.1" 401 172
+"GET / HTTP/1.1" 200 8337
+"GET /static/dashboard.js HTTP/1.1" 304 0
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /credit/ HTTP/1.1" 200 15783
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /static/pos.js HTTP/1.1" 304 0
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET /transactions/ HTTP/1.1" 200 6596
+"GET /api/sales/sales/ HTTP/1.1" 200 29208
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3334
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 1155
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /team/ HTTP/1.1" 200 9670
+"GET /api/accounts/users/ HTTP/1.1" 200 1059

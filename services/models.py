@@ -2,12 +2,16 @@
 services/models.py
 3-Phase Service Order System:
   Phase 1 - Entry: Create order with device info, issues, department
+  Phase 1b - Assign: Admin assigns a technician (required before tech phase)
   Phase 2 - Working: Technician adds parts, work logs, video evidence
   Phase 3 - Final: Delivery, payment, and invoice generation
 """
+import logging
 from django.db import models
 from django.conf import settings
 from erp_core.models import BaseModel
+
+logger = logging.getLogger(__name__)
 
 
 class ServiceOrder(BaseModel):
@@ -49,11 +53,21 @@ class ServiceOrder(BaseModel):
 
     # Assignment
     department = models.CharField(max_length=50, choices=DEPARTMENT_CHOICES)
+    # Legacy field kept for backward-compat; assignment logic uses assigned_technician
     technician = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         null=True, blank=True,
         related_name='assigned_services'
+    )
+    # New: admin explicitly assigns one technician before tech phase can start
+    assigned_technician = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True, blank=True,
+        limit_choices_to={'role': 'technician'},
+        related_name='assigned_technical_services',
+        help_text='The technician responsible for this repair'
     )
 
     # Pricing & Time Estimates
@@ -63,6 +77,9 @@ class ServiceOrder(BaseModel):
     commission = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text="Technician commission")
 
     # --- Phase 2: Working Fields ---
+    # Gates: technician must click "Start Technical Phase" to unlock inject/log/media
+    technical_phase_started = models.BooleanField(default=False)
+    technical_phase_started_at = models.DateTimeField(null=True, blank=True)
     technician_comments = models.TextField(blank=True)
 
     # --- Phase 3: Final Fields ---
@@ -135,6 +152,14 @@ class ServicePartUsed(BaseModel):
     service_order = models.ForeignKey(ServiceOrder, on_delete=models.CASCADE, related_name='parts_used')
     source = models.CharField(max_length=20, choices=SOURCE_CHOICES, default='inventory')
     product = models.ForeignKey('inventory.Product', on_delete=models.CASCADE, null=True, blank=True)
+    # Vendor link: populated when source == 'vendor', triggers payable ledger entry
+    vendor = models.ForeignKey(
+        'inventory.Vendor',
+        on_delete=models.SET_NULL,
+        null=True, blank=True,
+        related_name='service_parts',
+        help_text='Vendor to pay when source is external'
+    )
     part_name = models.CharField(max_length=200, blank=True, help_text="Required if source is vendor")
     quantity = models.IntegerField(default=1)
     unit_cost = models.DecimalField(max_digits=10, decimal_places=2, help_text="Captured at time of use")
@@ -150,7 +175,7 @@ class ServicePartUsed(BaseModel):
         return self.product.model_name if self.product else 'Unknown Part'
 
     def save(self, *args, **kwargs):
-        is_new = self.pk is None
+        is_new = self._state.adding
         super().save(*args, **kwargs)
         if is_new and self.source == 'inventory' and self.product:
             # Atomically decrement stock and record movement
@@ -164,6 +189,27 @@ class ServicePartUsed(BaseModel):
                 movement_type='OUT',
                 reference=f"SVC-{str(self.service_order_id)[:8].upper()}",
                 notes=f"Part used in Service Order {self.service_order_id}"
+            )
+
+        if is_new and self.source == 'vendor' and self.vendor_id:
+            # Create a Vendor Payable Ledger entry.
+            # VendorLedger.save() will atomically update vendor.balance_due via F() expressions.
+            from inventory.models import VendorLedger
+            total = self.quantity * self.unit_cost
+            VendorLedger.objects.create(
+                company_id=self.company_id,
+                vendor_id=self.vendor_id,
+                transaction_type='DEBIT',
+                amount=total,
+                reference=f"SVC-{str(self.service_order_id)[:8].upper()}",
+                notes=(
+                    f"Part '{self.part_name or 'Unknown'}' x{self.quantity} "
+                    f"@ PKR{self.unit_cost} used in Service Order {self.service_order_id}"
+                )
+            )
+            logger.info(
+                f"[VENDOR LEDGER] DEBIT +{total} → Vendor {self.vendor_id} "
+                f"for part '{self.part_name}' in SVC-{str(self.service_order_id)[:8].upper()}"
             )
 
     def __str__(self):

@@ -16,7 +16,7 @@
         }
 
         .order-list-panel {
-            background: #fff;
+            background: var(--modal-bg);
             border-radius: 20px;
             border: 1px solid var(--border-light);
             display: flex;
@@ -28,7 +28,7 @@
         .order-search {
             padding: 20px;
             border-bottom: 1px solid var(--border-light);
-            background: #fafafa;
+            background: var(--card-bg);
         }
 
         .list-container {
@@ -46,7 +46,7 @@
             border: 2px solid var(--border-light);
             cursor: pointer;
             transition: 0.2s;
-            background: #fff;
+            background: var(--modal-bg);
         }
 
         .order-card:hover {
@@ -87,7 +87,7 @@
             text-transform: uppercase;
         }
 
-        .badge-pending { background: #fff3cd; color: #856404; }
+        .badge-pending { background: rgba(255,181,71,0.1); color: #856404; }
         .badge-in_progress { background: #cce5ff; color: #004085; }
         .badge-ready { background: #d4edda; color: #155724; }
         .badge-return { background: #f8d7da; color: #721c24; }
@@ -95,7 +95,7 @@
 
         .department-tabs {
             display: flex;
-            background: #f1f5f9;
+            background: var(--bg-secondary);
             padding: 5px;
             border-radius: 10px;
             margin-top: 10px;
@@ -114,13 +114,13 @@
         }
 
         .d-tab.active {
-            background: #fff;
+            background: var(--modal-bg);
             color: var(--primary);
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .detail-panel {
-            background: #fff;
+            background: var(--modal-bg);
             border-radius: 20px;
             border: 1px solid var(--border-light);
             padding: 30px;
@@ -171,7 +171,7 @@
         }
 
         .modal-box {
-            background: #fff;
+            background: var(--modal-bg);
             width: 500px;
             max-height: 90vh;
             overflow-y: auto;
@@ -193,7 +193,7 @@
             margin-bottom: 25px;
             position: sticky;
             top: 0;
-            background: #fff;
+            background: var(--modal-bg);
             padding-bottom: 15px;
             z-index: 10;
         }
@@ -202,7 +202,7 @@
         .form-group { margin-bottom: 18px; }
         .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; }
         .form-input { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--border-light); font-size: 14px; outline: none; background: #f8fafc; color: var(--text-main); font-weight: 500; }
-        .form-input:focus { border-color: var(--primary); background: #fff; }
+        .form-input:focus { border-color: var(--primary); background: var(--modal-bg); }
         
         .primary-btn { width: 100%; padding: 16px; border-radius: 12px; background: var(--primary); color: #fff; font-size: 15px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
         .primary-btn:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(67,24,255,0.3); }
@@ -222,7 +222,7 @@
                 width: 80mm;
             }
             #receiptModal .modal-box { box-shadow: none; padding: 0; border-radius: 0; width: 100%; transform: none; }
-            #receiptContent, #receiptContent * { visibility: visible; color: #000; background: #fff; }
+            #receiptContent, #receiptContent * { visibility: visible; color: #000; background: var(--modal-bg); }
             #receiptContent { position: absolute; left: 0; top: 0; width: 80mm; padding: 5mm; margin: 0; border: none; }
             #receiptModal .modal-box > div:last-child { display: none !important; }
         }
@@ -265,7 +265,7 @@
                     <div id="detailPlaceholder" style="text-align:center; padding:100px 20px; color:var(--text-muted);">
                         <div style="font-size:48px; margin-bottom:15px; opacity:0.5;">🛠️</div>
                         <h3>Select a Service Order</h3>
-                        <p style="font-size:14px;">View details, inject hardware/software logs, track telemetry, and process final delivery endpoints.</p>
+                        <p style="font-size:14px;">View details, assign technicians, log work, and process delivery.</p>
                     </div>
 
                     <div id="detailContent" style="display:none;">
@@ -278,15 +278,15 @@
                             </div>
                             <div style="text-align:right;">
                                 <span id="detailStatus" class="status-badge" style="font-size:14px; padding:6px 14px;"></span>
-                                <div id="statusButtons" style="margin-top:15px; display:flex; flex-wrap:wrap; justify-content:flex-end;"></div>
+                                <div id="statusButtons" style="margin-top:15px; display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px;"></div>
                             </div>
                         </div>
 
-                        <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
-                            <button class="action-btn" id="openLogModalBtn" style="flex:1;">+ Add Work Log</button>
-                            <button class="action-btn" id="openPartModalBtn" style="flex:1;">+ Inject Part</button>
-                            <button class="action-btn" id="openMediaModalBtn" style="flex:1;">+ Upload Media</button>
-                        </div>
+                        <!-- Technician assignment banner -->
+                        <div id="assignmentBanner"></div>
+
+                        <!-- Phase 2 gated controls -->
+                        <div id="phase2Controls" style="margin-bottom:16px;"></div>
 
                         <p class="section-divider">Chronological Telemetry Logs</p>
                         <div id="workLogsList" style="margin-bottom:20px;"></div>
@@ -410,6 +410,15 @@
                     <input type="text" id="partName" class="form-input" placeholder="e.g. Outsourced LCD rebonding...">
                 </div>
 
+                <!-- Vendor dropdown: shown when source=vendor, links to payable ledger -->
+                <div id="vendorSelectSection" class="form-group" style="display:none;">
+                    <label>Select Vendor (Payable Ledger)</label>
+                    <select id="partVendor" class="form-input">
+                        <option value="">Select vendor...</option>
+                    </select>
+                    <p style="font-size:10px;color:var(--text-muted);margin-top:4px;">Cost will be added to this vendor's payable balance automatically.</p>
+                </div>
+
                 <div style="display:flex; gap:15px;">
                     <div class="form-group" style="flex:1;">
                         <label>Quantity</label>
@@ -431,21 +440,21 @@
     <div class="modal-overlay" id="mediaModal">
         <div class="modal-box">
             <div class="modal-header">
-                <h3>Inject Media Evidence (Max 30s)</h3>
+                <h3>Upload Media Evidence</h3>
                 <button class="close-btn" id="closeMediaModal">×</button>
             </div>
             <form id="mediaForm">
                 <div class="form-group">
-                    <label>Binary Asset File</label>
+                    <label>Select File (Image or Video ≤30s)</label>
                     <input type="file" id="mediaFile" class="form-input" accept="image/*,video/mp4,video/quicktime,video/x-m4v" required>
-                    <p style="font-size:10px; color:var(--text-muted); margin-top:5px;">Video files must remain under 30 seconds for optimal storage matrix sync.</p>
+                    <p style="font-size:10px; color:var(--text-muted); margin-top:5px;">Files are stored on the server. Max video: 30 seconds.</p>
                 </div>
                 <div class="form-group">
-                    <label>Meta-data Caption</label>
-                    <input type="text" id="mediaCaption" class="form-input" placeholder="Showing charging port functionality...">
+                    <label>Caption</label>
+                    <input type="text" id="mediaCaption" class="form-input" placeholder="e.g. Before repair - charging port damage">
                 </div>
                 <p id="mediaError" style="color:var(--danger);font-size:12px;font-weight:600;display:none;margin-bottom:10px;"></p>
-                <button type="submit" class="primary-btn">Stream to AWS S3</button>
+                <button type="submit" class="primary-btn">Upload Media</button>
             </form>
         </div>
     </div>
@@ -488,13 +497,37 @@
     <!-- Receipt Print Modal (Standard 80mm) -->
     <div class="modal-overlay" id="receiptModal">
         <div class="modal-box" style="width:400px; padding:0; overflow:hidden;">
-            <div id="receiptContent" style="background:#fff; padding:30px; font-family:'Courier New', monospace; font-size:13px; color:#111;"></div>
+            <div id="receiptContent" style="background:var(--modal-bg); padding:30px; font-family:'Courier New', monospace; font-size:13px; color:#111;"></div>
             <div style="padding:20px; background:#f8fafc; border-top:1px dashed #e2e8f0; display:flex; gap:10px;">
                 <button class="primary-btn" style="margin-top:0;" onclick="window.print()">Print Thermal Asset</button>
                 <button class="primary-btn" style="margin-top:0; background:var(--text-muted);" id="closeReceiptBtn">Dismiss</button>
             </div>
         </div>
     </div>
+
+    <!-- Modal 6: Assign Technician (Admin only) -->
+    <div class="modal-overlay" id="assignModal">
+        <div class="modal-box" style="width:460px;">
+            <div class="modal-header">
+                <h3>Assign Technician</h3>
+                <button class="close-btn" id="closeAssignModal">×</button>
+            </div>
+            <form id="assignForm">
+                <input type="hidden" id="assignOrderId">
+                <div class="form-group">
+                    <label>Select Technician</label>
+                    <select id="assignTechSelect" class="form-input" required>
+                        <option value="">Loading technicians...</option>
+                    </select>
+                </div>
+                <p id="assignError" style="color:var(--danger);font-size:12px;font-weight:600;display:none;margin-bottom:10px;"></p>
+                <button type="submit" class="primary-btn">Confirm Assignment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating Theme Toggle Button -->
+    <button id="themeToggleBtn" title="Toggle dark/light theme">🌙</button>
 
     <script src="{% static 'service-logs.js' %}"></script>
     <script src="{% static 'shared-nav.js' %}"></script>

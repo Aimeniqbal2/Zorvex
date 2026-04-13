@@ -26,7 +26,7 @@
         }
 
         .product-card {
-            background: #fff;
+            background: var(--card-bg);
             border: 1px solid var(--border-light);
             border-radius: 18px;
             padding: 24px;
@@ -65,7 +65,7 @@
 
         .product-card span {
             display: inline-block;
-            background: #f4f7fe;
+            background: var(--bg-secondary);
             padding: 4px 10px;
             border-radius: 6px;
             font-size: 11px;
@@ -74,7 +74,7 @@
         }
 
         .cart-panel {
-            background: #fff;
+            background: var(--card-bg);
             border: 1px solid var(--border-light);
             border-radius: 20px;
             box-shadow: var(--shadow-soft);
@@ -86,7 +86,7 @@
 
         .cart-header {
             padding: 22px;
-            background: #fafafa;
+            background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-light);
         }
 
@@ -144,7 +144,7 @@
 
         .cart-footer {
             padding: 25px;
-            background: #fafafa;
+            background: var(--bg-secondary);
             border-top: 1px solid var(--border-light);
         }
 
@@ -189,7 +189,7 @@
             font-weight: 600;
             outline: none;
             margin-bottom: 15px;
-            background: #fff;
+            background: var(--input-bg);
             font-size: 14px;
             color: var(--text-main);
         }
@@ -222,7 +222,7 @@
         }
 
         .modal-box {
-            background: #fff;
+            background: var(--modal-bg);
             width: 450px;
             border-radius: 28px;
             padding: 40px;
@@ -282,7 +282,7 @@
 
         .p-btn.selected {
             border-color: var(--primary);
-            background: #f4f7fe;
+            background: var(--primary-light);
             color: var(--primary);
         }
 
@@ -356,7 +356,7 @@
 
                 <div style="display:flex; flex-direction:column; gap:15px; grid-column:1;">
                     <div
-                        style="display:flex; gap:15px; background:#fff; padding:15px; border-radius:18px; box-shadow:var(--shadow-sm); border:1px solid var(--border-light);">
+                        style="display:flex; gap:15px; background:var(--card-bg); padding:15px; border-radius:18px; box-shadow:var(--shadow-sm); border:1px solid var(--border-light);">
                         <input type="text" id="barcodeScanner"
                             placeholder="Click here to focus Barcode/SKU Laser Scanner..."
                             style="flex:1; padding:12px 15px; border-radius:10px; border:2px dashed var(--primary); font-family:monospace; outline:none; font-weight:800; text-transform:uppercase;">
@@ -374,7 +374,7 @@
 
                 <div class="cart-panel" style="grid-column:2;">
                         <div class="cart-header"
-                        style="background:#fff; border-bottom:none; display:flex; flex-direction:column; padding-bottom:10px;">
+                        style="background:var(--card-bg); border-bottom:none; display:flex; flex-direction:column; padding-bottom:10px;">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                             <h3 style="font-size:16px;">Active Order Ledger</h3>
                             <button id="addCustomerBtn"
@@ -383,9 +383,9 @@
                         </div>
                         <div style="position:relative; width: 100%;">
                             <input type="text" id="customerSearch" class="pos-input" style="margin-bottom:0;" placeholder="Search Client Phone or Name..." autocomplete="off">
-                            <div id="customerResults" style="position:absolute; top:calc(100% + 5px); left:0; width:100%; background:#fff; z-index:100; border:1px solid var(--border-light); border-radius:10px; max-height:200px; overflow-y:auto; display:none; box-shadow:var(--shadow-soft);"></div>
+                            <div id="customerResults" style="position:absolute; top:calc(100% + 5px); left:0; width:100%; background:var(--card-bg); z-index:100; border:1px solid var(--border-light); border-radius:10px; max-height:200px; overflow-y:auto; display:none; box-shadow:var(--shadow-soft);"></div>
                         </div>
-                        <div id="selectedCustomerBadge" style="display:none; margin-top:10px; padding:10px; background:#f4f7fe; border:1px solid var(--primary-light); border-radius:8px; font-weight:800; font-size:12px; color:var(--primary); align-items:center; justify-content:space-between;">
+                        <div id="selectedCustomerBadge" style="display:none; margin-top:10px; padding:10px; background:var(--bg-secondary); border:1px solid var(--primary-light); border-radius:8px; font-weight:800; font-size:12px; color:var(--primary); align-items:center; justify-content:space-between;">
                             <span id="scLabel"></span>
                             <button id="clearCustomerBtn" style="background:none; border:none; color:var(--danger); cursor:pointer; font-size:14px; font-weight:900;">✖</button>
                         </div>
@@ -460,7 +460,7 @@
                 <h3>Finalize Transaction</h3>
                 <button class="close-btn" id="closePaymentBtn">×</button>
             </div>
-            <div style="background:#f4f7fe; padding:20px; border-radius:15px; text-align:center; margin-bottom:20px;">
+            <div style="background:var(--bg-secondary); padding:20px; border-radius:15px; text-align:center; margin-bottom:20px;">
                 <p style="font-size:14px; font-weight:700; color:var(--text-muted);">AMOUNT DUE</p>
                 <h1 id="paymentDue" style="font-size:42px; font-weight:900; color:var(--text-main);">PKR0.00</h1>
             </div>
@@ -477,7 +477,7 @@
                 <input type="number" id="receivedAmt" class="pos-input"
                     style="font-size:20px; padding:15px; font-weight:700;">
                 <div
-                    style="display:flex; justify-content:space-between; background:#e2e8f0; padding:15px; border-radius:12px;">
+                    style="display:flex; justify-content:space-between; background:var(--bg-secondary); padding:15px; border-radius:12px;">
                     <span style="font-weight:700;">CHANGE</span>
                     <span id="changeAmt" style="font-weight:900; color:var(--success);">PKR0.00</span>
                 </div>
@@ -511,9 +511,9 @@
     <div class="modal-overlay" id="receiptModal">
         <div class="modal-box" style="width:400px; padding:0; overflow:hidden;">
             <div id="receiptContent"
-                style="background:#fff; padding:30px; font-family:'Courier New', monospace; font-size:13px; color:#111;">
+                style="background:var(--modal-bg); padding:30px; font-family:'Courier New', monospace; font-size:13px; color:var(--text-main);">
             </div>
-            <div style="padding:20px; background:#f8fafc; border-top:1px dashed #e2e8f0; display:flex; gap:10px;">
+            <div style="padding:20px; background:var(--bg-secondary); border-top:1px dashed var(--border-light); display:flex; gap:10px;">
                 <button class="primary-btn" style="margin-top:0;" onclick="window.print()">Print Document</button>
                 <button class="primary-btn" style="margin-top:0; background:var(--text-muted);"
                     id="closeReceiptBtn">Dismiss</button>

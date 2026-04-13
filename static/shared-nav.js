@@ -132,8 +132,8 @@
         let dropdown = document.createElement('div');
         dropdown.className = 'global-search-dropdown';
         dropdown.style.cssText = `
-            position:absolute; background:#fff; border:1px solid #e2e8f0; border-radius:14px;
-            box-shadow:0 20px 40px rgba(0,0,0,0.12); min-width:380px; max-height:400px;
+            position:absolute; border:1px solid var(--border-light); border-radius:14px;
+            box-shadow:var(--shadow-md); min-width:380px; max-height:400px;
             overflow-y:auto; z-index:9999; padding:8px; display:none;
         `;
         box.parentNode.style.position = 'relative';
@@ -215,10 +215,9 @@
         container.innerHTML = html;
         container.style.display = 'block';
 
-        // Hover effects
+        // Hover effects handle via dynamic class if needed, or rely on dashboard.css
         container.querySelectorAll('.search-result-item').forEach(item => {
-            item.addEventListener('mouseenter', () => { item.style.background = '#f4f7fe'; });
-            item.addEventListener('mouseleave', () => { item.style.background = 'transparent'; });
+            item.className = 'search-result-item'; // Allow CSS to handle it
         });
     }
 
@@ -236,9 +235,10 @@
 
         // Inject the profile dropout
         const drop = document.createElement('div');
+        drop.className = 'dropdown-panel';
         drop.style.cssText = `
-            position:absolute; right:0; top:50px; background:#fff; border:1px solid #e2e8f0; border-radius:16px; 
-            box-shadow:0 15px 35px rgba(0,0,0,0.1); width:280px; padding:20px; display:none; flex-direction:column;
+            position:absolute; right:0; top:50px; border:1px solid var(--border-light); border-radius:16px; 
+            width:280px; padding:20px; display:none; flex-direction:column;
             z-index:9000; cursor:default;
         `;
         drop.innerHTML = `
@@ -268,9 +268,10 @@
     bellNodes.forEach(btn => {
         btn.style.position = 'relative';
         const notiDrop = document.createElement('div');
+        notiDrop.className = 'dropdown-panel';
         notiDrop.style.cssText = `
-            position:absolute; right:-10px; top:45px; background:#fff; border:1px solid #e2e8f0; border-radius:16px; 
-            box-shadow:0 15px 35px rgba(0,0,0,0.1); width:320px; padding:20px 20px 30px 20px; display:none; flex-direction:column;
+            position:absolute; right:-10px; top:45px; border:1px solid var(--border-light); border-radius:16px; 
+            width:320px; padding:20px 20px 30px 20px; display:none; flex-direction:column;
             z-index:9000; text-align:center; cursor:default;
         `;
         notiDrop.innerHTML = `
@@ -294,5 +295,38 @@
 
     // Expose role info globally for pages that need it
     window.erpUser = { role: userRole, payload };
+
+    // -------------------------------------------------------
+    // Dark / Light Theme Toggle (persisted via localStorage)
+    // -------------------------------------------------------
+    (function initTheme() {
+        const saved = localStorage.getItem('erp_theme') || 'light';
+        document.documentElement.setAttribute('data-theme', saved);
+        updateToggleIcon(saved);
+    })();
+
+    function updateToggleIcon(theme) {
+        const btn = document.getElementById('themeToggleBtn');
+        if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Inject toggle button if not already in the HTML
+    if (!document.getElementById('themeToggleBtn')) {
+        const btn = document.createElement('button');
+        btn.id = 'themeToggleBtn';
+        btn.title = 'Toggle dark / light theme';
+        btn.textContent = localStorage.getItem('erp_theme') === 'dark' ? '☀️' : '🌙';
+        document.body.appendChild(btn);
+    }
+
+    document.addEventListener('click', (e) => {
+        if (e.target && e.target.id === 'themeToggleBtn') {
+            const current = document.documentElement.getAttribute('data-theme') || 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('erp_theme', next);
+            updateToggleIcon(next);
+        }
+    });
 
 })();

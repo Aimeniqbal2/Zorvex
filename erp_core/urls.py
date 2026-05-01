@@ -19,6 +19,8 @@ urlpatterns = [
     path('credit/', views.credit_view, name='credit'),
     path('team/', views.team_view, name='team'),
     path('transactions/', views.sales_history_view, name='transactions'),
+    path('analytics/', views.analytics_view, name='analytics'),
+
 
     path('admin/', admin.site.urls),
     

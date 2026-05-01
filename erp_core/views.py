@@ -33,6 +33,10 @@ def team_view(request):
 def sales_history_view(request):
     return render(request, 'sales-history.html')
 
+def analytics_view(request):
+    return render(request, 'analytics.html')
+
+
 
 class TenantModelViewSet(viewsets.ModelViewSet):
     """

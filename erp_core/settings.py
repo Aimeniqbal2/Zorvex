@@ -41,20 +41,36 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-replace-this')
 DEBUG = env('DEBUG', default=True)
 
 # ---------------------------railway------------------------------
+# ---------------------------railway / production SSL------------------------------
+# These settings only apply in production (DEBUG=False).
+# In dev, they break cookies, camera, and local auth — so we skip them.
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    CSRF_COOKIE_SECURE      = True
+    SESSION_COOKIE_SECURE   = True
+    SECURE_HSTS_SECONDS     = 3600
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+else:
+    # Dev: insecure cookies are fine; needed for localhost camera / form access
+    CSRF_COOKIE_SECURE    = False
+    SESSION_COOKIE_SECURE = False
+
+# Trusted origins for CSRF (must include localhost for local dev)
 CSRF_TRUSTED_ORIGINS = [
-    "https://zorvex-production.up.railway.app"
+    "https://zorvex-production.up.railway.app",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
 ]
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=["zorvex-production.up.railway.app",
+# Allow SharedArrayBuffer (needed for some media APIs in modern Chrome)
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
+    "zorvex-production.up.railway.app",
     "localhost",
-    "127.0.0.1"])
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+    "127.0.0.1",
+])
 # ---------------------------railway end------------------------------
-
-# ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
 
 # Application definition

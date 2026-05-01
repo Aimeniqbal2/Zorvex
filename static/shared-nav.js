@@ -31,27 +31,35 @@
 
     // Role hierarchy for UI gating
     const ROLE_LEVELS = {
-        super_admin: 5, admin: 4, manager: 3, technician: 2, cashier: 1, staff: 0
+        super_admin: 5, admin: 4, manager: 3,
+        hardware_technician: 2, software_technician: 2,
+        technician: 2,  // legacy compat
+        cashier: 1, staff: 0
     };
+
+    // Technician check (both types)
+    const TECHNICIAN_ROLES = ['hardware_technician', 'software_technician'];
+    const isTechnicianUser = TECHNICIAN_ROLES.includes(userRole);
 
     function canAccess(minRole) {
         return (ROLE_LEVELS[userRole] || 0) >= (ROLE_LEVELS[minRole] || 0);
     }
 
     const navItems = [
-        { href: '/', icon: '📊', label: 'Dashboard', minRole: 'staff' },
-        { href: '/pos/', icon: '💳', label: 'POS Sales', minRole: 'cashier' },
+        { href: '/',              icon: '📊', label: 'Dashboard',     minRole: 'staff'   },
+        { href: '/pos/',          icon: '💳', label: 'POS Sales',     minRole: 'cashier', hide: isTechnicianUser },
         { href: '/service-logs/', icon: '🛠️', label: 'Service Orders', minRole: 'cashier' },
-        { href: '/transactions/', icon: '🧾', label: 'Transactions', minRole: 'cashier' },
-        { href: '/inventory/', icon: '📦', label: 'Inventory', minRole: 'manager' },
-        { href: '/vendors/', icon: '🏭', label: 'Vendors', minRole: 'manager' },
-        { href: '/credit/', icon: '📒', label: 'Credit Ledger', minRole: 'manager' },
-        { href: '/team/', icon: '👥', label: 'Team', minRole: 'admin' },
+        { href: '/transactions/', icon: '🧾', label: 'Transactions',  minRole: 'cashier', hide: isTechnicianUser },
+        { href: '/analytics/',    icon: '📈', label: 'Analytics',     minRole: 'manager' },
+        { href: '/inventory/',    icon: '📦', label: 'Inventory',     minRole: 'manager' },
+        { href: '/vendors/',      icon: '🏭', label: 'Vendors',       minRole: 'manager' },
+        { href: '/credit/',       icon: '📒', label: 'Credit Ledger', minRole: 'manager', hide: isTechnicianUser },
+        { href: '/team/',         icon: '👥', label: 'Team',          minRole: 'admin'   },
     ];
 
     function buildNav() {
         return navItems
-            .filter(item => canAccess(item.minRole))
+            .filter(item => canAccess(item.minRole) && !item.hide)
             .map(item => {
                 const isActive = currentPage === item.href;
                 return `<a href="${item.href}" class="nav-item${isActive ? ' active' : ''}" title="${item.label}">
@@ -294,7 +302,7 @@
     });
 
     // Expose role info globally for pages that need it
-    window.erpUser = { role: userRole, payload };
+    window.erpUser = { role: userRole, payload, isTechnician: isTechnicianUser };
 
     // -------------------------------------------------------
     // Dark / Light Theme Toggle (persisted via localStorage)

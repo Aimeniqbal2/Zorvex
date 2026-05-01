@@ -22,16 +22,33 @@ if (!getToken()) { window.location.href = '/login/'; }
 const _jwt = parseJWT(getToken());
 const currentUserRole = _jwt.role || '';
 const currentUserId   = _jwt.user_id || '';
+
+// Role helpers
+const TECHNICIAN_ROLES = ['hardware_technician', 'software_technician'];
+const isTechnician = TECHNICIAN_ROLES.includes(currentUserRole);
 const isAdmin = ['admin', 'manager', 'super_admin'].includes(currentUserRole);
+const isCashier = currentUserRole === 'cashier';
+// Can assign technicians: admin, manager, cashier
+const canAssign = isAdmin || isCashier;
+// Can process payment / deliver: admin, manager, cashier
+const canPay = isAdmin || isCashier;
+// Can create new service orders: admin, manager, cashier (NOT technicians)
+const canCreateOrders = !isTechnician;
 
 // ─── State ─────────────────────────────────────────────────────────────────────
 let allOrders = [];
 let selectedOrderId = null;
 let currentTab = 'all';
 
-// ─── Phase 1: Create Order ──────────────────────────────────────────────────────
-document.getElementById('openNewOrderBtn').addEventListener('click', () => openModal('newOrderModal'));
-document.getElementById('closeNewOrderModal').addEventListener('click', () => closeModal('newOrderModal'));
+// ─── Hide New Repair Ticket button for technicians ──────────────────────────────
+const newOrderBtn = document.getElementById('openNewOrderBtn');
+if (newOrderBtn) {
+    if (isTechnician) {
+        newOrderBtn.style.display = 'none';
+    } else {
+        newOrderBtn.addEventListener('click', () => openModal('newOrderModal'));
+    }
+}
 
 document.getElementById('newOrderForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -184,7 +201,7 @@ function renderAssignmentBanner(order) {
                     <p style="font-size:11px;font-weight:700;color:#05cd99;text-transform:uppercase;">Assigned Technician</p>
                     <p style="font-size:15px;font-weight:800;color:var(--text-main);">👤 ${order.assigned_technician_name || order.assigned_technician_username}</p>
                 </div>
-                ${isAdmin ? `<button class="action-btn" onclick="openAssignModal('${order.id}')" style="font-size:12px;padding:8px 12px;">Re-assign</button>` : ''}
+                ${canAssign ? `<button class="action-btn" onclick="openAssignModal('${order.id}', '${order.department}')" style="font-size:12px;padding:8px 12px;">Re-assign</button>` : ''}
             </div>`;
     } else {
         container.innerHTML = `
@@ -193,7 +210,7 @@ function renderAssignmentBanner(order) {
                     <p style="font-size:11px;font-weight:700;color:#856404;text-transform:uppercase;">⚠ No Technician Assigned</p>
                     <p style="font-size:13px;color:var(--text-muted);">Assign a technician before the repair can begin.</p>
                 </div>
-                ${isAdmin ? `<button class="action-btn" onclick="openAssignModal('${order.id}')" style="font-size:12px;padding:8px 12px;background:var(--warning);color:#fff;border-color:var(--warning);">Assign Now</button>` : ''}
+                ${canAssign ? `<button class="action-btn" onclick="openAssignModal('${order.id}', '${order.department}')" style="font-size:12px;padding:8px 12px;background:var(--warning);color:#fff;border-color:var(--warning);">Assign Now</button>` : ''}
             </div>`;
     }
 }
@@ -242,7 +259,7 @@ function renderStatusButtons(order) {
     if (order.status === 'in_progress') {
         html = `<button class="action-btn" onclick="updateOrderStatus('${order.id}', 'ready')">✅ Mark Ready</button>`;
         html += `<button class="action-btn" style="color:var(--danger);border-color:var(--danger);" onclick="updateOrderStatus('${order.id}', 'return')">↩ Return Unfixed</button>`;
-    } else if (order.status === 'ready' || order.status === 'return') {
+    } else if ((order.status === 'ready' || order.status === 'return') && canPay) {
         html = `<button class="action-btn" onclick="openPaymentModal('${order.id}')" style="background:var(--success);color:#fff;border-color:var(--success);">💳 Process Delivery</button>`;
     }
     // Admin-only soft-delete
@@ -287,19 +304,25 @@ async function deleteServiceOrder(orderId) {
 }
 
 let technicians = [];
-async function loadTechnicians() {
-    if (technicians.length) return;
+async function loadTechnicians(department) {
     try {
-        const res = await fetch(`${API}/services/technicians/`, { headers: authHeaders() });
+        // Filter by department so only the correct type of technician is shown
+        let url = `${API}/services/technicians/`;
+        if (department && department !== 'all') url += `?department=${department}`;
+        const res = await fetch(url, { headers: authHeaders() });
         technicians = await res.json();
     } catch(e) { console.error('Technician load failed:', e); }
 }
 
-async function openAssignModal(orderId) {
-    await loadTechnicians();
+async function openAssignModal(orderId, department) {
+    await loadTechnicians(department);
     const sel = document.getElementById('assignTechSelect');
-    sel.innerHTML = '<option value="">Select technician...</option>' +
-        technicians.map(t => `<option value="${t.id}">${t.full_name} (@${t.username})</option>`).join('');
+    if (!technicians.length) {
+        sel.innerHTML = `<option value="">No ${department || ''} technicians found</option>`;
+    } else {
+        sel.innerHTML = '<option value="">Select technician...</option>' +
+            technicians.map(t => `<option value="${t.id}">${t.full_name} (@${t.username}) — ${t.role_label}</option>`).join('');
+    }
     document.getElementById('assignOrderId').value = orderId;
     openModal('assignModal');
 }
@@ -468,16 +491,7 @@ document.getElementById('partForm').addEventListener('submit', async (e) => {
     } finally { btn.textContent = 'Attach Component'; btn.disabled = false; }
 });
 
-// ─── Media: Tab Switching ─────────────────────────────────────────────────────
-function switchMediaTab(tab) {
-    document.getElementById('cameraSectionPanel').style.display = tab === 'camera' ? 'block' : 'none';
-    document.getElementById('uploadSectionPanel').style.display  = tab === 'upload'  ? 'block' : 'none';
-    document.getElementById('tabCamera').classList.toggle('active', tab === 'camera');
-    document.getElementById('tabUpload').classList.toggle('active', tab === 'upload');
-    if (tab === 'upload') stopCamera(); // release camera when switching away
-}
-
-// ─── Media: render existing media evidence ────────────────────────────────────
+// ─── Media Upload (multipart/form-data — no JSON headers) ───────────────────────
 function renderMedia(mediaData) {
     const container = document.getElementById('mediaList');
     if (!mediaData.length) { container.innerHTML = '<p style="color:var(--text-muted);font-size:13px;">No media uploaded yet.</p>'; return; }
@@ -491,7 +505,6 @@ function renderMedia(mediaData) {
     }).join('');
 }
 
-// ─── TAB 2: File Upload (original flow, fully preserved) ─────────────────────
 document.getElementById('mediaFile').addEventListener('change', function() {
     const file = this.files[0];
     if (file && file.type.startsWith('video/')) {
@@ -517,6 +530,7 @@ document.getElementById('mediaForm').addEventListener('submit', async (e) => {
     if (!fileEl.files[0]) return;
 
     const file = fileEl.files[0];
+    // IMPORTANT: Use raw FormData — do NOT set Content-Type header (browser sets multipart boundary)
     const formData = new FormData();
     formData.append('service_order', selectedOrderId);
     formData.append('file', file);
@@ -527,7 +541,7 @@ document.getElementById('mediaForm').addEventListener('submit', async (e) => {
     try {
         const res = await fetch(`${API}/services/servicemedias/`, {
             method: 'POST',
-            headers: { 'Authorization': `Bearer ${getToken()}` },
+            headers: { 'Authorization': `Bearer ${getToken()}` }, // No Content-Type!
             body: formData
         });
         if (!res.ok) {
@@ -540,204 +554,8 @@ document.getElementById('mediaForm').addEventListener('submit', async (e) => {
     } catch(err) {
         errEl.textContent = err.message;
         errEl.style.display = 'block';
-    } finally { btn.textContent = '⬆ Upload Media'; btn.disabled = false; }
+    } finally { btn.textContent = 'Upload Media'; btn.disabled = false; }
 });
-
-// ─── TAB 1: Camera Capture Engine ─────────────────────────────────────────────
-let _camStream      = null;
-let _camFacing      = 'environment'; // rear by default; 'user' = front
-let _mediaRecorder  = null;
-let _recordedChunks = [];
-let _recTimerHandle = null;
-let _recSeconds     = 0;
-let _capturedBlob   = null;
-let _capturedType   = null; // 'image' | 'video'
-
-async function startCamera(facing) {
-    facing = facing || _camFacing;
-    _camFacing = facing;
-    stopCamera();
-    setCaptureStatus('Starting camera…');
-    document.getElementById('cameraError').style.display = 'none';
-    try {
-        _camStream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 } },
-            audio: true
-        });
-        const preview = document.getElementById('cameraPreview');
-        preview.srcObject = _camStream;
-        preview.style.display = 'block';
-        setCaptureStatus('📹 Camera live. Take a photo or start recording a video (max 30s).');
-        clearCapturedPreview();
-    } catch(err) {
-        setCaptureStatus('');
-        const errEl = document.getElementById('cameraError');
-        errEl.textContent = `Camera error: ${err.message}. Please grant camera permission in your browser.`;
-        errEl.style.display = 'block';
-    }
-}
-
-function stopCamera() {
-    if (_camStream) { _camStream.getTracks().forEach(t => t.stop()); _camStream = null; }
-    const preview = document.getElementById('cameraPreview');
-    if (preview) { preview.srcObject = null; }
-    stopRecording();
-}
-
-function flipCamera() {
-    _camFacing = _camFacing === 'environment' ? 'user' : 'environment';
-    startCamera(_camFacing);
-}
-
-function setCaptureStatus(msg) {
-    const el = document.getElementById('captureStatus');
-    if (el) el.textContent = msg;
-}
-
-function clearCapturedPreview() {
-    _capturedBlob = null; _capturedType = null;
-    const prev = document.getElementById('capturedPreview');
-    if (prev) { prev.innerHTML = ''; prev.style.display = 'none'; }
-    const btn = document.getElementById('uploadCaptureBtn');
-    if (btn) btn.disabled = true;
-}
-
-// Photo snapshot
-function takePhoto() {
-    if (!_camStream) { showToast('Click ▶ Start Camera first.', 'error'); return; }
-    const video  = document.getElementById('cameraPreview');
-    const canvas = document.getElementById('cameraCanvas');
-    canvas.width  = video.videoWidth  || 1280;
-    canvas.height = video.videoHeight || 720;
-    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-    canvas.toBlob(blob => {
-        _capturedBlob = blob; _capturedType = 'image';
-        const url = URL.createObjectURL(blob);
-        const prev = document.getElementById('capturedPreview');
-        prev.innerHTML = `<img src="${url}" alt="Captured photo">`;
-        prev.style.display = 'block';
-        document.getElementById('uploadCaptureBtn').disabled = false;
-        setCaptureStatus('📷 Photo captured! Add a caption and click ⬆ Upload Capture.');
-    }, 'image/jpeg', 0.92);
-}
-
-// Video recording toggle
-function toggleRecording() {
-    if (_mediaRecorder && _mediaRecorder.state === 'recording') {
-        stopRecording();
-    } else {
-        startRecording();
-    }
-}
-
-function startRecording() {
-    if (!_camStream) { showToast('Click ▶ Start Camera first.', 'error'); return; }
-    _recordedChunks = [];
-    clearCapturedPreview();
-
-    const mime = getSupportedMime();
-    try { _mediaRecorder = new MediaRecorder(_camStream, mime ? { mimeType: mime } : {}); }
-    catch(e) { _mediaRecorder = new MediaRecorder(_camStream); }
-
-    _mediaRecorder.ondataavailable = e => { if (e.data.size > 0) _recordedChunks.push(e.data); };
-    _mediaRecorder.onstop = finaliseRecording;
-    _mediaRecorder.start(100);
-
-    document.getElementById('recBtn').textContent = '⏹ Stop';
-    document.getElementById('recBtn').className   = 'cam-btn cam-btn-muted';
-    document.getElementById('recTimer').style.display = 'block';
-    _recSeconds = 0;
-    document.getElementById('recSeconds').textContent = '0';
-
-    _recTimerHandle = setInterval(() => {
-        _recSeconds++;
-        document.getElementById('recSeconds').textContent = _recSeconds;
-        if (_recSeconds >= 30) stopRecording();
-    }, 1000);
-}
-
-function stopRecording() {
-    clearInterval(_recTimerHandle);
-    if (_mediaRecorder && _mediaRecorder.state === 'recording') _mediaRecorder.stop();
-    const recTimerEl = document.getElementById('recTimer');
-    if (recTimerEl) recTimerEl.style.display = 'none';
-    const recBtn = document.getElementById('recBtn');
-    if (recBtn) { recBtn.textContent = '⏺ Record'; recBtn.className = 'cam-btn cam-btn-danger'; }
-}
-
-function finaliseRecording() {
-    const mime = _mediaRecorder?.mimeType || 'video/webm';
-    _capturedBlob = new Blob(_recordedChunks, { type: mime });
-    _capturedType = 'video';
-    const url  = URL.createObjectURL(_capturedBlob);
-    const prev = document.getElementById('capturedPreview');
-    prev.innerHTML = `<video src="${url}" controls></video>`;
-    prev.style.display = 'block';
-    document.getElementById('uploadCaptureBtn').disabled = false;
-    setCaptureStatus(`🎬 ${_recSeconds}s video recorded! Add a caption and click ⬆ Upload Capture.`);
-}
-
-function getSupportedMime() {
-    const types = ['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm','video/mp4'];
-    return types.find(t => MediaRecorder.isTypeSupported(t)) || '';
-}
-
-// Upload captured blob to server
-async function uploadCapturedMedia() {
-    if (!_capturedBlob)    { showToast('Nothing captured yet.', 'error'); return; }
-    if (!selectedOrderId)  { showToast('No service order selected.', 'error'); return; }
-    const errEl = document.getElementById('cameraError');
-    errEl.style.display = 'none';
-    const btn = document.getElementById('uploadCaptureBtn');
-    btn.textContent = 'Uploading…'; btn.disabled = true;
-
-    const ext      = _capturedType === 'image' ? 'jpg' : 'webm';
-    const filename = `capture_${Date.now()}.${ext}`;
-    const caption  = document.getElementById('camCaption').value.trim();
-
-    const formData = new FormData();
-    formData.append('service_order', selectedOrderId);
-    formData.append('file', _capturedBlob, filename);
-    formData.append('caption', caption);
-    formData.append('media_type', _capturedType);
-
-    try {
-        const res = await fetch(`${API}/services/servicemedias/`, {
-            method: 'POST',
-            headers: { 'Authorization': `Bearer ${getToken()}` },
-            body: formData
-        });
-        if (!res.ok) {
-            const d = await res.json();
-            throw new Error(d.detail || d.file?.[0] || 'Upload failed');
-        }
-        stopCamera();
-        closeModal('mediaModal');
-        document.getElementById('camCaption').value = '';
-        clearCapturedPreview();
-        setCaptureStatus('Camera not started yet.');
-        selectOrder(selectedOrderId);
-        showToast('Media uploaded successfully!', 'success');
-    } catch(err) {
-        errEl.textContent = err.message;
-        errEl.style.display = 'block';
-    } finally {
-        btn.textContent = '⬆ Upload Capture';
-        btn.disabled = false;
-    }
-}
-
-// Stop camera & reset tabs when modal is closed
-document.getElementById('closeMediaModal').addEventListener('click', () => {
-    stopCamera();
-    clearCapturedPreview();
-    setCaptureStatus('Camera not started yet.');
-    document.getElementById('cameraError').style.display = 'none';
-    document.getElementById('camCaption').value = '';
-    switchMediaTab('camera'); // always reset to camera tab on next open
-});
-
-
 
 // ─── Payment ────────────────────────────────────────────────────────────────────
 window.openPaymentModal = (orderId) => {
@@ -760,7 +578,14 @@ document.querySelectorAll('.p-btn').forEach(btn => btn.addEventListener('click',
     btn.classList.add('selected');
     const method = btn.dataset.method;
     document.getElementById('paymentMethod').value = method;
-    document.getElementById('cashLogic').style.display = method === 'cash' ? 'block' : 'none';
+    // Show received-amount section for CASH and CARD; hide for CREDIT
+    document.getElementById('cashLogic').style.display = (method === 'cash' || method === 'card') ? 'block' : 'none';
+    // Show credit info banner
+    const creditInfo = document.getElementById('creditInfoBanner');
+    if (creditInfo) creditInfo.style.display = method === 'credit' ? 'block' : 'none';
+    // Update label
+    const receivedLabel = document.getElementById('receivedAmtLabel');
+    if (receivedLabel) receivedLabel.textContent = method === 'card' ? 'CARD AMOUNT CHARGED' : 'CASH RECEIVED';
 }));
 
 function updateServiceChange() {
@@ -772,16 +597,43 @@ document.getElementById('paymentReceived').addEventListener('input', updateServi
 
 document.getElementById('paymentForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn     = e.target.querySelector('button[type="submit"]');
-    const amount  = document.getElementById('paymentAmount').value;
-    const method  = document.getElementById('paymentMethod').value;
-    const errEl   = document.getElementById('paymentError');
+    const btn    = e.target.querySelector('button[type="submit"]');
+    const amount = parseFloat(document.getElementById('paymentAmount').value || 0);
+    const method = document.getElementById('paymentMethod').value;
+    // !! Must be 'let' — credit flow reassigns received to 0
+    let received = parseFloat(document.getElementById('paymentReceived').value || 0);
+    const errEl  = document.getElementById('paymentError');
     errEl.style.display = 'none';
+
+    // ── STRICT PAYMENT VALIDATION ──
+    if (method === 'cash' || method === 'card') {
+        if (received < amount) {
+            errEl.textContent = `Full payment required. Due: PKR ${amount.toFixed(2)}, Received: PKR ${received.toFixed(2)}`;
+            errEl.style.display = 'block';
+            return;
+        }
+    }
+
+    if (method === 'credit') {
+        // Credit = no upfront cash. Backend logs it to customer ledger via Sale.save()
+        received = 0;
+    }
+
     btn.textContent = 'Processing...'; btn.disabled = true;
     try {
+        const payload = {
+            final_amount:    amount,
+            payment_method:  method,
+            received_amount: received,
+        };
+        // For credit: attach customer phone for ledger creation
+        if (method === 'credit') {
+            const phone = document.getElementById('creditCustomerPhone')?.value?.trim();
+            if (phone) payload.customer_phone = phone;
+        }
         const res = await fetch(`${API}/services/serviceorders/${selectedOrderId}/process_payment/`, {
             method: 'POST', headers: authHeaders(),
-            body: JSON.stringify({ final_amount: amount, payment_method: method })
+            body: JSON.stringify(payload)
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Payment failed');
@@ -865,7 +717,229 @@ function showToast(msg, type = 'success') {
     toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
 }
 
-// ─── Init ────────────────────────────────────────────────────────────────────────
+// ─── Camera & Video Recording (MediaDevices API) ──────────────────────────────────
+let cameraStream = null;
+let mediaRecorder = null;
+let recordedChunks = [];
+let capturedBlob = null;
+let recordTimerInterval = null;
+
+window.switchMediaTab = function(tab) {
+    const uploadSection = document.getElementById('mediaUploadSection');
+    const cameraSection = document.getElementById('mediaCameraSection');
+    const tabUpload = document.getElementById('tabUpload');
+    const tabCamera = document.getElementById('tabCamera');
+    if (tab === 'upload') {
+        uploadSection.style.display = 'block';
+        cameraSection.style.display = 'none';
+        tabUpload.style.background = 'var(--primary)';
+        tabUpload.style.color = '#fff';
+        tabUpload.style.borderColor = 'var(--primary)';
+        tabCamera.style.background = 'transparent';
+        tabCamera.style.color = 'var(--text-muted)';
+        tabCamera.style.borderColor = 'var(--border-light)';
+        stopCamera();
+    } else {
+        uploadSection.style.display = 'none';
+        cameraSection.style.display = 'block';
+        tabCamera.style.background = 'var(--primary)';
+        tabCamera.style.color = '#fff';
+        tabCamera.style.borderColor = 'var(--primary)';
+        tabUpload.style.background = 'transparent';
+        tabUpload.style.color = 'var(--text-muted)';
+        tabUpload.style.borderColor = 'var(--border-light)';
+    }
+};
+
+window.startCamera = async function() {
+    const errEl = document.getElementById('cameraError');
+    errEl.style.display = 'none';
+
+    // ── 1. Check for secure context (HTTPS or localhost) ──────────────
+    if (!window.isSecureContext) {
+        const currentHost = window.location.host;
+        const fixUrl = window.location.href.replace(currentHost, 'localhost:' + window.location.port);
+        errEl.innerHTML =
+            '<strong>&#x26A0;&#xFE0F; Camera requires a secure connection.</strong><br>' +
+            'Your browser is blocking camera access because the page is served over <code>127.0.0.1</code>.<br><br>' +
+            '<b>&#x2705; Fix in 2 steps:</b><br>' +
+            '1. Stop the server (<kbd>Ctrl+C</kbd>)<br>' +
+            '2. Restart with: <code style="background:#f3f4f6;padding:2px 6px;border-radius:4px;">python manage.py runserver localhost:8000</code><br>' +
+            '3. Then open: <a href="' + fixUrl + '" style="color:var(--primary)">' + fixUrl + '</a><br><br>' +
+            '<em>Alternatively use the File Upload tab above.</em>';
+        errEl.style.display = 'block';
+        return;
+    }
+
+    // ── 2. Check MediaDevices API availability ────────────────
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        errEl.textContent = 'Your browser does not support camera access. Please use Chrome 74+, Firefox 68+, or Edge 79+.';
+        errEl.style.display = 'block';
+        return;
+    }
+
+    // ── 3. Request camera (try with audio first, fallback to video-only) ──
+    try {
+        try {
+            cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        } catch (audioErr) {
+            // Audio might be unavailable (no microphone) — try video-only
+            if (audioErr.name === 'NotFoundError' || audioErr.name === 'OverconstrainedError') {
+                cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            } else {
+                throw audioErr; // Re-throw real errors (denied, etc)
+            }
+        }
+        const preview = document.getElementById('cameraPreview');
+        preview.srcObject = cameraStream;
+        document.getElementById('btnStartCamera').style.display  = 'none';
+        document.getElementById('btnCapturePhoto').style.display = 'inline-flex';
+        document.getElementById('btnStartRecord').style.display  = 'inline-flex';
+    } catch(e) {
+        let msg = '';
+        if (e.name === 'NotAllowedError' || e.name === 'PermissionDeniedError') {
+            msg = '&#x1F6AB; Camera permission was denied. Click the camera icon in the browser address bar and allow access, then try again.';
+        } else if (e.name === 'NotFoundError' || e.name === 'DevicesNotFoundError') {
+            msg = '&#x1F4F7; No camera device found. Please connect a webcam and try again.';
+        } else if (e.name === 'NotReadableError' || e.name === 'TrackStartError') {
+            msg = '&#x26A0;&#xFE0F; Camera is in use by another application. Close other apps using the camera and try again.';
+        } else if (e.name === 'OverconstrainedError') {
+            msg = '&#x26A0;&#xFE0F; Camera does not meet required constraints. Trying alternative settings...';
+        } else {
+            msg = `Camera error: ${e.message || e.name}. Use the File Upload tab as an alternative.`;
+        }
+        errEl.innerHTML = msg;
+        errEl.style.display = 'block';
+    }
+};
+
+function stopCamera() {
+    if (cameraStream) {
+        cameraStream.getTracks().forEach(t => t.stop());
+        cameraStream = null;
+    }
+    const preview = document.getElementById('cameraPreview');
+    if (preview) preview.srcObject = null;
+    document.getElementById('btnStartCamera').style.display = 'inline-flex';
+    document.getElementById('btnCapturePhoto').style.display = 'none';
+    document.getElementById('btnStartRecord').style.display = 'none';
+    document.getElementById('btnStopRecord').style.display = 'none';
+    document.getElementById('recordTimer').style.display = 'none';
+    document.getElementById('btnUploadCapture').style.display = 'none';
+    clearInterval(recordTimerInterval);
+}
+
+window.capturePhoto = function() {
+    const video  = document.getElementById('cameraPreview');
+    const canvas = document.getElementById('cameraCanvas');
+    canvas.width  = video.videoWidth  || 640;
+    canvas.height = video.videoHeight || 480;
+    canvas.getContext('2d').drawImage(video, 0, 0);
+    canvas.toBlob(blob => {
+        capturedBlob = blob;
+        document.getElementById('btnUploadCapture').style.display = 'block';
+        showToast('Photo captured! Click Upload to save.', 'success');
+    }, 'image/jpeg', 0.92);
+};
+
+window.startRecording = function() {
+    if (!cameraStream) return;
+    recordedChunks = [];
+    capturedBlob = null;
+    document.getElementById('btnUploadCapture').style.display = 'none';
+
+    const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
+        ? 'video/webm;codecs=vp9'
+        : MediaRecorder.isTypeSupported('video/webm')
+            ? 'video/webm'
+            : 'video/mp4';
+
+    mediaRecorder = new MediaRecorder(cameraStream, { mimeType });
+    mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+    mediaRecorder.onstop = () => {
+        capturedBlob = new Blob(recordedChunks, { type: mimeType });
+        document.getElementById('btnUploadCapture').style.display = 'block';
+        document.getElementById('btnStopRecord').style.display = 'none';
+        document.getElementById('recordTimer').style.display = 'none';
+        clearInterval(recordTimerInterval);
+        showToast('Recording complete! Click Upload to save.', 'success');
+    };
+
+    mediaRecorder.start(100);
+    document.getElementById('btnStartRecord').style.display = 'none';
+    document.getElementById('btnStopRecord').style.display = 'inline-flex';
+
+    // Timer + auto-stop at 30s
+    let elapsed = 0;
+    const timerEl = document.getElementById('recordTimer');
+    timerEl.style.display = 'block';
+    timerEl.textContent = 'Recording: 0s / 30s';
+    recordTimerInterval = setInterval(() => {
+        elapsed++;
+        timerEl.textContent = `Recording: ${elapsed}s / 30s`;
+        if (elapsed >= 30) {
+            stopRecording();
+        }
+    }, 1000);
+};
+
+window.stopRecording = function() {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+    }
+    clearInterval(recordTimerInterval);
+};
+
+window.uploadCapturedMedia = async function() {
+    if (!capturedBlob || !selectedOrderId) return;
+    const errEl = document.getElementById('cameraError');
+    const btn   = document.getElementById('btnUploadCapture');
+    errEl.style.display = 'none';
+    btn.textContent = 'Uploading...'; btn.disabled = true;
+
+    const isVideo = capturedBlob.type.startsWith('video');
+    const ext = isVideo ? (capturedBlob.type.includes('webm') ? 'webm' : 'mp4') : 'jpg';
+    const fileName = `capture_${Date.now()}.${ext}`;
+    const caption = document.getElementById('cameraCaptionInput').value || '';
+
+    const formData = new FormData();
+    formData.append('service_order', selectedOrderId);
+    formData.append('file', capturedBlob, fileName);
+    formData.append('caption', caption);
+    formData.append('media_type', isVideo ? 'video' : 'image');
+
+    try {
+        const res = await fetch(`${API}/services/servicemedias/`, {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${getToken()}` },
+            body: formData
+        });
+        if (!res.ok) {
+            const d = await res.json();
+            throw new Error(d.detail || d.file?.[0] || 'Upload failed');
+        }
+        capturedBlob = null;
+        closeModal('mediaModal');
+        stopCamera();
+        selectOrder(selectedOrderId);
+        showToast('Media uploaded successfully!', 'success');
+    } catch(e) {
+        errEl.textContent = e.message;
+        errEl.style.display = 'block';
+    } finally {
+        btn.textContent = '⬆️ Upload to Server'; btn.disabled = false;
+    }
+};
+
+// Stop camera when media modal closes
+['closeMediaModal'].forEach(id => {
+    document.getElementById(id)?.addEventListener('click', () => {
+        stopCamera();
+        closeModal('mediaModal');
+    });
+});
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
 loadOrders();
 loadProducts();
 loadVendors();

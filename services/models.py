@@ -61,13 +61,14 @@ class ServiceOrder(BaseModel):
         related_name='assigned_services'
     )
     # New: admin explicitly assigns one technician before tech phase can start
+    # Accepts both hardware_technician and software_technician roles
     assigned_technician = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         null=True, blank=True,
-        limit_choices_to={'role': 'technician'},
+        limit_choices_to={'role__in': ['hardware_technician', 'software_technician']},
         related_name='assigned_technical_services',
-        help_text='The technician responsible for this repair'
+        help_text='The technician responsible for this repair (hardware or software)'
     )
 
     # Pricing & Time Estimates

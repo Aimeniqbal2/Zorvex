@@ -172,15 +172,50 @@ class SaleViewSet(TenantModelViewSet):
     allowed_roles = ['admin', 'manager', 'cashier']
     allowed_reads = ['admin', 'manager', 'cashier']
 
+    @transaction.atomic
     def perform_create(self, serializer):
-        session = POSSession.objects.filter(cashier=self.request.user, status='OPEN').first()
+        import decimal
+        user = self.request.user
+
+        session = POSSession.objects.filter(cashier=user, status='OPEN').first()
         if not session:
-            raise ValidationError("No active POS Session. Please open a session before transacting.")
+            from rest_framework.exceptions import ValidationError as DRFValidationError
+            raise DRFValidationError("No active POS Session. Please open a session before transacting.")
+
+        # ── Payment validation at view level ──────────────────────────────────
+        payment_method = self.request.data.get('payment_method', 'cash').lower().strip()
+        total_amount_raw    = self.request.data.get('total_amount', 0)
+        # Default received to 0 (NOT total_amount) — forces frontend to always send it explicitly
+        received_amount_raw = self.request.data.get('received_amount', 0)
+
+        try:
+            total_amount    = decimal.Decimal(str(total_amount_raw)).quantize(decimal.Decimal('0.01'))
+            received_amount = decimal.Decimal(str(received_amount_raw)).quantize(decimal.Decimal('0.01'))
+        except (decimal.InvalidOperation, TypeError):
+            total_amount    = decimal.Decimal('0')
+            received_amount = decimal.Decimal('0')
+
+        from rest_framework.exceptions import ValidationError as DRFValidationError
+
+        if payment_method in ('cash', 'card'):
+            if received_amount < total_amount:
+                raise DRFValidationError(
+                    f"Insufficient payment for {payment_method.upper()}. "
+                    f"Required: PKR {total_amount} | Received: PKR {received_amount}"
+                )
+
+        if payment_method == 'credit':
+            customer_id = self.request.data.get('customer')
+            if not customer_id:
+                raise DRFValidationError(
+                    "B2B Credit Sales require a linked customer profile. "
+                    "Please search and select a customer before issuing credit."
+                )
 
         serializer.save(
-            cashier=self.request.user,
+            cashier=user,
             pos_session=session,
-            company_id=self.request.user.company_id
+            company_id=user.company_id
         )
 
 

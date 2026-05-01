@@ -14,6 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchConfig = { headers: { 'Authorization': `Bearer ${token}` } };
 
+    function renderKPIChange(elementId, pct) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        const isPositive = pct >= 0;
+        const arrow = isPositive ? '↑' : '↓';
+        const color = isPositive ? '#05cd99' : '#ee5d50';
+        el.style.color = color;
+        el.style.background = isPositive ? 'rgba(5,205,153,0.1)' : 'rgba(238,93,80,0.1)';
+        el.className = `kpi-change ${isPositive ? 'up' : 'down'}`;
+        el.textContent = `${arrow} ${isPositive ? '+' : ''}${pct.toFixed(1)}%`;
+    }
+
     async function igniteEngine() {
         try {
             const resp = await fetch('/api/reports/dashboard/', fetchConfig);
@@ -23,12 +35,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const data = await resp.json();
-            
+            const changes = data.kpi_changes || {};
+
             // Numeric Animations
             animateCounter(valRevenue, data.total_revenue || 0);
             animateCounter(valProfit, data.net_profit || 0);
             animateCounter(valRepairs, data.active_repairs || 0, 1000);
             animateCounter(valStock, data.low_stock_items || 0, 1000);
+
+            // Dynamic KPI percentage badges
+            if (changes.revenue)       renderKPIChange('kpiChangeRevenue',  changes.revenue.pct);
+            if (changes.profit)        renderKPIChange('kpiChangeProfit',   changes.profit.pct);
+            if (changes.active_orders) renderKPIChange('kpiChangeRepairs',  changes.active_orders.pct);
+            if (changes.supply_danger) renderKPIChange('kpiChangeStock',    changes.supply_danger.pct);
 
             // Table Generator
             buildTable(data.recent_sales || []);

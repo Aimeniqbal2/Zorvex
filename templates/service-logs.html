@@ -226,31 +226,6 @@
             #receiptContent { position: absolute; left: 0; top: 0; width: 80mm; padding: 5mm; margin: 0; border: none; }
             #receiptModal .modal-box > div:last-child { display: none !important; }
         }
-        /* ── Camera-Capture Tab Styles ───────────────────────────────── */
-        .media-tabs { display:flex; background:var(--bg-secondary,#f1f5f9); border-radius:12px; padding:4px; margin-bottom:20px; gap:4px; }
-        .media-tab  { flex:1; text-align:center; padding:10px 6px; border-radius:9px; font-size:13px; font-weight:700;
-                      cursor:pointer; color:var(--text-muted); border:none; background:transparent; transition:.2s; }
-        .media-tab.active { background:var(--modal-bg,#fff); color:var(--primary); box-shadow:0 2px 8px rgba(0,0,0,.08); }
-
-        #cameraViewport { position:relative; background:#0f172a; border-radius:14px; overflow:hidden;
-                          display:flex; align-items:center; justify-content:center; min-height:240px; margin-bottom:14px; }
-        #cameraPreview  { width:100%; border-radius:14px; display:block; }
-        #cameraCanvas   { display:none; }
-        #captureOverlay { position:absolute; bottom:10px; left:0; right:0;
-                          display:flex; justify-content:center; gap:12px; }
-
-        .cam-btn { padding:10px 18px; border-radius:10px; font-weight:800; font-size:13px;
-                   border:none; cursor:pointer; transition:.2s; display:flex; align-items:center; gap:6px; }
-        .cam-btn-primary { background:var(--primary); color:#fff; }
-        .cam-btn-danger  { background:#ee5d50; color:#fff; }
-        .cam-btn-success { background:#05cd99; color:#fff; }
-        .cam-btn-muted   { background:#64748b; color:#fff; }
-        .cam-btn:hover   { filter:brightness(1.1); transform:translateY(-1px); }
-
-        #recTimer { font-size:12px; font-weight:800; color:#ee5d50; text-align:center; margin-bottom:8px; display:none; }
-        #capturedPreview { display:none; margin-bottom:14px; }
-        #capturedPreview img, #capturedPreview video { width:100%; border-radius:12px; border:2px solid var(--primary); }
-        #captureStatus { font-size:12px; font-weight:600; color:var(--text-muted); text-align:center; margin-bottom:10px; }
     </style>
 </head>
 
@@ -454,71 +429,63 @@
                         <input type="number" id="partCost" class="form-input" step="0.01" required value="0">
                     </div>
                 </div>
-
                 <p id="partError" style="color:var(--danger);font-size:12px;font-weight:600;display:none;margin-bottom:10px;"></p>
                 <button type="submit" class="primary-btn">Attach Component</button>
             </form>
         </div>
     </div>
 
-    <!-- Modal 4: Media — Camera Capture + File Upload -->
+    <!-- Modal 4: Media Upload / Camera Capture -->
     <div class="modal-overlay" id="mediaModal">
-        <div class="modal-box" style="width:540px;">
+        <div class="modal-box" style="width:560px;">
             <div class="modal-header">
-                <h3>📸 Media Evidence</h3>
-                <button class="close-btn" id="closeMediaModal">×</button>
+                <h3>&#128247; Media Evidence</h3>
+                <button class="close-btn" id="closeMediaModal">&times;</button>
             </div>
 
-            <!-- Tabs -->
-            <div class="media-tabs">
-                <button class="media-tab active" id="tabCamera" onclick="switchMediaTab('camera')">📷 Capture from Camera</button>
-                <button class="media-tab"        id="tabUpload" onclick="switchMediaTab('upload')">📁 Upload File</button>
+            <!-- Mode selector tabs -->
+            <div style="display:flex;gap:10px;margin-bottom:20px;">
+                <button id="tabUpload" onclick="switchMediaTab('upload')" style="flex:1;padding:12px;border-radius:10px;border:2px solid var(--primary);background:var(--primary);color:#fff;font-weight:800;cursor:pointer;transition:0.2s;">&#128228; Upload File</button>
+                <button id="tabCamera" onclick="switchMediaTab('camera')" style="flex:1;padding:12px;border-radius:10px;border:2px solid var(--border-light);background:transparent;color:var(--text-muted);font-weight:800;cursor:pointer;transition:0.2s;">&#127909; Capture / Record</button>
             </div>
 
-            <!-- ── TAB 1: Camera Capture ───────────────────────────────── -->
-            <div id="cameraSectionPanel">
-                <!-- Live viewfinder -->
-                <div id="cameraViewport">
-                    <video id="cameraPreview" autoplay playsinline muted></video>
-                    <canvas id="cameraCanvas"></canvas>
-                    <div id="captureOverlay">
-                        <button type="button" class="cam-btn cam-btn-primary" id="snapBtn"   onclick="takePhoto()">📷 Photo</button>
-                        <button type="button" class="cam-btn cam-btn-danger"  id="recBtn"    onclick="toggleRecording()">⏺ Record</button>
-                        <button type="button" class="cam-btn cam-btn-muted"   id="flipBtn"   onclick="flipCamera()">🔄 Flip</button>
-                    </div>
-                </div>
-                <div id="recTimer">⏺ Recording: <span id="recSeconds">0</span>s / 30s</div>
-
-                <!-- Preview of captured media -->
-                <div id="capturedPreview"></div>
-                <p id="captureStatus">Camera not started yet.</p>
-
-                <div class="form-group">
-                    <label>Caption</label>
-                    <input type="text" id="camCaption" class="form-input" placeholder="e.g. Front screen damage before repair">
-                </div>
-                <p id="cameraError" style="color:var(--danger);font-size:12px;font-weight:600;display:none;margin-bottom:10px;"></p>
-                <div style="display:flex;gap:10px;">
-                    <button type="button" class="cam-btn cam-btn-muted"   style="flex:1;" onclick="startCamera()">▶ Start Camera</button>
-                    <button type="button" class="cam-btn cam-btn-success" style="flex:1;" id="uploadCaptureBtn" onclick="uploadCapturedMedia()" disabled>⬆ Upload Capture</button>
-                </div>
-            </div>
-
-            <!-- ── TAB 2: File Upload ─────────────────────────────────── -->
-            <div id="uploadSectionPanel" style="display:none;">
+            <!-- Upload section -->
+            <div id="mediaUploadSection">
                 <form id="mediaForm">
                     <div class="form-group">
-                        <label>Select File (Image or Video ≤30s)</label>
+                        <label>Select File (Image or Video &le;30s)</label>
                         <input type="file" id="mediaFile" class="form-input" accept="image/*,video/mp4,video/quicktime,video/x-m4v" required>
-                        <p style="font-size:10px;color:var(--text-muted);margin-top:5px;">Max video: 30 seconds.</p>
+                        <p style="font-size:10px; color:var(--text-muted); margin-top:5px;">Files are stored on the server. Max video: 30 seconds.</p>
                     </div>
                     <div class="form-group">
                         <label>Caption</label>
-                        <input type="text" id="mediaCaption" class="form-input" placeholder="e.g. Before repair – charging port damage">
+                        <input type="text" id="mediaCaption" class="form-input" placeholder="e.g. Before repair - charging port damage">
                     </div>
                     <p id="mediaError" style="color:var(--danger);font-size:12px;font-weight:600;display:none;margin-bottom:10px;"></p>
-                    <button type="submit" class="primary-btn">⬆ Upload Media</button>
+                    <button type="submit" class="primary-btn">Upload Media</button>
                 </form>
+            </div>
+
+            <!-- Camera section -->
+            <div id="mediaCameraSection" style="display:none;">
+                <video id="cameraPreview" autoplay muted playsinline style="width:100%;border-radius:12px;background:#000;max-height:280px;object-fit:cover;"></video>
+                <canvas id="cameraCanvas" style="display:none;"></canvas>
+
+                <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+                    <button id="btnStartCamera" class="action-btn" style="flex:1;" onclick="startCamera()">&#127909; Start Camera</button>
+                    <button id="btnCapturePhoto" class="action-btn" style="flex:1;display:none;" onclick="capturePhoto()">&#128247; Take Photo</button>
+                    <button id="btnStartRecord" class="action-btn" style="flex:1;display:none;" onclick="startRecording()">&#9899; Record Video</button>
+                    <button id="btnStopRecord" class="action-btn" style="flex:1;display:none;color:var(--danger);border-color:var(--danger);" onclick="stopRecording()">&#9632; Stop</button>
+                </div>
+
+                <div id="recordTimer" style="display:none;text-align:center;font-size:13px;font-weight:700;color:var(--danger);margin-top:8px;">Recording: 0s / 30s</div>
+
+                <div class="form-group" style="margin-top:14px;">
+                    <label>Caption</label>
+                    <input type="text" id="cameraCaptionInput" class="form-input" placeholder="e.g. Screen damage before repair">
+                </div>
+                <p id="cameraError" style="color:var(--danger);font-size:12px;font-weight:600;display:none;margin-bottom:10px;"></p>
+                <button id="btnUploadCapture" class="primary-btn" style="display:none;" onclick="uploadCapturedMedia()">&#11014;&#65039; Upload to Server</button>
             </div>
         </div>
     </div>
@@ -544,11 +511,20 @@
                 <input type="hidden" id="paymentMethod" value="cash">
 
                 <div id="cashLogic">
-                    <label style="font-size:12px; font-weight:800; color:var(--text-muted);">CASH RECEIVED</label>
+                    <label id="receivedAmtLabel" style="font-size:12px; font-weight:800; color:var(--text-muted);">CASH RECEIVED</label>
                     <input type="number" id="paymentReceived" class="form-input" style="font-size:18px; font-weight:700;">
                     <div style="display:flex; justify-content:space-between; margin-top:10px; padding:10px; background:#e2e8f0; border-radius:8px;">
                         <span style="font-weight:700;">CHANGE</span>
                         <span id="paymentChange" style="font-weight:800; color:var(--success);">PKR 0.00</span>
+                    </div>
+                </div>
+
+                <div id="creditInfoBanner" style="display:none; background:#fff3cd; border:1px solid #ffb547; border-radius:12px; padding:14px 16px; margin-top:4px;">
+                    <p style="font-size:12px; font-weight:800; color:#856404; margin:0 0 6px 0;">&#x26A0;&#xFE0F; B2B CREDIT SALE</p>
+                    <p style="font-size:12px; color:#664d03; margin:0;">No upfront payment required. The full amount will be added to the customer's outstanding ledger balance.</p>
+                    <div class="form-group" style="margin-top:10px; margin-bottom:0;">
+                        <label style="font-size:11px; font-weight:700; color:#664d03;">CUSTOMER PHONE (for ledger link)</label>
+                        <input type="text" id="creditCustomerPhone" class="form-input" placeholder="e.g. 03001234567" style="background:#fff;">
                     </div>
                 </div>
 

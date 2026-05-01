@@ -468,7 +468,16 @@ document.getElementById('partForm').addEventListener('submit', async (e) => {
     } finally { btn.textContent = 'Attach Component'; btn.disabled = false; }
 });
 
-// ─── Media Upload (multipart/form-data — no JSON headers) ───────────────────────
+// ─── Media: Tab Switching ─────────────────────────────────────────────────────
+function switchMediaTab(tab) {
+    document.getElementById('cameraSectionPanel').style.display = tab === 'camera' ? 'block' : 'none';
+    document.getElementById('uploadSectionPanel').style.display  = tab === 'upload'  ? 'block' : 'none';
+    document.getElementById('tabCamera').classList.toggle('active', tab === 'camera');
+    document.getElementById('tabUpload').classList.toggle('active', tab === 'upload');
+    if (tab === 'upload') stopCamera(); // release camera when switching away
+}
+
+// ─── Media: render existing media evidence ────────────────────────────────────
 function renderMedia(mediaData) {
     const container = document.getElementById('mediaList');
     if (!mediaData.length) { container.innerHTML = '<p style="color:var(--text-muted);font-size:13px;">No media uploaded yet.</p>'; return; }
@@ -482,6 +491,7 @@ function renderMedia(mediaData) {
     }).join('');
 }
 
+// ─── TAB 2: File Upload (original flow, fully preserved) ─────────────────────
 document.getElementById('mediaFile').addEventListener('change', function() {
     const file = this.files[0];
     if (file && file.type.startsWith('video/')) {
@@ -507,7 +517,6 @@ document.getElementById('mediaForm').addEventListener('submit', async (e) => {
     if (!fileEl.files[0]) return;
 
     const file = fileEl.files[0];
-    // IMPORTANT: Use raw FormData — do NOT set Content-Type header (browser sets multipart boundary)
     const formData = new FormData();
     formData.append('service_order', selectedOrderId);
     formData.append('file', file);
@@ -518,7 +527,7 @@ document.getElementById('mediaForm').addEventListener('submit', async (e) => {
     try {
         const res = await fetch(`${API}/services/servicemedias/`, {
             method: 'POST',
-            headers: { 'Authorization': `Bearer ${getToken()}` }, // No Content-Type!
+            headers: { 'Authorization': `Bearer ${getToken()}` },
             body: formData
         });
         if (!res.ok) {
@@ -531,8 +540,204 @@ document.getElementById('mediaForm').addEventListener('submit', async (e) => {
     } catch(err) {
         errEl.textContent = err.message;
         errEl.style.display = 'block';
-    } finally { btn.textContent = 'Upload Media'; btn.disabled = false; }
+    } finally { btn.textContent = '⬆ Upload Media'; btn.disabled = false; }
 });
+
+// ─── TAB 1: Camera Capture Engine ─────────────────────────────────────────────
+let _camStream      = null;
+let _camFacing      = 'environment'; // rear by default; 'user' = front
+let _mediaRecorder  = null;
+let _recordedChunks = [];
+let _recTimerHandle = null;
+let _recSeconds     = 0;
+let _capturedBlob   = null;
+let _capturedType   = null; // 'image' | 'video'
+
+async function startCamera(facing) {
+    facing = facing || _camFacing;
+    _camFacing = facing;
+    stopCamera();
+    setCaptureStatus('Starting camera…');
+    document.getElementById('cameraError').style.display = 'none';
+    try {
+        _camStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 } },
+            audio: true
+        });
+        const preview = document.getElementById('cameraPreview');
+        preview.srcObject = _camStream;
+        preview.style.display = 'block';
+        setCaptureStatus('📹 Camera live. Take a photo or start recording a video (max 30s).');
+        clearCapturedPreview();
+    } catch(err) {
+        setCaptureStatus('');
+        const errEl = document.getElementById('cameraError');
+        errEl.textContent = `Camera error: ${err.message}. Please grant camera permission in your browser.`;
+        errEl.style.display = 'block';
+    }
+}
+
+function stopCamera() {
+    if (_camStream) { _camStream.getTracks().forEach(t => t.stop()); _camStream = null; }
+    const preview = document.getElementById('cameraPreview');
+    if (preview) { preview.srcObject = null; }
+    stopRecording();
+}
+
+function flipCamera() {
+    _camFacing = _camFacing === 'environment' ? 'user' : 'environment';
+    startCamera(_camFacing);
+}
+
+function setCaptureStatus(msg) {
+    const el = document.getElementById('captureStatus');
+    if (el) el.textContent = msg;
+}
+
+function clearCapturedPreview() {
+    _capturedBlob = null; _capturedType = null;
+    const prev = document.getElementById('capturedPreview');
+    if (prev) { prev.innerHTML = ''; prev.style.display = 'none'; }
+    const btn = document.getElementById('uploadCaptureBtn');
+    if (btn) btn.disabled = true;
+}
+
+// Photo snapshot
+function takePhoto() {
+    if (!_camStream) { showToast('Click ▶ Start Camera first.', 'error'); return; }
+    const video  = document.getElementById('cameraPreview');
+    const canvas = document.getElementById('cameraCanvas');
+    canvas.width  = video.videoWidth  || 1280;
+    canvas.height = video.videoHeight || 720;
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    canvas.toBlob(blob => {
+        _capturedBlob = blob; _capturedType = 'image';
+        const url = URL.createObjectURL(blob);
+        const prev = document.getElementById('capturedPreview');
+        prev.innerHTML = `<img src="${url}" alt="Captured photo">`;
+        prev.style.display = 'block';
+        document.getElementById('uploadCaptureBtn').disabled = false;
+        setCaptureStatus('📷 Photo captured! Add a caption and click ⬆ Upload Capture.');
+    }, 'image/jpeg', 0.92);
+}
+
+// Video recording toggle
+function toggleRecording() {
+    if (_mediaRecorder && _mediaRecorder.state === 'recording') {
+        stopRecording();
+    } else {
+        startRecording();
+    }
+}
+
+function startRecording() {
+    if (!_camStream) { showToast('Click ▶ Start Camera first.', 'error'); return; }
+    _recordedChunks = [];
+    clearCapturedPreview();
+
+    const mime = getSupportedMime();
+    try { _mediaRecorder = new MediaRecorder(_camStream, mime ? { mimeType: mime } : {}); }
+    catch(e) { _mediaRecorder = new MediaRecorder(_camStream); }
+
+    _mediaRecorder.ondataavailable = e => { if (e.data.size > 0) _recordedChunks.push(e.data); };
+    _mediaRecorder.onstop = finaliseRecording;
+    _mediaRecorder.start(100);
+
+    document.getElementById('recBtn').textContent = '⏹ Stop';
+    document.getElementById('recBtn').className   = 'cam-btn cam-btn-muted';
+    document.getElementById('recTimer').style.display = 'block';
+    _recSeconds = 0;
+    document.getElementById('recSeconds').textContent = '0';
+
+    _recTimerHandle = setInterval(() => {
+        _recSeconds++;
+        document.getElementById('recSeconds').textContent = _recSeconds;
+        if (_recSeconds >= 30) stopRecording();
+    }, 1000);
+}
+
+function stopRecording() {
+    clearInterval(_recTimerHandle);
+    if (_mediaRecorder && _mediaRecorder.state === 'recording') _mediaRecorder.stop();
+    const recTimerEl = document.getElementById('recTimer');
+    if (recTimerEl) recTimerEl.style.display = 'none';
+    const recBtn = document.getElementById('recBtn');
+    if (recBtn) { recBtn.textContent = '⏺ Record'; recBtn.className = 'cam-btn cam-btn-danger'; }
+}
+
+function finaliseRecording() {
+    const mime = _mediaRecorder?.mimeType || 'video/webm';
+    _capturedBlob = new Blob(_recordedChunks, { type: mime });
+    _capturedType = 'video';
+    const url  = URL.createObjectURL(_capturedBlob);
+    const prev = document.getElementById('capturedPreview');
+    prev.innerHTML = `<video src="${url}" controls></video>`;
+    prev.style.display = 'block';
+    document.getElementById('uploadCaptureBtn').disabled = false;
+    setCaptureStatus(`🎬 ${_recSeconds}s video recorded! Add a caption and click ⬆ Upload Capture.`);
+}
+
+function getSupportedMime() {
+    const types = ['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm','video/mp4'];
+    return types.find(t => MediaRecorder.isTypeSupported(t)) || '';
+}
+
+// Upload captured blob to server
+async function uploadCapturedMedia() {
+    if (!_capturedBlob)    { showToast('Nothing captured yet.', 'error'); return; }
+    if (!selectedOrderId)  { showToast('No service order selected.', 'error'); return; }
+    const errEl = document.getElementById('cameraError');
+    errEl.style.display = 'none';
+    const btn = document.getElementById('uploadCaptureBtn');
+    btn.textContent = 'Uploading…'; btn.disabled = true;
+
+    const ext      = _capturedType === 'image' ? 'jpg' : 'webm';
+    const filename = `capture_${Date.now()}.${ext}`;
+    const caption  = document.getElementById('camCaption').value.trim();
+
+    const formData = new FormData();
+    formData.append('service_order', selectedOrderId);
+    formData.append('file', _capturedBlob, filename);
+    formData.append('caption', caption);
+    formData.append('media_type', _capturedType);
+
+    try {
+        const res = await fetch(`${API}/services/servicemedias/`, {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${getToken()}` },
+            body: formData
+        });
+        if (!res.ok) {
+            const d = await res.json();
+            throw new Error(d.detail || d.file?.[0] || 'Upload failed');
+        }
+        stopCamera();
+        closeModal('mediaModal');
+        document.getElementById('camCaption').value = '';
+        clearCapturedPreview();
+        setCaptureStatus('Camera not started yet.');
+        selectOrder(selectedOrderId);
+        showToast('Media uploaded successfully!', 'success');
+    } catch(err) {
+        errEl.textContent = err.message;
+        errEl.style.display = 'block';
+    } finally {
+        btn.textContent = '⬆ Upload Capture';
+        btn.disabled = false;
+    }
+}
+
+// Stop camera & reset tabs when modal is closed
+document.getElementById('closeMediaModal').addEventListener('click', () => {
+    stopCamera();
+    clearCapturedPreview();
+    setCaptureStatus('Camera not started yet.');
+    document.getElementById('cameraError').style.display = 'none';
+    document.getElementById('camCaption').value = '';
+    switchMediaTab('camera'); // always reset to camera tab on next open
+});
+
+
 
 // ─── Payment ────────────────────────────────────────────────────────────────────
 window.openPaymentModal = (orderId) => {

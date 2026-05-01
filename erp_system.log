@@ -9073,3 +9073,104 @@ Unauthorized: /api/auth/login/
 "GET /api/reports/dashboard/ HTTP/1.1" 200 1870
 "GET /team/ HTTP/1.1" 200 9670
 "GET /api/accounts/users/ HTTP/1.1" 200 1059
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8337
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1870
+"GET /inventory/ HTTP/1.1" 200 12553
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /login/ HTTP/1.1" 200 3169
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8337
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /static/style.css HTTP/1.1" 304 0
+"GET /static/login.js HTTP/1.1" 304 0
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1864
+"GET /service-logs/ HTTP/1.1" 200 25809
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4642
+- Broken pipe from ('127.0.0.1', 62168)
+- Broken pipe from ('127.0.0.1', 64158)
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8337
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1864
+"GET /service-logs/ HTTP/1.1" 200 30530
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4642
+- Broken pipe from ('127.0.0.1', 51829)
+- Broken pipe from ('127.0.0.1', 50429)
+"GET /service-logs/ HTTP/1.1" 200 30530
+"GET /static/dashboard.css HTTP/1.1" 200 23803
+"GET /static/service-logs.js HTTP/1.1" 200 45192
+"GET /static/shared-nav.js HTTP/1.1" 200 16721
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6153
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4642
+- Broken pipe from ('127.0.0.1', 64172)
+- Broken pipe from ('127.0.0.1', 62219)
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8337
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/style.css HTTP/1.1" 304 0
+"GET /static/login.js HTTP/1.1" 304 0
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1864
+"GET /service-logs/ HTTP/1.1" 200 30530
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4642
+- Broken pipe from ('127.0.0.1', 61242)
+- Broken pipe from ('127.0.0.1', 54039)
+"GET /login/ HTTP/1.1" 200 3169
+"GET / HTTP/1.1" 200 8337
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8337
+"GET /api/reports/dashboard/ HTTP/1.1" 200 1864
+"GET /service-logs/ HTTP/1.1" 200 30530
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2948
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/e6451161-db7c-4ba5-b81d-6a4c2041bbf1/ HTTP/1.1" 200 4642
+- Broken pipe from ('127.0.0.1', 51439)
+- Broken pipe from ('127.0.0.1', 49168)

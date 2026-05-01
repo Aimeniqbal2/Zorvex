@@ -226,6 +226,31 @@
             #receiptContent { position: absolute; left: 0; top: 0; width: 80mm; padding: 5mm; margin: 0; border: none; }
             #receiptModal .modal-box > div:last-child { display: none !important; }
         }
+        /* ── Camera-Capture Tab Styles ───────────────────────────────── */
+        .media-tabs { display:flex; background:var(--bg-secondary,#f1f5f9); border-radius:12px; padding:4px; margin-bottom:20px; gap:4px; }
+        .media-tab  { flex:1; text-align:center; padding:10px 6px; border-radius:9px; font-size:13px; font-weight:700;
+                      cursor:pointer; color:var(--text-muted); border:none; background:transparent; transition:.2s; }
+        .media-tab.active { background:var(--modal-bg,#fff); color:var(--primary); box-shadow:0 2px 8px rgba(0,0,0,.08); }
+
+        #cameraViewport { position:relative; background:#0f172a; border-radius:14px; overflow:hidden;
+                          display:flex; align-items:center; justify-content:center; min-height:240px; margin-bottom:14px; }
+        #cameraPreview  { width:100%; border-radius:14px; display:block; }
+        #cameraCanvas   { display:none; }
+        #captureOverlay { position:absolute; bottom:10px; left:0; right:0;
+                          display:flex; justify-content:center; gap:12px; }
+
+        .cam-btn { padding:10px 18px; border-radius:10px; font-weight:800; font-size:13px;
+                   border:none; cursor:pointer; transition:.2s; display:flex; align-items:center; gap:6px; }
+        .cam-btn-primary { background:var(--primary); color:#fff; }
+        .cam-btn-danger  { background:#ee5d50; color:#fff; }
+        .cam-btn-success { background:#05cd99; color:#fff; }
+        .cam-btn-muted   { background:#64748b; color:#fff; }
+        .cam-btn:hover   { filter:brightness(1.1); transform:translateY(-1px); }
+
+        #recTimer { font-size:12px; font-weight:800; color:#ee5d50; text-align:center; margin-bottom:8px; display:none; }
+        #capturedPreview { display:none; margin-bottom:14px; }
+        #capturedPreview img, #capturedPreview video { width:100%; border-radius:12px; border:2px solid var(--primary); }
+        #captureStatus { font-size:12px; font-weight:600; color:var(--text-muted); text-align:center; margin-bottom:10px; }
     </style>
 </head>
 
@@ -436,26 +461,65 @@
         </div>
     </div>
 
-    <!-- Modal 4: Media Upload -->
+    <!-- Modal 4: Media — Camera Capture + File Upload -->
     <div class="modal-overlay" id="mediaModal">
-        <div class="modal-box">
+        <div class="modal-box" style="width:540px;">
             <div class="modal-header">
-                <h3>Upload Media Evidence</h3>
+                <h3>📸 Media Evidence</h3>
                 <button class="close-btn" id="closeMediaModal">×</button>
             </div>
-            <form id="mediaForm">
-                <div class="form-group">
-                    <label>Select File (Image or Video ≤30s)</label>
-                    <input type="file" id="mediaFile" class="form-input" accept="image/*,video/mp4,video/quicktime,video/x-m4v" required>
-                    <p style="font-size:10px; color:var(--text-muted); margin-top:5px;">Files are stored on the server. Max video: 30 seconds.</p>
+
+            <!-- Tabs -->
+            <div class="media-tabs">
+                <button class="media-tab active" id="tabCamera" onclick="switchMediaTab('camera')">📷 Capture from Camera</button>
+                <button class="media-tab"        id="tabUpload" onclick="switchMediaTab('upload')">📁 Upload File</button>
+            </div>
+
+            <!-- ── TAB 1: Camera Capture ───────────────────────────────── -->
+            <div id="cameraSectionPanel">
+                <!-- Live viewfinder -->
+                <div id="cameraViewport">
+                    <video id="cameraPreview" autoplay playsinline muted></video>
+                    <canvas id="cameraCanvas"></canvas>
+                    <div id="captureOverlay">
+                        <button type="button" class="cam-btn cam-btn-primary" id="snapBtn"   onclick="takePhoto()">📷 Photo</button>
+                        <button type="button" class="cam-btn cam-btn-danger"  id="recBtn"    onclick="toggleRecording()">⏺ Record</button>
+                        <button type="button" class="cam-btn cam-btn-muted"   id="flipBtn"   onclick="flipCamera()">🔄 Flip</button>
+                    </div>
                 </div>
+                <div id="recTimer">⏺ Recording: <span id="recSeconds">0</span>s / 30s</div>
+
+                <!-- Preview of captured media -->
+                <div id="capturedPreview"></div>
+                <p id="captureStatus">Camera not started yet.</p>
+
                 <div class="form-group">
                     <label>Caption</label>
-                    <input type="text" id="mediaCaption" class="form-input" placeholder="e.g. Before repair - charging port damage">
+                    <input type="text" id="camCaption" class="form-input" placeholder="e.g. Front screen damage before repair">
                 </div>
-                <p id="mediaError" style="color:var(--danger);font-size:12px;font-weight:600;display:none;margin-bottom:10px;"></p>
-                <button type="submit" class="primary-btn">Upload Media</button>
-            </form>
+                <p id="cameraError" style="color:var(--danger);font-size:12px;font-weight:600;display:none;margin-bottom:10px;"></p>
+                <div style="display:flex;gap:10px;">
+                    <button type="button" class="cam-btn cam-btn-muted"   style="flex:1;" onclick="startCamera()">▶ Start Camera</button>
+                    <button type="button" class="cam-btn cam-btn-success" style="flex:1;" id="uploadCaptureBtn" onclick="uploadCapturedMedia()" disabled>⬆ Upload Capture</button>
+                </div>
+            </div>
+
+            <!-- ── TAB 2: File Upload ─────────────────────────────────── -->
+            <div id="uploadSectionPanel" style="display:none;">
+                <form id="mediaForm">
+                    <div class="form-group">
+                        <label>Select File (Image or Video ≤30s)</label>
+                        <input type="file" id="mediaFile" class="form-input" accept="image/*,video/mp4,video/quicktime,video/x-m4v" required>
+                        <p style="font-size:10px;color:var(--text-muted);margin-top:5px;">Max video: 30 seconds.</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Caption</label>
+                        <input type="text" id="mediaCaption" class="form-input" placeholder="e.g. Before repair – charging port damage">
+                    </div>
+                    <p id="mediaError" style="color:var(--danger);font-size:12px;font-weight:600;display:none;margin-bottom:10px;"></p>
+                    <button type="submit" class="primary-btn">⬆ Upload Media</button>
+                </form>
+            </div>
         </div>
     </div>
 

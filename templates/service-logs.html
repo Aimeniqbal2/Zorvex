@@ -445,8 +445,8 @@
 
             <!-- Mode selector tabs -->
             <div style="display:flex;gap:10px;margin-bottom:20px;">
-                <button id="tabUpload" onclick="switchMediaTab('upload')" style="flex:1;padding:12px;border-radius:10px;border:2px solid var(--primary);background:var(--primary);color:#fff;font-weight:800;cursor:pointer;transition:0.2s;">&#128228; Upload File</button>
-                <button id="tabCamera" onclick="switchMediaTab('camera')" style="flex:1;padding:12px;border-radius:10px;border:2px solid var(--border-light);background:transparent;color:var(--text-muted);font-weight:800;cursor:pointer;transition:0.2s;">&#127909; Capture / Record</button>
+                <button type="button" id="tabUpload" onclick="window.switchMediaTab('upload')" style="flex:1;padding:12px;border-radius:10px;border:2px solid var(--primary);background:var(--primary);color:#fff;font-weight:800;cursor:pointer;transition:0.2s;">&#128228; Upload File</button>
+                <button type="button" id="tabCamera" onclick="window.switchMediaTab('camera')" style="flex:1;padding:12px;border-radius:10px;border:2px solid var(--border-light);background:transparent;color:var(--text-muted);font-weight:800;cursor:pointer;transition:0.2s;">&#127909; Capture / Record</button>
             </div>
 
             <!-- Upload section -->

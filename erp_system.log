@@ -9722,3 +9722,49 @@ Not Found: /favicon.ico
 "GET /favicon.ico HTTP/1.1" 404 6324
 "GET /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/ HTTP/1.1" 200 2272
 - Broken pipe from ('127.0.0.1', 51515)
+Watching for file changes with StatReloader
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /pos/ HTTP/1.1" 200 20506
+Unauthorized: /api/sales/sessions/
+"GET /api/sales/sessions/ HTTP/1.1" 401 172
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.js HTTP/1.1" 304 0
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8391
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2138
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3755
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 1731
+Bad Request: /api/sales/sales/
+"POST /api/sales/sales/ HTTP/1.1" 400 68
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8391
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2138
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /static/dashboard.css HTTP/1.1" 200 23803
+"GET /static/shared-nav.js HTTP/1.1" 200 17288
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2138
+"GET /service-logs/ HTTP/1.1" 200 29480
+"GET /static/service-logs.js HTTP/1.1" 200 48956
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3840
+"GET /api/services/serviceorders/c20ffd18-a3ab-4b54-af6f-3b303a600bd5/ HTTP/1.1" 200 961
+"GET /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/ HTTP/1.1" 200 2272
+- Broken pipe from ('127.0.0.1', 58027)

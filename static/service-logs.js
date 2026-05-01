@@ -35,6 +35,191 @@ const canPay = isAdmin || isCashier;
 // Can create new service orders: admin, manager, cashier (NOT technicians)
 const canCreateOrders = !isTechnician;
 
+// ════════════════════════════════════════════════════════════════════════════
+// MEDIA / CAMERA FUNCTIONS — defined HERE, at top of file, BEFORE any other
+// code that could throw. This guarantees onclick="switchMediaTab()" always
+// finds the function even if a later event-listener registration fails.
+// ════════════════════════════════════════════════════════════════════════════
+let _cameraStream   = null;
+let _mediaRecorder  = null;
+let _recordedChunks = [];
+let _capturedBlob   = null;
+let _recordTimerInt = null;
+
+function _stopCamera() {
+    if (_cameraStream) { _cameraStream.getTracks().forEach(t => t.stop()); _cameraStream = null; }
+    const preview = document.getElementById('cameraPreview');
+    if (preview) preview.srcObject = null;
+    [['btnStartCamera','inline-flex'],['btnCapturePhoto','none'],
+     ['btnStartRecord','none'],['btnStopRecord','none'],
+     ['recordTimer','none'],['btnUploadCapture','none']].forEach(([id, show]) => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = show;
+    });
+    clearInterval(_recordTimerInt);
+}
+
+// Exported to window so inline onclick="switchMediaTab('camera')" works
+window.switchMediaTab = function(tab) {
+    const up  = document.getElementById('mediaUploadSection');
+    const cam = document.getElementById('mediaCameraSection');
+    const tUp = document.getElementById('tabUpload');
+    const tCam= document.getElementById('tabCamera');
+    if (!up || !cam || !tUp || !tCam) return;   // null-guard
+
+    const isUp = (tab === 'upload');
+    up.style.display   = isUp ? 'block' : 'none';
+    cam.style.display  = isUp ? 'none'  : 'block';
+    tUp.style.background  = isUp ? 'var(--primary)'  : 'transparent';
+    tUp.style.color       = isUp ? '#fff'             : 'var(--text-muted)';
+    tUp.style.borderColor = isUp ? 'var(--primary)'  : 'var(--border-light)';
+    tCam.style.background = isUp ? 'transparent'     : 'var(--primary)';
+    tCam.style.color      = isUp ? 'var(--text-muted)': '#fff';
+    tCam.style.borderColor= isUp ? 'var(--border-light)': 'var(--primary)';
+
+    const errEl = document.getElementById('cameraError');
+    if (errEl) { errEl.style.display = 'none'; errEl.innerHTML = ''; }
+    if (isUp) _stopCamera();
+};
+
+window.startCamera = async function() {
+    const errEl = document.getElementById('cameraError');
+    if (errEl) { errEl.style.display = 'none'; errEl.innerHTML = ''; }
+
+    // Secure context check
+    if (!window.isSecureContext) {
+        const port   = window.location.port || '8000';
+        const fixUrl = window.location.href.replace(window.location.host, 'localhost:' + port);
+        if (errEl) errEl.innerHTML =
+            '<strong>&#x26A0;&#xFE0F; Camera needs HTTPS or localhost.</strong><br>' +
+            'You are on <code>' + window.location.host + '</code>.<br><br>' +
+            '<b>&#x2705; Fix:</b> Restart as:<br>' +
+            '<code style="background:#f3f4f6;padding:2px 6px;border-radius:4px;">' +
+            'python manage.py runserver localhost:8000</code><br>' +
+            'Then visit: <a href="' + fixUrl + '" style="color:var(--primary)">' + fixUrl + '</a><br><br>' +
+            '<em>Or use the Upload File tab above.</em>';
+        if (errEl) errEl.style.display = 'block';
+        return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        if (errEl) { errEl.textContent = 'Camera API not available. Use Chrome 74+, Firefox 68+, or Edge 79+.'; errEl.style.display = 'block'; }
+        return;
+    }
+    try {
+        try {
+            _cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        } catch (ae) {
+            if (ae.name === 'NotFoundError' || ae.name === 'OverconstrainedError') {
+                _cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            } else throw ae;
+        }
+        const preview = document.getElementById('cameraPreview');
+        if (preview) preview.srcObject = _cameraStream;
+        const s = document.getElementById('btnStartCamera');
+        const c = document.getElementById('btnCapturePhoto');
+        const r = document.getElementById('btnStartRecord');
+        if (s) s.style.display = 'none';
+        if (c) c.style.display = 'inline-flex';
+        if (r) r.style.display = 'inline-flex';
+    } catch (e) {
+        const m = {
+            NotAllowedError:'&#x1F6AB; Permission denied — click the camera icon in the browser address bar.',
+            PermissionDeniedError:'&#x1F6AB; Permission denied — click the camera icon in the browser address bar.',
+            NotFoundError:'&#x1F4F7; No camera found. Connect a webcam and retry.',
+            DevicesNotFoundError:'&#x1F4F7; No camera found. Connect a webcam and retry.',
+            NotReadableError:'&#x26A0;&#xFE0F; Camera in use by another app — close it and retry.',
+            TrackStartError:'&#x26A0;&#xFE0F; Camera in use by another app — close it and retry.',
+        };
+        if (errEl) { errEl.innerHTML = m[e.name] || `Camera error (${e.name}): ${e.message}`; errEl.style.display = 'block'; }
+    }
+};
+
+window.capturePhoto = function() {
+    const video  = document.getElementById('cameraPreview');
+    const canvas = document.getElementById('cameraCanvas');
+    if (!video || !canvas) return;
+    canvas.width  = video.videoWidth  || 640;
+    canvas.height = video.videoHeight || 480;
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    canvas.toBlob(blob => {
+        if (!blob) return;
+        _capturedBlob = blob;
+        const btn = document.getElementById('btnUploadCapture');
+        if (btn) btn.style.display = 'inline-flex';
+    }, 'image/jpeg', 0.92);
+};
+
+window.startRecording = function() {
+    if (!_cameraStream) return;
+    _recordedChunks = [];
+    const opts = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
+        ? { mimeType: 'video/webm;codecs=vp9' }
+        : MediaRecorder.isTypeSupported('video/webm') ? { mimeType: 'video/webm' } : {};
+    _mediaRecorder = new MediaRecorder(_cameraStream, opts);
+    _mediaRecorder.ondataavailable = e => { if (e.data.size > 0) _recordedChunks.push(e.data); };
+    _mediaRecorder.onstop = () => {
+        _capturedBlob = new Blob(_recordedChunks, { type: _mediaRecorder.mimeType || 'video/webm' });
+        const btn = document.getElementById('btnUploadCapture');
+        if (btn) btn.style.display = 'inline-flex';
+    };
+    _mediaRecorder.start();
+    let elapsed = 0;
+    const timerEl = document.getElementById('recordTimer');
+    const startBtn = document.getElementById('btnStartRecord');
+    const stopBtn  = document.getElementById('btnStopRecord');
+    if (timerEl)  timerEl.style.display  = 'block';
+    if (startBtn) startBtn.style.display = 'none';
+    if (stopBtn)  stopBtn.style.display  = 'inline-flex';
+    _recordTimerInt = setInterval(() => {
+        elapsed++;
+        if (timerEl) timerEl.textContent = `Recording: ${elapsed}s / 30s`;
+        if (elapsed >= 30) window.stopRecording();
+    }, 1000);
+};
+
+window.stopRecording = function() {
+    if (_mediaRecorder && _mediaRecorder.state !== 'inactive') _mediaRecorder.stop();
+    clearInterval(_recordTimerInt);
+    const timerEl  = document.getElementById('recordTimer');
+    const startBtn = document.getElementById('btnStartRecord');
+    const stopBtn  = document.getElementById('btnStopRecord');
+    if (timerEl)  timerEl.style.display  = 'none';
+    if (startBtn) startBtn.style.display = 'inline-flex';
+    if (stopBtn)  stopBtn.style.display  = 'none';
+};
+
+window.uploadCapturedMedia = async function() {
+    if (!_capturedBlob) { alert('Nothing captured yet — take a photo or record a video first.'); return; }
+    const caption = document.getElementById('cameraCaptionInput')?.value?.trim() || '';
+    const ext     = _capturedBlob.type.includes('image') ? 'jpg' : 'webm';
+    const fd      = new FormData();
+    fd.append('service_order', selectedOrderId);
+    fd.append('file', _capturedBlob, `capture_${Date.now()}.${ext}`);
+    fd.append('caption', caption);
+    const btn   = document.getElementById('btnUploadCapture');
+    const errEl = document.getElementById('cameraError');
+    if (btn) { btn.textContent = 'Uploading...'; btn.disabled = true; }
+    try {
+        const res = await fetch(`${API}/services/servicemedias/`, {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${getToken()}` },
+            body: fd
+        });
+        if (!res.ok) { const d = await res.json(); throw new Error(d.detail || d.file?.[0] || 'Upload failed'); }
+        _capturedBlob = null;
+        _stopCamera();
+        window.switchMediaTab('upload');
+        closeModal('mediaModal');
+        selectOrder(selectedOrderId);
+        showToast('Media captured & uploaded!', 'success');
+    } catch (err) {
+        if (errEl) { errEl.textContent = err.message; errEl.style.display = 'block'; }
+    } finally {
+        if (btn) { btn.innerHTML = '&#x2B06;&#xFE0F; Upload to Server'; btn.disabled = false; }
+    }
+};
+// ════════════════════════════════════════════════════════════════════════════
+
 // ─── State ─────────────────────────────────────────────────────────────────────
 let allOrders = [];
 let selectedOrderId = null;
@@ -717,224 +902,11 @@ function showToast(msg, type = 'success') {
     toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
 }
 
-// ─── Camera & Video Recording (MediaDevices API) ──────────────────────────────────
-let cameraStream = null;
-let mediaRecorder = null;
-let recordedChunks = [];
-let capturedBlob = null;
-let recordTimerInterval = null;
-
-window.switchMediaTab = function(tab) {
-    const uploadSection = document.getElementById('mediaUploadSection');
-    const cameraSection = document.getElementById('mediaCameraSection');
-    const tabUpload = document.getElementById('tabUpload');
-    const tabCamera = document.getElementById('tabCamera');
-    if (tab === 'upload') {
-        uploadSection.style.display = 'block';
-        cameraSection.style.display = 'none';
-        tabUpload.style.background = 'var(--primary)';
-        tabUpload.style.color = '#fff';
-        tabUpload.style.borderColor = 'var(--primary)';
-        tabCamera.style.background = 'transparent';
-        tabCamera.style.color = 'var(--text-muted)';
-        tabCamera.style.borderColor = 'var(--border-light)';
-        stopCamera();
-    } else {
-        uploadSection.style.display = 'none';
-        cameraSection.style.display = 'block';
-        tabCamera.style.background = 'var(--primary)';
-        tabCamera.style.color = '#fff';
-        tabCamera.style.borderColor = 'var(--primary)';
-        tabUpload.style.background = 'transparent';
-        tabUpload.style.color = 'var(--text-muted)';
-        tabUpload.style.borderColor = 'var(--border-light)';
-    }
-};
-
-window.startCamera = async function() {
-    const errEl = document.getElementById('cameraError');
-    errEl.style.display = 'none';
-
-    // ── 1. Check for secure context (HTTPS or localhost) ──────────────
-    if (!window.isSecureContext) {
-        const currentHost = window.location.host;
-        const fixUrl = window.location.href.replace(currentHost, 'localhost:' + window.location.port);
-        errEl.innerHTML =
-            '<strong>&#x26A0;&#xFE0F; Camera requires a secure connection.</strong><br>' +
-            'Your browser is blocking camera access because the page is served over <code>127.0.0.1</code>.<br><br>' +
-            '<b>&#x2705; Fix in 2 steps:</b><br>' +
-            '1. Stop the server (<kbd>Ctrl+C</kbd>)<br>' +
-            '2. Restart with: <code style="background:#f3f4f6;padding:2px 6px;border-radius:4px;">python manage.py runserver localhost:8000</code><br>' +
-            '3. Then open: <a href="' + fixUrl + '" style="color:var(--primary)">' + fixUrl + '</a><br><br>' +
-            '<em>Alternatively use the File Upload tab above.</em>';
-        errEl.style.display = 'block';
-        return;
-    }
-
-    // ── 2. Check MediaDevices API availability ────────────────
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        errEl.textContent = 'Your browser does not support camera access. Please use Chrome 74+, Firefox 68+, or Edge 79+.';
-        errEl.style.display = 'block';
-        return;
-    }
-
-    // ── 3. Request camera (try with audio first, fallback to video-only) ──
-    try {
-        try {
-            cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-        } catch (audioErr) {
-            // Audio might be unavailable (no microphone) — try video-only
-            if (audioErr.name === 'NotFoundError' || audioErr.name === 'OverconstrainedError') {
-                cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-            } else {
-                throw audioErr; // Re-throw real errors (denied, etc)
-            }
-        }
-        const preview = document.getElementById('cameraPreview');
-        preview.srcObject = cameraStream;
-        document.getElementById('btnStartCamera').style.display  = 'none';
-        document.getElementById('btnCapturePhoto').style.display = 'inline-flex';
-        document.getElementById('btnStartRecord').style.display  = 'inline-flex';
-    } catch(e) {
-        let msg = '';
-        if (e.name === 'NotAllowedError' || e.name === 'PermissionDeniedError') {
-            msg = '&#x1F6AB; Camera permission was denied. Click the camera icon in the browser address bar and allow access, then try again.';
-        } else if (e.name === 'NotFoundError' || e.name === 'DevicesNotFoundError') {
-            msg = '&#x1F4F7; No camera device found. Please connect a webcam and try again.';
-        } else if (e.name === 'NotReadableError' || e.name === 'TrackStartError') {
-            msg = '&#x26A0;&#xFE0F; Camera is in use by another application. Close other apps using the camera and try again.';
-        } else if (e.name === 'OverconstrainedError') {
-            msg = '&#x26A0;&#xFE0F; Camera does not meet required constraints. Trying alternative settings...';
-        } else {
-            msg = `Camera error: ${e.message || e.name}. Use the File Upload tab as an alternative.`;
-        }
-        errEl.innerHTML = msg;
-        errEl.style.display = 'block';
-    }
-};
-
-function stopCamera() {
-    if (cameraStream) {
-        cameraStream.getTracks().forEach(t => t.stop());
-        cameraStream = null;
-    }
-    const preview = document.getElementById('cameraPreview');
-    if (preview) preview.srcObject = null;
-    document.getElementById('btnStartCamera').style.display = 'inline-flex';
-    document.getElementById('btnCapturePhoto').style.display = 'none';
-    document.getElementById('btnStartRecord').style.display = 'none';
-    document.getElementById('btnStopRecord').style.display = 'none';
-    document.getElementById('recordTimer').style.display = 'none';
-    document.getElementById('btnUploadCapture').style.display = 'none';
-    clearInterval(recordTimerInterval);
-}
-
-window.capturePhoto = function() {
-    const video  = document.getElementById('cameraPreview');
-    const canvas = document.getElementById('cameraCanvas');
-    canvas.width  = video.videoWidth  || 640;
-    canvas.height = video.videoHeight || 480;
-    canvas.getContext('2d').drawImage(video, 0, 0);
-    canvas.toBlob(blob => {
-        capturedBlob = blob;
-        document.getElementById('btnUploadCapture').style.display = 'block';
-        showToast('Photo captured! Click Upload to save.', 'success');
-    }, 'image/jpeg', 0.92);
-};
-
-window.startRecording = function() {
-    if (!cameraStream) return;
-    recordedChunks = [];
-    capturedBlob = null;
-    document.getElementById('btnUploadCapture').style.display = 'none';
-
-    const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
-        ? 'video/webm;codecs=vp9'
-        : MediaRecorder.isTypeSupported('video/webm')
-            ? 'video/webm'
-            : 'video/mp4';
-
-    mediaRecorder = new MediaRecorder(cameraStream, { mimeType });
-    mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
-    mediaRecorder.onstop = () => {
-        capturedBlob = new Blob(recordedChunks, { type: mimeType });
-        document.getElementById('btnUploadCapture').style.display = 'block';
-        document.getElementById('btnStopRecord').style.display = 'none';
-        document.getElementById('recordTimer').style.display = 'none';
-        clearInterval(recordTimerInterval);
-        showToast('Recording complete! Click Upload to save.', 'success');
-    };
-
-    mediaRecorder.start(100);
-    document.getElementById('btnStartRecord').style.display = 'none';
-    document.getElementById('btnStopRecord').style.display = 'inline-flex';
-
-    // Timer + auto-stop at 30s
-    let elapsed = 0;
-    const timerEl = document.getElementById('recordTimer');
-    timerEl.style.display = 'block';
-    timerEl.textContent = 'Recording: 0s / 30s';
-    recordTimerInterval = setInterval(() => {
-        elapsed++;
-        timerEl.textContent = `Recording: ${elapsed}s / 30s`;
-        if (elapsed >= 30) {
-            stopRecording();
-        }
-    }, 1000);
-};
-
-window.stopRecording = function() {
-    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-        mediaRecorder.stop();
-    }
-    clearInterval(recordTimerInterval);
-};
-
-window.uploadCapturedMedia = async function() {
-    if (!capturedBlob || !selectedOrderId) return;
-    const errEl = document.getElementById('cameraError');
-    const btn   = document.getElementById('btnUploadCapture');
-    errEl.style.display = 'none';
-    btn.textContent = 'Uploading...'; btn.disabled = true;
-
-    const isVideo = capturedBlob.type.startsWith('video');
-    const ext = isVideo ? (capturedBlob.type.includes('webm') ? 'webm' : 'mp4') : 'jpg';
-    const fileName = `capture_${Date.now()}.${ext}`;
-    const caption = document.getElementById('cameraCaptionInput').value || '';
-
-    const formData = new FormData();
-    formData.append('service_order', selectedOrderId);
-    formData.append('file', capturedBlob, fileName);
-    formData.append('caption', caption);
-    formData.append('media_type', isVideo ? 'video' : 'image');
-
-    try {
-        const res = await fetch(`${API}/services/servicemedias/`, {
-            method: 'POST',
-            headers: { 'Authorization': `Bearer ${getToken()}` },
-            body: formData
-        });
-        if (!res.ok) {
-            const d = await res.json();
-            throw new Error(d.detail || d.file?.[0] || 'Upload failed');
-        }
-        capturedBlob = null;
-        closeModal('mediaModal');
-        stopCamera();
-        selectOrder(selectedOrderId);
-        showToast('Media uploaded successfully!', 'success');
-    } catch(e) {
-        errEl.textContent = e.message;
-        errEl.style.display = 'block';
-    } finally {
-        btn.textContent = '⬆️ Upload to Server'; btn.disabled = false;
-    }
-};
 
 // Stop camera when media modal closes
 ['closeMediaModal'].forEach(id => {
     document.getElementById(id)?.addEventListener('click', () => {
-        stopCamera();
+        if (typeof _stopCamera === 'function') _stopCamera();
         closeModal('mediaModal');
     });
 });

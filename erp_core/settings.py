@@ -60,12 +60,15 @@ CSRF_TRUSTED_ORIGINS = [
     "https://zorvex-production.up.railway.app",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+    "http://[IP_ADDRESS]",
+    "https://[IP_ADDRESS]",
 ]
 
 # Allow SharedArrayBuffer (needed for some media APIs in modern Chrome)
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
+    "192.168.0.105",
     "zorvex-production.up.railway.app",
     "localhost",
     "127.0.0.1",

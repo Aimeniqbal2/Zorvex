@@ -124,7 +124,14 @@
         toggleBtn.innerHTML = '☰';
         toggleBtn.title = "Toggle Sidebar Visibility";
         toggleBtn.addEventListener('click', () => {
-            document.querySelector('.sidebar').classList.toggle('collapsed');
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('collapsed');
+            const logo = sidebar.querySelector('.brand img');
+            if (logo) {
+                logo.src = sidebar.classList.contains('collapsed') 
+                    ? '/static/assets/logo-icon.png' 
+                    : '/static/assets/logo-full.png';
+            }
         });
         headerActions.insertBefore(toggleBtn, headerActions.firstChild);
     }

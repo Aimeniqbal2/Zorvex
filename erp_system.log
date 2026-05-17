@@ -9768,3 +9768,848 @@ Not Found: /favicon.ico
 "GET /api/services/serviceorders/c20ffd18-a3ab-4b54-af6f-3b303a600bd5/ HTTP/1.1" 200 961
 "GET /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/ HTTP/1.1" 200 2272
 - Broken pipe from ('127.0.0.1', 58027)
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8391
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2138
+"GET / HTTP/1.1" 200 8391
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2138
+"GET /analytics/ HTTP/1.1" 200 7324
+"GET /static/analytics.js HTTP/1.1" 304 0
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 163
+"GET /api/reports/monthly/?year=2026 HTTP/1.1" 200 1496
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 163
+"GET /api/reports/monthly/?year=2026 HTTP/1.1" 200 1496
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 163
+"GET /credit/ HTTP/1.1" 200 15783
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1731
+"GET /credit/ HTTP/1.1" 200 15783
+"GET /static/dashboard.css HTTP/1.1" 200 23803
+"GET /static/shared-nav.js HTTP/1.1" 200 17288
+"GET /static/credit.js HTTP/1.1" 200 17934
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 1731
+"GET /service-logs/ HTTP/1.1" 200 29480
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3840
+"GET /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/ HTTP/1.1" 200 2272
+"GET /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/ HTTP/1.1" 200 2272
+- Broken pipe from ('127.0.0.1', 59083)
+- Broken pipe from ('127.0.0.1', 52182)
+"GET /service-logs/ HTTP/1.1" 200 29480
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/service-logs.js HTTP/1.1" 200 48956
+Unauthorized: /api/inventory/products/
+Unauthorized: /api/services/serviceorders/
+Unauthorized: /api/inventory/vendors/
+"GET /api/inventory/products/ HTTP/1.1" 401 172
+"GET /api/services/serviceorders/ HTTP/1.1" 401 172
+"GET /api/inventory/vendors/ HTTP/1.1" 401 172
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.js HTTP/1.1" 304 0
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 3169
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8391
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2138
+"GET /service-logs/ HTTP/1.1" 200 29480
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3840
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/ HTTP/1.1" 200 2272
+- Broken pipe from ('127.0.0.1', 58182)
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.css HTTP/1.1" 200 23803
+"GET /static/shared-nav.js HTTP/1.1" 200 17288
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/style.css HTTP/1.1" 200 7635
+"GET /static/login.js HTTP/1.1" 200 4477
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6328
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.css HTTP/1.1" 200 23803
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /static/shared-nav.js HTTP/1.1" 200 17288
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/style.css HTTP/1.1" 200 7635
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6328
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8391
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2138
+"GET /service-logs/ HTTP/1.1" 200 29480
+"GET /static/service-logs.js HTTP/1.1" 200 48956
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3840
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/ HTTP/1.1" 200 2276
+- Broken pipe from ('192.168.0.106', 49936)
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8391
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2138
+"GET /service-logs/ HTTP/1.1" 200 29480
+"GET /static/service-logs.js HTTP/1.1" 200 48956
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3840
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/ HTTP/1.1" 200 2276
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.css HTTP/1.1" 200 23803
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /static/shared-nav.js HTTP/1.1" 200 17288
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/style.css HTTP/1.1" 200 7635
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8391
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2138
+"GET /service-logs/ HTTP/1.1" 200 29480
+"GET /static/service-logs.js HTTP/1.1" 200 48956
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3840
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/ HTTP/1.1" 200 2272
+- Broken pipe from ('127.0.0.1', 57752)
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.css HTTP/1.1" 200 23803
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /static/shared-nav.js HTTP/1.1" 200 17288
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/style.css HTTP/1.1" 200 7635
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 3169
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8391
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2138
+"GET /service-logs/ HTTP/1.1" 200 29480
+"GET /static/service-logs.js HTTP/1.1" 200 48956
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3840
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/ HTTP/1.1" 200 2272
+- Broken pipe from ('127.0.0.1', 50140)
+"GET /service-logs/ HTTP/1.1" 200 29480
+"GET /static/service-logs.js HTTP/1.1" 200 48956
+"GET /static/dashboard.css HTTP/1.1" 200 23803
+"GET /static/shared-nav.js HTTP/1.1" 200 17288
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3840
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/ HTTP/1.1" 200 2272
+- Broken pipe from ('127.0.0.1', 55953)
+"POST /api/services/serviceorders/b3dd5556-4508-4170-b1df-4f454f4fd7d6/process_payment/ HTTP/1.1" 200 2361
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3843
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /static/pos.js HTTP/1.1" 200 23180
+"GET /api/sales/sessions/ HTTP/1.1" 200 3755
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 2016
+Bad Request: /api/sales/sales/
+"POST /api/sales/sales/ HTTP/1.1" 400 68
+Bad Request: /api/sales/sales/
+"POST /api/sales/sales/ HTTP/1.1" 400 68
+Bad Request: /api/sales/sales/
+"POST /api/sales/sales/ HTTP/1.1" 400 68
+"PATCH /api/sales/sessions/e6def35c-bc6e-44f6-93ab-e9f1f9950ef2/ HTTP/1.1" 200 418
+"GET /pos/ HTTP/1.1" 200 20506
+"GET /api/sales/sessions/ HTTP/1.1" 200 3788
+"POST /api/sales/sessions/ HTTP/1.1" 201 385
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 2016
+Bad Request: /api/sales/sales/
+"POST /api/sales/sales/ HTTP/1.1" 400 79
+"POST /api/sales/sales/ HTTP/1.1" 201 557
+"POST /api/sales/saleitems/ HTTP/1.1" 201 425
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 2016
+"GET / HTTP/1.1" 200 8391
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /analytics/ HTTP/1.1" 200 7324
+"GET /static/analytics.js HTTP/1.1" 200 9414
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 163
+"GET /analytics/ HTTP/1.1" 200 7324
+"GET /static/dashboard.css HTTP/1.1" 200 23914
+"GET /static/analytics.js HTTP/1.1" 200 9414
+"GET /static/shared-nav.js HTTP/1.1" 200 17288
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 163
+"GET / HTTP/1.1" 200 8391
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.css HTTP/1.1" 200 23914
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /static/shared-nav.js HTTP/1.1" 200 17608
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.css HTTP/1.1" 200 23914
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /static/shared-nav.js HTTP/1.1" 200 17608
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+- Broken pipe from ('127.0.0.1', 49777)
+"GET /login/ HTTP/1.1" 200 3169
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/style.css HTTP/1.1" 200 7635
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/style.css HTTP/1.1" 200 7635
+"GET /static/login.js HTTP/1.1" 200 4477
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/style.css HTTP/1.1" 200 7635
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /login/ HTTP/1.1" 200 3169
+"GET /static/style.css HTTP/1.1" 200 7635
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+C:\Users\Admin\Desktop\ERP\erp_core\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 4650
+"GET /static/assets/logo.png HTTP/1.1" 200 34278
+Not Found: /login/assets/Minimal Abstract Background With 3D layers_\u30102025\u3011.jpg
+"GET /login/assets/Minimal%20Abstract%20Background%20With%203D%20layers_%E3%80%902025%E3%80%91.jpg HTTP/1.1" 404 6523
+Not Found: /login/assets/Philippine regulators told to empower users, workers to tackle AI threats - BusinessWorld Online.jpg
+"GET /login/assets/Philippine%20regulators%20told%20to%20empower%20users,%20workers%20to%20tackle%20AI%20threats%20-%20BusinessWorld%20Online.jpg HTTP/1.1" 404 6656
+"GET /login/ HTTP/1.1" 200 4650
+"GET /static/assets/logo.png HTTP/1.1" 200 34278
+"GET /static/login.js HTTP/1.1" 200 4477
+Not Found: /login/assets/Minimal Abstract Background With 3D layers_\u30102025\u3011.jpg
+Not Found: /login/assets/Philippine regulators told to empower users, workers to tackle AI threats - BusinessWorld Online.jpg
+"GET /login/assets/Minimal%20Abstract%20Background%20With%203D%20layers_%E3%80%902025%E3%80%91.jpg HTTP/1.1" 404 6523
+"GET /login/assets/Philippine%20regulators%20told%20to%20empower%20users,%20workers%20to%20tackle%20AI%20threats%20-%20BusinessWorld%20Online.jpg HTTP/1.1" 404 6656
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /login/ HTTP/1.1" 200 4650
+"GET /login/ HTTP/1.1" 200 4650
+Not Found: /login/assets/Minimal Abstract Background With 3D layers_\u30102025\u3011.jpg
+"GET /login/assets/Minimal%20Abstract%20Background%20With%203D%20layers_%E3%80%902025%E3%80%91.jpg HTTP/1.1" 404 6523
+Not Found: /login/assets/Philippine regulators told to empower users, workers to tackle AI threats - BusinessWorld Online.jpg
+"GET /login/assets/Philippine%20regulators%20told%20to%20empower%20users,%20workers%20to%20tackle%20AI%20threats%20-%20BusinessWorld%20Online.jpg HTTP/1.1" 404 6656
+"GET /login/ HTTP/1.1" 200 5566
+"GET /static/assets/logo.png HTTP/1.1" 200 34278
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/Philippine%20regulators%20told%20to%20empower%20users%2C%20workers%20to%20tackle%20AI%20threats%20-%20BusinessWorld%20Online.jpg HTTP/1.1" 200 39322
+"GET /static/%20assets/Minimal%20Abstract%20Background%20With%203D%20layers_%E3%80%902025%E3%80%91.jpg HTTP/1.1" 404 2033
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /login/ HTTP/1.1" 200 5380
+"GET /static/assets/logo.png HTTP/1.1" 200 34278
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/%20assets/bg.jpg HTTP/1.1" 404 1858
+"GET /static/%20assets/rightimg.jpg HTTP/1.1" 404 1876
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /login/ HTTP/1.1" 200 5380
+"GET /static/assets/logo.png HTTP/1.1" 200 34278
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/%20assets/bg.jpg HTTP/1.1" 404 1858
+"GET /static/%20assets/rightimg.jpg HTTP/1.1" 404 1876
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /login/ HTTP/1.1" 200 5380
+"GET /static/%20assets/bg.jpg HTTP/1.1" 404 1858
+"GET /static/%20assets/rightimg.jpg HTTP/1.1" 404 1876
+"GET /login/ HTTP/1.1" 200 5496
+"GET /static/%20assets/bg.jpg HTTP/1.1" 404 1858
+"GET /static/%20assets/Philippine%20regulators%20told%20to%20empower%20users%2C%20workers%20to%20tackle%20AI%20threats%20-%20BusinessWorld%20Online.jpg HTTP/1.1" 404 2166
+"GET /login/ HTTP/1.1" 200 5496
+"GET /static/assets/logo.png HTTP/1.1" 200 34278
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/%20assets/bg.jpg HTTP/1.1" 404 1858
+"GET /static/%20assets/Philippine%20regulators%20told%20to%20empower%20users%2C%20workers%20to%20tackle%20AI%20threats%20-%20BusinessWorld%20Online.jpg HTTP/1.1" 404 2166
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /login/ HTTP/1.1" 200 5496
+"GET /static/assets/logo.png HTTP/1.1" 200 34278
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/%20assets/bg.jpg HTTP/1.1" 404 1858
+"GET /static/%20assets/Philippine%20regulators%20told%20to%20empower%20users%2C%20workers%20to%20tackle%20AI%20threats%20-%20BusinessWorld%20Online.jpg HTTP/1.1" 404 2166
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /login/ HTTP/1.1" 200 5496
+"GET /static/assets/logo.png HTTP/1.1" 200 34278
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/%20assets/Philippine%20regulators%20told%20to%20empower%20users%2C%20workers%20to%20tackle%20AI%20threats%20-%20BusinessWorld%20Online.jpg HTTP/1.1" 404 2166
+"GET /static/%20assets/bg.jpg HTTP/1.1" 404 1858
+"GET /login/ HTTP/1.1" 200 5496
+Not Found: /favicon.ico
+- Broken pipe from ('127.0.0.1', 52116)
+"GET /static/assets/logo.png HTTP/1.1" 200 34278
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/%20assets/bg.jpg HTTP/1.1" 404 1858
+"GET /login/ HTTP/1.1" 200 5496
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/%20assets/Philippine%20regulators%20told%20to%20empower%20users%2C%20workers%20to%20tackle%20AI%20threats%20-%20BusinessWorld%20Online.jpg HTTP/1.1" 404 2166
+"GET /static/assets/logo.png HTTP/1.1" 200 34278
+"GET /static/%20assets/bg.jpg HTTP/1.1" 404 1858
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8391
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 5380
+"GET /static/%20assets/bg.jpg HTTP/1.1" 404 1858
+"GET /static/%20assets/rightimg.jpg HTTP/1.1" 404 1876
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /login/ HTTP/1.1" 200 5374
+"GET /static/assets/logo.png HTTP/1.1" 200 34278
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/rightimg.jpg HTTP/1.1" 200 39322
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"GET /login/ HTTP/1.1" 200 5379
+"GET /login/ HTTP/1.1" 200 6097
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/rightimg.jpg HTTP/1.1" 200 39322
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /login/ HTTP/1.1" 200 6097
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/rightimg.jpg HTTP/1.1" 200 39322
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8391
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /pos/ HTTP/1.1" 200 21729
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /api/sales/sessions/ HTTP/1.1" 200 4174
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 2016
+"GET / HTTP/1.1" 200 8391
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+- Broken pipe from ('127.0.0.1', 64451)
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /pos/ HTTP/1.1" 200 21729
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+- Broken pipe from ('127.0.0.1', 50981)
+"GET /api/sales/sessions/ HTTP/1.1" 200 4174
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 2016
+"GET /service-logs/ HTTP/1.1" 200 29973
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3843
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /transactions/ HTTP/1.1" 200 6596
+"GET /static/sales-history.js HTTP/1.1" 200 8232
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /api/sales/sales/ HTTP/1.1" 200 43015
+"GET /analytics/ HTTP/1.1" 200 7324
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 163
+"GET /inventory/ HTTP/1.1" 200 12491
+"GET /static/inventory.js HTTP/1.1" 200 15811
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+- Broken pipe from ('127.0.0.1', 50538)
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /vendors/ HTTP/1.1" 200 16286
+"GET /static/vendors.js HTTP/1.1" 200 23413
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 672
+"GET /credit/ HTTP/1.1" 200 15783
+"GET /static/credit.js HTTP/1.1" 200 17934
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /credit/ HTTP/1.1" 200 15783
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+- Broken pipe from ('127.0.0.1', 54634)
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+- Broken pipe from ('127.0.0.1', 49288)
+"GET /api/sales/customers/ HTTP/1.1" 200 2016
+"GET /team/ HTTP/1.1" 200 9960
+"GET /static/team.js HTTP/1.1" 200 9178
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /api/accounts/users/ HTTP/1.1" 200 1789
+"GET / HTTP/1.1" 200 8391
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+- Broken pipe from ('127.0.0.1', 54230)
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /pos/ HTTP/1.1" 200 21729
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /api/sales/sessions/ HTTP/1.1" 200 4174
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 2016
+"GET / HTTP/1.1" 200 8391
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /pos/ HTTP/1.1" 200 21729
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /api/sales/sessions/ HTTP/1.1" 200 4174
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 2016
+"GET / HTTP/1.1" 200 8391
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+- Broken pipe from ('127.0.0.1', 55740)
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /transactions/ HTTP/1.1" 200 6596
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /api/sales/sales/ HTTP/1.1" 200 43015
+"GET / HTTP/1.1" 200 8391
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 200 23914
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /static/shared-nav.js HTTP/1.1" 200 17608
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /pos/ HTTP/1.1" 200 21804
+"GET /api/sales/sessions/ HTTP/1.1" 200 4174
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/sales/customers/ HTTP/1.1" 200 2016
+"GET /service-logs/ HTTP/1.1" 200 30048
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3843
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /transactions/ HTTP/1.1" 200 6671
+"GET /api/sales/sales/ HTTP/1.1" 200 43015
+"GET /credit/ HTTP/1.1" 200 15858
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 2016
+"GET /login/ HTTP/1.1" 200 6170
+"GET /static/assets/rightimg.jpg HTTP/1.1" 304 0
+"GET /static/assets/bg.jpg HTTP/1.1" 304 0
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /login/ HTTP/1.1" 200 6170
+"GET /login/ HTTP/1.1" 200 6170
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /login/ HTTP/1.1" 200 6170
+- Broken pipe from ('127.0.0.1', 65413)
+"GET /login/ HTTP/1.1" 200 6170
+"GET /login/ HTTP/1.1" 200 6179
+"GET /static/assets/bg.jpg HTTP/1.1" 304 0
+"GET /static/assets/right_img.jpg HTTP/1.1" 404 1874
+"GET /login/ HTTP/1.1" 200 6179
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/assets/right_img.jpg HTTP/1.1" 404 1874
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6179
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6178
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/rightimg.jpg HTTP/1.1" 200 39322
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6179
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6307
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6301
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6309
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6309
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6309
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6377
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6431
+"GET /static/assets/right_img.png HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 6431
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6485
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6473
+"GET /static/assets/right_img.png HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 6473
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6437
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg.jpg HTTP/1.1" 200 10959
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/bg-new.png HTTP/1.1" 200 3487298
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6612
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/bg-new.png HTTP/1.1" 200 3487298
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/bg-new.png HTTP/1.1" 200 3487298
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/assets/bg-new.png HTTP/1.1" 304 0
+"GET /static/assets/right_img.png HTTP/1.1" 304 0
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/assets/bg-new.png HTTP/1.1" 304 0
+"GET /static/assets/right_img.png HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6435
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /inventory/ HTTP/1.1" 200 12566
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4686
+"PATCH /api/inventory/products/a5995eff-626a-4a38-92ed-f7470ab0ffc2/ HTTP/1.1" 200 415
+"GET /api/inventory/products/ HTTP/1.1" 200 4688
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /inventory/ HTTP/1.1" 200 12566
+"GET /api/inventory/products/ HTTP/1.1" 200 4688
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"PATCH /api/inventory/products/57a20ee7-cbd0-484e-ad2a-dc59445709ad/ HTTP/1.1" 200 431
+"GET /api/inventory/products/ HTTP/1.1" 200 4690
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /analytics/ HTTP/1.1" 200 7399
+"GET /static/analytics.js HTTP/1.1" 304 0
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 163
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 2141
+"GET /analytics/ HTTP/1.1" 200 7399
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 163
+"GET /inventory/ HTTP/1.1" 200 12566
+"GET /api/inventory/categorys/ HTTP/1.1" 200 169
+"GET /api/inventory/products/ HTTP/1.1" 200 4690
+"GET /pos/ HTTP/1.1" 200 21804
+"GET /static/pos.js HTTP/1.1" 304 0
+"GET /api/sales/sessions/ HTTP/1.1" 200 4174
+"GET /api/inventory/products/ HTTP/1.1" 200 4690
+"GET /api/sales/customers/ HTTP/1.1" 200 2016
+"GET /service-logs/ HTTP/1.1" 200 30048
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 4690
+"GET /api/services/serviceorders/ HTTP/1.1" 200 3843
+"GET /api/inventory/vendors/ HTTP/1.1" 200 499
+"GET /transactions/ HTTP/1.1" 200 6671
+"GET /api/sales/sales/ HTTP/1.1" 200 43015
+"GET /team/ HTTP/1.1" 200 10035
+"GET /static/team.js HTTP/1.1" 304 0
+"GET /api/accounts/users/ HTTP/1.1" 200 1789
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4080
+"GET /static/admin/css/base.css HTTP/1.1" 200 23100
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16273
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4248
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4248
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4248
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4249
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 26243
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 689
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+"GET /admin/accounts/user/ HTTP/1.1" 200 29113
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 7498
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/img/search.svg HTTP/1.1" 200 607
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 645
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 928
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+"GET /admin/accounts/user/7819fff0-d428-4fe3-9476-315652ac2e02/change/ HTTP/1.1" 200 46686
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8831
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19698
+"GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+"GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 16428
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9159
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11811
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 2387
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 805
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1112
+"POST /admin/accounts/user/7819fff0-d428-4fe3-9476-315652ac2e02/change/ HTTP/1.1" 302 0
+"GET /admin/accounts/user/ HTTP/1.1" 200 29377
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-yes-dark.svg HTTP/1.1" 200 558
+"GET /login/ HTTP/1.1" 200 6441
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /static/dashboard.css HTTP/1.1" 200 23914
+"GET /static/shared-nav.js HTTP/1.1" 200 17608
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/bg-new.png HTTP/1.1" 200 3487298
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4080
+"GET /static/admin/css/base.css HTTP/1.1" 200 23100
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16273
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6324
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4249
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4249
+Watching for file changes with StatReloader
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4249
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 22391
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+"GET /admin/accounts/user/ HTTP/1.1" 200 24970
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 7498
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/img/search.svg HTTP/1.1" 200 607
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 928
+"GET /admin/accounts/user/29416ab1-7d41-4d48-8788-025662f42ef5/change/ HTTP/1.1" 200 46449
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9159
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19698
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8831
+"GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+"GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 16428
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11811
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 2387
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1112
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 805
+"POST /admin/accounts/user/29416ab1-7d41-4d48-8788-025662f42ef5/change/ HTTP/1.1" 302 0
+"GET /admin/accounts/user/ HTTP/1.1" 200 25241
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-yes-dark.svg HTTP/1.1" 200 558
+"GET /admin/companies/company/ HTTP/1.1" 200 21582
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/companies/company/add/ HTTP/1.1" 200 22187
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/companies/company/add/ HTTP/1.1" 302 0
+"GET /admin/companies/company/ HTTP/1.1" 200 23825
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/user/ HTTP/1.1" 200 25317
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/user/add/ HTTP/1.1" 200 27860
+"GET /static/admin/css/unusable_password_field.css HTTP/1.1" 200 663
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/accounts/user/add/ HTTP/1.1" 200 28104
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/accounts/user/add/ HTTP/1.1" 200 28120
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/accounts/user/add/ HTTP/1.1" 302 0
+"GET /admin/accounts/user/1f37eaca-904c-4bbc-805d-22f43e6162a3/change/ HTTP/1.1" 200 46780
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/user/ HTTP/1.1" 200 25899
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 645
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET / HTTP/1.1" 200 8466
+"GET /login/ HTTP/1.1" 200 6441
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 553
+"GET /vendors/ HTTP/1.1" 200 16361
+"GET /static/vendors.js HTTP/1.1" 200 23413
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 2
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 553
+Watching for file changes with StatReloader

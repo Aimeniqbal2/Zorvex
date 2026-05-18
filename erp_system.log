@@ -10613,3 +10613,39 @@ Watching for file changes with StatReloader
 "GET / HTTP/1.1" 200 8466
 "GET /api/reports/dashboard/ HTTP/1.1" 200 553
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8466
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 6441
+"GET /admin/accounts/user/1f37eaca-904c-4bbc-805d-22f43e6162a3/change/ HTTP/1.1" 200 46523
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 63
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 553
+C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\settings.py changed, reloading.
+C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\settings.py changed, reloading.
+C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\settings.py changed, reloading.
+Watching for file changes with StatReloader

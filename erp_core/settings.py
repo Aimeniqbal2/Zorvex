@@ -23,14 +23,6 @@ environ.Env.read_env(BASE_DIR / '.env')
 
 import os
 
-# ---------------------------railway------------------------------
-import dj_database_url
-
-DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-}
-# ---------------------------railway end------------------------------
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -40,40 +32,16 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-replace-this')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', default=True)
 
-# ---------------------------railway------------------------------
-# ---------------------------railway / production SSL------------------------------
-# These settings only apply in production (DEBUG=False).
-# In dev, they break cookies, camera, and local auth — so we skip them.
-if not DEBUG:
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    CSRF_COOKIE_SECURE      = True
-    SESSION_COOKIE_SECURE   = True
-    SECURE_HSTS_SECONDS     = 3600
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-else:
-    # Dev: insecure cookies are fine; needed for localhost camera / form access
-    CSRF_COOKIE_SECURE    = False
-    SESSION_COOKIE_SECURE = False
-
-# Trusted origins for CSRF (must include localhost for local dev)
 CSRF_TRUSTED_ORIGINS = [
-    "https://zorvex-production.up.railway.app",
+    "http://46.224.187.226",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    "http://[IP_ADDRESS]",
-    "https://[IP_ADDRESS]",
 ]
 
-# Allow SharedArrayBuffer (needed for some media APIs in modern Chrome)
-SECURE_CROSS_ORIGIN_OPENER_POLICY = None
-
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
-    "192.168.0.105",
-    "zorvex-production.up.railway.app",
+ALLOWED_HOSTS = ["*",
     "localhost",
     "127.0.0.1",
-])
-# ---------------------------railway end------------------------------
+]
 
 
 # Application definition
@@ -140,16 +108,20 @@ WSGI_APPLICATION = 'erp_core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# Database
 # DATABASES = {
 #     'default': env.db('DATABASE_URL', default=f'sqlite:///{BASE_DIR / "db.sqlite3"}')
 # }
-
-# ---------------------------railway------------------------------
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+    }
 }
-# ---------------------------railway end------------------------------
-
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
@@ -245,6 +217,4 @@ LOGGING = {
     },
 }
 
-# ---------------------------railway------------------------------
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# ---------------------------railway end------------------------------
+STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'

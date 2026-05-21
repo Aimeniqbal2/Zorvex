@@ -1,0 +1,5 @@
+.env
+staticfiles/
+media/
+*.log
+__pycache__/

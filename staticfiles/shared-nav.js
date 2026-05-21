@@ -8,50 +8,74 @@
 (function () {
     'use strict';
 
-    const currentPage = window.location.pathname;
-    const token = localStorage.getItem('access_token');
+    console.log('Shared Nav: Script loaded, checking DOM readiness...');
 
-    // Auth guard — redirect to login if no token and not already on login page
-    if (currentPage !== '/login/' && !token) {
-        window.location.href = '/login/';
-        return;
-    }
+    function initSharedNav() {
+        console.log('Shared Nav: Initializing navbar & controls...');
+        const currentPage = window.location.pathname;
+        const token = localStorage.getItem('access_token');
 
-    // Parse JWT payload to extract role
-    function parseJwt(token) {
-        try {
-            const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
-            return JSON.parse(atob(base64));
-        } catch (e) { return {}; }
-    }
+        // Auth guard — redirect to login if no token and not already on login page
+        if (currentPage !== '/login/' && !token) {
+            console.warn('Shared Nav: No auth token found. Redirecting to login.');
+            window.location.href = '/login/';
+            return;
+        }
 
-    const payload = token ? parseJwt(token) : {};
-    const userRole = payload.role || 'staff';
-    const username = payload.username || 'User';
+        // Parse JWT payload to extract role
+        function parseJwt(token) {
+            try {
+                const base64Url = token.split('.')[1];
+                if (!base64Url) return {};
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const padLen = (4 - (base64.length % 4)) % 4;
+                const paddedBase64 = base64 + '='.repeat(padLen);
+                const jsonPayload = decodeURIComponent(window.atob(paddedBase64).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+                return JSON.parse(jsonPayload);
+            } catch (e) {
+                console.error('Failed to parse JWT token safely:', e);
+                return {};
+            }
+        }
+
+        const payload = token ? parseJwt(token) : {};
+        const userRole = String(payload.role || 'staff');
+        const username = String(payload.username || 'User');
+        console.log(`Shared Nav: Authenticated user: ${username} (Role: ${userRole})`);
 
     // Role hierarchy for UI gating
     const ROLE_LEVELS = {
-        super_admin: 5, admin: 4, manager: 3, technician: 2, cashier: 1, staff: 0
+        super_admin: 5, admin: 4, manager: 3,
+        hardware_technician: 2, software_technician: 2,
+        technician: 2,  // legacy compat
+        cashier: 1, staff: 0
     };
+
+    // Technician check (both types)
+    const TECHNICIAN_ROLES = ['hardware_technician', 'software_technician'];
+    const isTechnicianUser = TECHNICIAN_ROLES.includes(userRole);
 
     function canAccess(minRole) {
         return (ROLE_LEVELS[userRole] || 0) >= (ROLE_LEVELS[minRole] || 0);
     }
 
     const navItems = [
-        { href: '/', icon: '📊', label: 'Dashboard', minRole: 'staff' },
-        { href: '/pos/', icon: '💳', label: 'POS Sales', minRole: 'cashier' },
+        { href: '/',              icon: '📊', label: 'Dashboard',     minRole: 'staff'   },
+        { href: '/pos/',          icon: '💳', label: 'POS Sales',     minRole: 'cashier', hide: isTechnicianUser },
         { href: '/service-logs/', icon: '🛠️', label: 'Service Orders', minRole: 'cashier' },
-        { href: '/transactions/', icon: '🧾', label: 'Transactions', minRole: 'cashier' },
-        { href: '/inventory/', icon: '📦', label: 'Inventory', minRole: 'manager' },
-        { href: '/vendors/', icon: '🏭', label: 'Vendors', minRole: 'manager' },
-        { href: '/credit/', icon: '📒', label: 'Credit Ledger', minRole: 'manager' },
-        { href: '/team/', icon: '👥', label: 'Team', minRole: 'admin' },
+        { href: '/transactions/', icon: '🧾', label: 'Transactions',  minRole: 'cashier', hide: isTechnicianUser },
+        { href: '/analytics/',    icon: '📈', label: 'Analytics',     minRole: 'manager' },
+        { href: '/inventory/',    icon: '📦', label: 'Inventory',     minRole: 'manager' },
+        { href: '/vendors/',      icon: '🏭', label: 'Vendors',       minRole: 'manager' },
+        { href: '/credit/',       icon: '📒', label: 'Credit Ledger', minRole: 'manager', hide: isTechnicianUser },
+        { href: '/team/',         icon: '👥', label: 'Team',          minRole: 'admin'   },
     ];
 
     function buildNav() {
         return navItems
-            .filter(item => canAccess(item.minRole))
+            .filter(item => canAccess(item.minRole) && !item.hide)
             .map(item => {
                 const isActive = currentPage === item.href;
                 return `<a href="${item.href}" class="nav-item${isActive ? ' active' : ''}" title="${item.label}">
@@ -116,7 +140,14 @@
         toggleBtn.innerHTML = '☰';
         toggleBtn.title = "Toggle Sidebar Visibility";
         toggleBtn.addEventListener('click', () => {
-            document.querySelector('.sidebar').classList.toggle('collapsed');
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('collapsed');
+            const logo = sidebar.querySelector('.brand img');
+            if (logo) {
+                logo.src = sidebar.classList.contains('collapsed') 
+                    ? '/static/assets/logo-icon.png' 
+                    : '/static/assets/logo-full.png';
+            }
         });
         headerActions.insertBefore(toggleBtn, headerActions.firstChild);
     }
@@ -242,14 +273,14 @@
             z-index:9000; cursor:default;
         `;
         drop.innerHTML = `
-            <div style="display:flex; align-items:center; gap:12px; margin-bottom:15px; border-bottom:1px solid #e2e8f0; padding-bottom:15px;">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:15px; border-bottom:1px solid var(--border-light); padding-bottom:15px;">
                 <img src="${img ? img.src : ''}" style="width:48px; height:48px; border-radius:50%; box-shadow:0 5px 15px rgba(67,24,255,0.2);">
                 <div>
                     <h4 style="margin:0; font-size:16px; font-weight:800; color:var(--text-main);">${username}</h4>
                     <p style="margin:2px 0 0 0; font-size:12px; font-weight:700; color:var(--primary); text-transform:uppercase;">${userRole.replace('_', ' ')}</p>
                 </div>
             </div>
-            <a href="/team/" style="text-decoration:none; color:var(--text-main); font-size:14px; font-weight:600; padding:10px; border-radius:8px; display:block; transition:0.2s; background:#f4f7fe; text-align:center;">Manage HR Access Settings</a>
+            <a href="/team/" style="text-decoration:none; color:var(--text-main); font-size:14px; font-weight:600; padding:10px; border-radius:8px; display:block; transition:0.2s; background:var(--bg-secondary); text-align:center;">Manage HR Access Settings</a>
         `;
         node.appendChild(drop);
 
@@ -275,7 +306,7 @@
             z-index:9000; text-align:center; cursor:default;
         `;
         notiDrop.innerHTML = `
-            <h4 style="margin:0 0 15px 0; font-size:15px; font-weight:800; color:var(--text-main); text-align:left; border-bottom:1px solid #e2e8f0; padding-bottom:10px;">Alerts</h4>
+            <h4 style="margin:0 0 15px 0; font-size:15px; font-weight:800; color:var(--text-main); text-align:left; border-bottom:1px solid var(--border-light); padding-bottom:10px;">Alerts</h4>
             <div style="font-size:40px; margin-bottom:10px;">🎉</div>
             <p style="margin:0; font-size:14px; font-weight:600; color:var(--text-main);">You're all caught up!</p>
             <p style="margin:5px 0 0 0; font-size:12px; font-weight:500; color:var(--text-muted);">We'll notify you if any POS anomalies or inventory limits trigger.</p>
@@ -294,7 +325,7 @@
     });
 
     // Expose role info globally for pages that need it
-    window.erpUser = { role: userRole, payload };
+    window.erpUser = { role: userRole, payload, isTechnician: isTechnicianUser };
 
     // -------------------------------------------------------
     // Dark / Light Theme Toggle (persisted via localStorage)
@@ -328,5 +359,12 @@
             updateToggleIcon(next);
         }
     });
+    } // End of initSharedNav
 
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSharedNav);
+    } else {
+        initSharedNav();
+    }
 })();
+

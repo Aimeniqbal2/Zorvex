@@ -2,7 +2,7 @@ function formatCurrency(amount) {
     return "₨ " + Number(amount).toLocaleString('en-PK');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function initPOS() {
     const token = localStorage.getItem('access_token');
     if (!token) { window.location.href = '/login/'; return; }
 
@@ -216,12 +216,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateFinancials(sub) {
-        const tax = sub * 0.15; // 15% Standard Tax
-        const total = sub + tax;
+        const discountRaw = parseFloat(document.getElementById('discountInput')?.value || 0);
+        const discountAmt = Math.min(Math.max(discountRaw, 0), sub);
+        const afterDiscount = sub - discountAmt;
+        const tax = 0;  // Set to e.g. afterDiscount * 0.15 if you charge 15% tax
+        const total = parseFloat((afterDiscount + tax).toFixed(2));
+        if (discNode) discNode.innerText = `PKR${discountAmt.toFixed(2)}`;
         subNode.innerText = `PKR${sub.toFixed(2)}`;
         taxNode.innerText = `PKR${tax.toFixed(2)}`;
         totNode.innerText = `PKR${total.toFixed(2)}`;
-        totNode.dataset.net = total;
+        totNode.dataset.net      = total;
+        totNode.dataset.subtotal = sub.toFixed(2);
+        totNode.dataset.discount = discountAmt.toFixed(2);
+        totNode.dataset.tax      = tax.toFixed(2);
     }
 
     // ─── 5. CRM Advanced Searching ───────────────────────────────────────────────
@@ -336,12 +343,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Build a numerically precise payload — all values rounded to 2dp
+        const subtotal    = parseFloat(parseFloat(totNode.dataset.subtotal || '0').toFixed(2));
+        const discountAmt = parseFloat(parseFloat(totNode.dataset.discount  || '0').toFixed(2));
+        const taxAmt      = parseFloat(parseFloat(totNode.dataset.tax       || '0').toFixed(2));
+        const totalAmt    = parseFloat(parseFloat(totNode.dataset.net       || net).toFixed(2));
+        const receivedAmt = parseFloat(parseFloat(document.getElementById('receivedAmt').value || totalAmt).toFixed(2));
+
         const payload = {
-            customer: selectedCustomerId,
-            subtotal: parseFloat(subNode.innerText.replace('PKR', '')),
-            tax_amount: parseFloat(taxNode.innerText.replace('PKR', '')),
-            total_amount: net,
-            payment_method: method
+            customer:        selectedCustomerId || null,
+            subtotal:        subtotal,
+            discount_amount: discountAmt,
+            tax_amount:      taxAmt,
+            total_amount:    totalAmt,
+            payment_method:  method,
+            received_amount: receivedAmt,
         };
 
         if (method === 'split') {
@@ -377,7 +393,17 @@ document.addEventListener('DOMContentLoaded', () => {
             clearCustomerBtn.click(); // Reset customer
             renderCart(); 
             initTerminal(); // Resync inventory logic
-        } catch (e) { alert("Transaction Failed: " + e.message); }
+        } catch (e) {
+            let msg = e.message;
+            // Try to parse JSON error detail from DRF
+            try {
+                const parsed = JSON.parse(msg);
+                if (parsed.detail) msg = parsed.detail;
+                else if (parsed.non_field_errors) msg = parsed.non_field_errors.join(' ');
+                else msg = Object.entries(parsed).map(([k,v]) => `${k}: ${Array.isArray(v)?v.join(', '):v}`).join('\n');
+            } catch(_) {}
+            alert("Transaction Failed: " + msg);
+        }
         finally { document.getElementById('finalProcessBtn').innerText = originalText; }
     });
 
@@ -432,4 +458,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     checkSession();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPOS);
+} else {
+    initPOS();
+}
+

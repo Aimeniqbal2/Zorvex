@@ -53,17 +53,28 @@ function filterAndRender() {
         const tr = document.createElement('tr');
         tr.style.animationDelay = `${index * 0.08}s`;
         
-        let badgeStyle = "background: #f4f7fe; color: var(--text-muted);";
-        if(u.role === 'admin') badgeStyle = "background: #e6fcf5; color: var(--success);";
-        if(u.role === 'technician') badgeStyle = "background: #ffe2e0; color: var(--danger);";
-        if(u.role === 'cashier') badgeStyle = "background: #fff8eb; color: var(--warning);";
-        if(u.role === 'manager') badgeStyle = "background: var(--primary-light); color: var(--primary);";
+        const ROLE_LABELS = {
+            'admin':               '🛡️ Administrator',
+            'manager':             '📋 Manager',
+            'cashier':             '💳 Cashier',
+            'hardware_technician': '🔧 Hardware Technician',
+            'software_technician': '💻 Software Technician',
+            'staff':               '👤 Staff',
+        };
+        const roleLabel = ROLE_LABELS[u.role] || u.role.replace('_', ' ').toUpperCase();
+
+        let badgeStyle = 'background: #f4f7fe; color: var(--text-muted);';
+        if (u.role === 'admin' || u.role === 'super_admin')   badgeStyle = 'background: #e6fcf5; color: var(--success);';
+        if (u.role === 'hardware_technician')                  badgeStyle = 'background: #ffe2e0; color: var(--danger);';
+        if (u.role === 'software_technician')                  badgeStyle = 'background: #eee8ff; color: #6c47ff;';
+        if (u.role === 'cashier')                              badgeStyle = 'background: #fff8eb; color: var(--warning);';
+        if (u.role === 'manager')                              badgeStyle = 'background: var(--primary-light); color: var(--primary);';
         
         const joinedDate = new Date(u.date_joined || new Date()).toLocaleDateString([], { month: 'short', day: '2-digit', year: 'numeric' });
 
         tr.innerHTML = `
             <td style="color:var(--text-dark); font-weight:700; letter-spacing: -0.2px;">@${u.username}</td>
-            <td><span class="badge" style="${badgeStyle} font-size:12px;">${u.role.toUpperCase()}</span></td>
+            <td><span class="badge" style="${badgeStyle} font-size:12px;">${roleLabel}</span></td>
             <td style="color:var(--text-muted); font-weight:600;">${joinedDate}</td>
             <td>
                 <button onclick="openEditModal('${u.id}', '${u.username}', '${u.role}')" style="background:transparent; border:none; cursor:pointer; font-size:16px; margin-right:10px;" title="Edit">✏️</button>
@@ -79,13 +90,13 @@ document.getElementById('searchInput').addEventListener('input', filterAndRender
 function calculateKPIs(data) {
     let admins = 0, techs = 0, cashiers = 0;
     data.forEach(u => {
-        if(u.role === 'admin') admins++;
-        if(u.role === 'technician') techs++;
-        if(u.role === 'cashier') cashiers++;
+        if (u.role === 'admin' || u.role === 'super_admin') admins++;
+        if (u.role === 'hardware_technician' || u.role === 'software_technician') techs++;
+        if (u.role === 'cashier') cashiers++;
     });
-    kpiTotal.innerText = data.length;
-    kpiAdmins.innerText = admins;
-    kpiTechs.innerText = techs;
+    kpiTotal.innerText    = data.length;
+    kpiAdmins.innerText   = admins;
+    kpiTechs.innerText    = techs;
     kpiCashiers.innerText = cashiers;
 }
 

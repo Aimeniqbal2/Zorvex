@@ -8,7 +8,7 @@
     <title>Enterprise Inventory Matrix</title>
     <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
     <!-- Utilizing the core UI framework established in Phase 12 -->
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=1.2">
     <style>
         /* Native Modal Sub-Framework */
         .modal-overlay {
@@ -53,10 +53,16 @@
 
         .modal-header {
             position: sticky;
-            top: 0;
+            top: -35px;
+            margin-top: -35px;
+            padding-top: 35px;
             background: var(--modal-bg);
             z-index: 10;
             padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
         .modal-header h3 {
@@ -213,7 +219,10 @@
             <div class="panel-card">
                 <div class="panel-header">
                     <h3>Synchronized Database Registry</h3>
-                    <button class="export-btn" id="openModalBtn">+ Inject New Hardware</button>
+                    <div style="display:flex; gap:10px;">
+                        <button class="export-btn" id="openCategoryModalBtn" style="background:var(--success, #05cd99);">+ Add Category</button>
+                        <button class="export-btn" id="openModalBtn">+ Inject New Hardware</button>
+                    </div>
                 </div>
                 <div style="overflow-x: auto;">
                     <table>
@@ -328,9 +337,31 @@
         </div>
     </div>
 
+    <!-- Category Injection Modal Interface -->
+    <div class="modal-overlay" id="categoryModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Create New Category</h3>
+                <button class="close-btn" id="closeCategoryModalBtn">×</button>
+            </div>
+            <form id="categoryForm">
+                <div class="form-group">
+                    <label>Category Name</label>
+                    <input type="text" id="categoryName" class="form-input" required placeholder="e.g. Mobile Phones, Accessories" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="categoryDescription" class="form-input" rows="3" placeholder="Optional category description..."></textarea>
+                </div>
+                <p id="categoryModalError" style="color:var(--danger); font-size:12px; margin-bottom:15px; font-weight:600; display:none;"></p>
+                <button type="submit" class="primary-btn" style="background:var(--success, #05cd99);">Create Category</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Inventory Async Engine -->
-    <script src="{% static 'inventory.js' %}"></script>
-    <script src="{% static 'shared-nav.js' %}"></script>
+    <script src="{% static 'inventory.js' %}?v=1.2"></script>
+    <script src="{% static 'shared-nav.js' %}?v=1.2"></script>
 </body>
 
 </html>

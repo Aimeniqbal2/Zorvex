@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initLogin() {
     const loginForm = document.getElementById('loginForm');
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
@@ -112,4 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
             { transform: 'translateX(0)' }
         ], { duration: 500, easing: 'ease-in-out' });
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLogin);
+} else {
+    initLogin();
+}
+

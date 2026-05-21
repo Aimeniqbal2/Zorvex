@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POS</title>
     <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=1.2">
     <style>
         .pos-layout {
             display: grid;
@@ -533,7 +533,7 @@
     <div class="modal-overlay" id="receiptModal">
         <div class="modal-box" style="width:400px; padding:0; overflow:hidden;">
             <div id="receiptContent"
-                style="background:var(--modal-bg); padding:30px; font-family:'Courier New', monospace; font-size:13px; color:var(--text-main);">
+                style="background:#fff; padding:30px; font-family:'Courier New', monospace; font-size:13px; color:#111;">
             </div>
             <div style="padding:20px; background:var(--bg-secondary); border-top:1px dashed var(--border-light); display:flex; gap:10px;">
                 <button class="primary-btn" style="margin-top:0;" onclick="window.print()">Print Document</button>
@@ -543,8 +543,8 @@
         </div>
     </div>
 
-    <script src="{% static 'pos.js' %}"></script>
-    <script src="{% static 'shared-nav.js' %}"></script>
+    <script src="{% static 'pos.js' %}?v=1.2"></script>
+    <script src="{% static 'shared-nav.js' %}?v=1.2"></script>
 </body>
 
 </html>

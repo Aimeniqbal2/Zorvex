@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initSalesHistory() {
     // Session Guard
     const token = localStorage.getItem('access_token');
     if(!token) { window.location.href = '/login/'; return; }
@@ -156,4 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     loadTransactions();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSalesHistory);
+} else {
+    initSalesHistory();
+}
+

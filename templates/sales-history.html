@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transactions System</title>
     <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=1.2">
     <style>
         .filters-row {
             display: flex; gap: 15px; margin-bottom: 25px; align-items: center; justify-content: space-between;
@@ -113,24 +113,24 @@
             body * { visibility: hidden; }
             #receiptModal { background: none !important; backdrop-filter: none !important; position: absolute; left: 0; top: 0; width: 80mm; }
             #receiptModal .modal-box { box-shadow: none; padding: 0; border-radius: 0; width: 100%; transform: none; }
-            #receiptContent, #receiptContent * { visibility: visible; color: #000; background: var(--modal-bg); }
+            #receiptContent, #receiptContent * { visibility: visible; color: #000; background: #fff; }
             #receiptContent { position: absolute; left: 0; top: 0; width: 80mm; padding: 5mm; margin: 0; border: none; }
             #receiptModal .modal-box > div:last-child { display: none !important; }
         }
     </style>
     <div class="modal-overlay" id="receiptModal">
         <div class="modal-box" style="width:400px; padding:0; overflow:hidden;">
-            <div id="receiptContent" style="background:var(--modal-bg); padding:30px; font-family:'Courier New', monospace; font-size:13px; color:#111;">
+            <div id="receiptContent" style="background:#fff; padding:30px; font-family:'Courier New', monospace; font-size:13px; color:#111;">
                 <!-- Dynamo Printing Output -->
             </div>
-            <div style="padding:20px; background:#f8fafc; border-top:1px dashed #e2e8f0; display:flex; gap:10px;">
+            <div style="padding:20px; background:var(--bg-secondary); border-top:1px dashed var(--border-light); display:flex; gap:10px;">
                 <button class="primary-btn" style="margin-top:0;" onclick="window.print()">Print Document</button>
                 <button class="primary-btn" style="margin-top:0; background:var(--text-muted);" id="closeReceiptBtn">Dismiss</button>
             </div>
         </div>
     </div>
 
-    <script src="{% static 'sales-history.js' %}"></script>
-    <script src="{% static 'shared-nav.js' %}"></script>
+    <script src="{% static 'sales-history.js' %}?v=1.2"></script>
+    <script src="{% static 'shared-nav.js' %}?v=1.2"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initServices() {
     const token = localStorage.getItem('access_token');
     if(!token) { window.location.href = '/login/'; return; }
 
@@ -99,4 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Boot execution
     hydrateWorkbench();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initServices);
+} else {
+    initServices();
+}
+

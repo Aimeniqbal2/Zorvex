@@ -196,6 +196,7 @@ window.uploadCapturedMedia = async function() {
     fd.append('service_order', selectedOrderId);
     fd.append('file', _capturedBlob, `capture_${Date.now()}.${ext}`);
     fd.append('caption', caption);
+    fd.append('media_type', _capturedBlob.type.includes('image') ? 'image' : 'video');
     const btn   = document.getElementById('btnUploadCapture');
     const errEl = document.getElementById('cameraError');
     if (btn) { btn.textContent = 'Uploading...'; btn.disabled = true; }
@@ -384,7 +385,7 @@ function renderAssignmentBanner(order) {
             <div style="background:#e6fcf5;border:1px solid #05cd99;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
                 <div>
                     <p style="font-size:11px;font-weight:700;color:#05cd99;text-transform:uppercase;">Assigned Technician</p>
-                    <p style="font-size:15px;font-weight:800;color:var(--text-main);">👤 ${order.assigned_technician_name || order.assigned_technician_username}</p>
+                    <p style="font-size:15px;font-weight:800;color:#0f172a;">👤 ${order.assigned_technician_name || order.assigned_technician_username}</p>
                 </div>
                 ${canAssign ? `<button class="action-btn" onclick="openAssignModal('${order.id}', '${order.department}')" style="font-size:12px;padding:8px 12px;">Re-assign</button>` : ''}
             </div>`;
@@ -393,7 +394,7 @@ function renderAssignmentBanner(order) {
             <div style="background:#fff3cd;border:1px solid #ffb547;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
                 <div>
                     <p style="font-size:11px;font-weight:700;color:#856404;text-transform:uppercase;">⚠ No Technician Assigned</p>
-                    <p style="font-size:13px;color:var(--text-muted);">Assign a technician before the repair can begin.</p>
+                    <p style="font-size:13px;color:#5c3e03;">Assign a technician before the repair can begin.</p>
                 </div>
                 ${canAssign ? `<button class="action-btn" onclick="openAssignModal('${order.id}', '${order.department}')" style="font-size:12px;padding:8px 12px;background:var(--warning);color:#fff;border-color:var(--warning);">Assign Now</button>` : ''}
             </div>`;
@@ -677,18 +678,78 @@ document.getElementById('partForm').addEventListener('submit', async (e) => {
 });
 
 // ─── Media Upload (multipart/form-data — no JSON headers) ───────────────────────
+function escapeHTML(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
 function renderMedia(mediaData) {
     const container = document.getElementById('mediaList');
     if (!mediaData.length) { container.innerHTML = '<p style="color:var(--text-muted);font-size:13px;">No media uploaded yet.</p>'; return; }
     container.innerHTML = mediaData.map(m => {
         const isVideo = m.media_type === 'video';
         const src = m.file;
-        const elm = isVideo
-            ? `<video src="${src}" controls style="border-radius:10px;max-width:140px;border:1px solid var(--border-light);"></video>`
-            : `<img src="${src}" style="border-radius:10px;max-width:140px;max-height:100px;object-fit:cover;border:1px solid var(--border-light);">`;
-        return `<div style="display:flex;flex-direction:column;gap:5px;">${elm}<span style="font-size:10px;color:var(--text-muted);max-width:140px;">${m.caption || ''}</span></div>`;
+        
+        const deleteBtnHtml = `<button onclick="event.stopPropagation(); window.deleteMedia('${m.id}')" 
+            style="position:absolute; top:5px; right:5px; background:rgba(238, 93, 80, 0.95); border:none; 
+            border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center; 
+            color:#fff; cursor:pointer; font-weight:bold; font-size:11px; box-shadow:0 2px 6px rgba(0,0,0,0.2); 
+            z-index:2; transition: all 0.2s;" title="Delete Media" onmouseover="this.style.background='#d83a2e'; this.style.transform='scale(1.1)';" onmouseout="this.style.background='rgba(238, 93, 80, 0.95)'; this.style.transform='scale(1)';">🗑️</button>`;
+
+        const mediaElm = isVideo
+            ? `<video src="${src}" style="border-radius:10px;width:140px;height:100px;object-fit:cover;border:1px solid var(--border-light);background:#000;pointer-events:none;"></video>`
+            : `<img src="${src}" style="border-radius:10px;width:140px;height:100px;object-fit:cover;border:1px solid var(--border-light);">`;
+
+        return `
+        <div onclick="window.previewMedia('${src}', '${m.media_type}', '${escapeHTML(m.caption || '')}', '${m.id}')" 
+            style="position:relative; display:flex; flex-direction:column; gap:5px; cursor:pointer; transition:transform 0.2s;" 
+            onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            ${deleteBtnHtml}
+            ${mediaElm}
+            <span style="font-size:10px; color:var(--text-muted); max-width:140px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">${escapeHTML(m.caption || '')}</span>
+        </div>`;
     }).join('');
 }
+
+window.previewMedia = function(src, type, caption, id) {
+    const previewContainer = document.getElementById('previewMediaContainer');
+    if (!previewContainer) return;
+    
+    const isVideo = type === 'video';
+    previewContainer.innerHTML = isVideo
+        ? `<video src="${src}" controls autoplay style="width:100%; max-height:420px; border-radius:8px; background:#000;"></video>`
+        : `<img src="${src}" style="width:100%; max-height:420px; object-fit:contain; border-radius:8px; border:1px solid var(--border-light);">`;
+        
+    document.getElementById('previewCaption').textContent = caption || 'Media Evidence';
+    
+    const delBtn = document.getElementById('btnDeletePreviewMedia');
+    if (delBtn) {
+        delBtn.onclick = () => {
+            closeModal('previewModal');
+            window.deleteMedia(id);
+        };
+    }
+    
+    openModal('previewModal');
+};
+
+window.deleteMedia = async function(id) {
+    if (!confirm('Are you sure you want to permanently delete this media evidence?')) return;
+    try {
+        const res = await fetch(`${API}/services/servicemedias/${id}/`, {
+            method: 'DELETE',
+            headers: { 'Authorization': `Bearer ${getToken()}` }
+        });
+        if (!res.ok) {
+            const d = await res.json();
+            throw new Error(d.detail || 'Delete failed');
+        }
+        showToast('Media deleted successfully!', 'success');
+        if (selectedOrderId) selectOrder(selectedOrderId);
+    } catch(err) {
+        showToast(err.message, 'error');
+    }
+};
 
 document.getElementById('mediaFile').addEventListener('change', function() {
     const file = this.files[0];
@@ -878,7 +939,7 @@ function closeModal(id) {
     el.querySelectorAll('form').forEach(f => f.reset());
 }
 
-['logModal','partModal','mediaModal','paymentModal'].forEach(id => {
+['logModal','partModal','mediaModal','paymentModal','previewModal'].forEach(id => {
     const closeId = 'close' + id.charAt(0).toUpperCase() + id.slice(1);
     document.getElementById(closeId)?.addEventListener('click', () => closeModal(id));
 });

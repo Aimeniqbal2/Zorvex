@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initInventory() {
     const token = localStorage.getItem('access_token');
     if (!token) { window.location.href = '/login/'; return; }
 
@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const openModalBtn  = document.getElementById('openModalBtn');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const productForm   = document.getElementById('productForm');
+
+    const categoryModal = document.getElementById('categoryModal');
+    const openCategoryModalBtn = document.getElementById('openCategoryModalBtn');
+    const closeCategoryModalBtn = document.getElementById('closeCategoryModalBtn');
+    const categoryForm = document.getElementById('categoryForm');
 
     let allProducts = [];
 
@@ -214,12 +219,56 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) { modal.classList.remove('active'); productForm.reset(); }
     });
 
+    if (openCategoryModalBtn) openCategoryModalBtn.addEventListener('click', () => categoryModal.classList.add('active'));
+    if (closeCategoryModalBtn) closeCategoryModalBtn.addEventListener('click', () => { categoryModal.classList.remove('active'); categoryForm.reset(); });
+    categoryModal.addEventListener('click', (e) => {
+        if (e.target === categoryModal) { categoryModal.classList.remove('active'); categoryForm.reset(); }
+    });
+
+    categoryForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const errNode = document.getElementById('categoryModalError');
+        errNode.style.display = 'none';
+
+        const btnText = categoryForm.querySelector('.primary-btn');
+        const origText = btnText.innerHTML;
+        btnText.innerHTML = 'Creating...';
+        btnText.disabled = true;
+
+        const payload = {
+            name: document.getElementById('categoryName').value.trim(),
+            description: document.getElementById('categoryDescription').value.trim()
+        };
+
+        try {
+            const pConf = { ...postConfig, body: JSON.stringify(payload) };
+            const r = await fetch('/api/inventory/categorys/', pConf);
+
+            if (!r.ok) {
+                const data = await r.json();
+                console.warn(data);
+                throw new Error("Invalid format matrix rejected by Django Engine.");
+            }
+
+            categoryModal.classList.remove('active');
+            categoryForm.reset();
+            await loadCategories(); // Refresh product modal category dropdown list
+
+        } catch (error) {
+            errNode.textContent = "Data Injection Overridden. Please assert parameters.";
+            errNode.style.display = 'block';
+        } finally {
+            btnText.innerHTML = origText;
+            btnText.disabled = false;
+        }
+    });
+
     productForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const errNode = document.getElementById('modalError');
         errNode.style.display = 'none';
 
-        const btnText = document.querySelector('.primary-btn');
+        const btnText = productForm.querySelector('.primary-btn');
         const origText = btnText.innerHTML;
         btnText.innerHTML = 'Injecting Logic...';
 
@@ -264,4 +313,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Boot Sequences
     loadCategories();
     syncDatabase();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initInventory);
+} else {
+    initInventory();
+}
+

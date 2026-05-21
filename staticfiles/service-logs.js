@@ -22,16 +22,219 @@ if (!getToken()) { window.location.href = '/login/'; }
 const _jwt = parseJWT(getToken());
 const currentUserRole = _jwt.role || '';
 const currentUserId   = _jwt.user_id || '';
+
+// Role helpers
+const TECHNICIAN_ROLES = ['hardware_technician', 'software_technician'];
+const isTechnician = TECHNICIAN_ROLES.includes(currentUserRole);
 const isAdmin = ['admin', 'manager', 'super_admin'].includes(currentUserRole);
+const isCashier = currentUserRole === 'cashier';
+// Can assign technicians: admin, manager, cashier
+const canAssign = isAdmin || isCashier;
+// Can process payment / deliver: admin, manager, cashier
+const canPay = isAdmin || isCashier;
+// Can create new service orders: admin, manager, cashier (NOT technicians)
+const canCreateOrders = !isTechnician;
+
+// ════════════════════════════════════════════════════════════════════════════
+// MEDIA / CAMERA FUNCTIONS — defined HERE, at top of file, BEFORE any other
+// code that could throw. This guarantees onclick="switchMediaTab()" always
+// finds the function even if a later event-listener registration fails.
+// ════════════════════════════════════════════════════════════════════════════
+let _cameraStream   = null;
+let _mediaRecorder  = null;
+let _recordedChunks = [];
+let _capturedBlob   = null;
+let _recordTimerInt = null;
+
+function _stopCamera() {
+    if (_cameraStream) { _cameraStream.getTracks().forEach(t => t.stop()); _cameraStream = null; }
+    const preview = document.getElementById('cameraPreview');
+    if (preview) preview.srcObject = null;
+    [['btnStartCamera','inline-flex'],['btnCapturePhoto','none'],
+     ['btnStartRecord','none'],['btnStopRecord','none'],
+     ['recordTimer','none'],['btnUploadCapture','none']].forEach(([id, show]) => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = show;
+    });
+    clearInterval(_recordTimerInt);
+}
+
+// Exported to window so inline onclick="switchMediaTab('camera')" works
+window.switchMediaTab = function(tab) {
+    const up  = document.getElementById('mediaUploadSection');
+    const cam = document.getElementById('mediaCameraSection');
+    const tUp = document.getElementById('tabUpload');
+    const tCam= document.getElementById('tabCamera');
+    if (!up || !cam || !tUp || !tCam) return;   // null-guard
+
+    const isUp = (tab === 'upload');
+    up.style.display   = isUp ? 'block' : 'none';
+    cam.style.display  = isUp ? 'none'  : 'block';
+    tUp.style.background  = isUp ? 'var(--primary)'  : 'transparent';
+    tUp.style.color       = isUp ? '#fff'             : 'var(--text-muted)';
+    tUp.style.borderColor = isUp ? 'var(--primary)'  : 'var(--border-light)';
+    tCam.style.background = isUp ? 'transparent'     : 'var(--primary)';
+    tCam.style.color      = isUp ? 'var(--text-muted)': '#fff';
+    tCam.style.borderColor= isUp ? 'var(--border-light)': 'var(--primary)';
+
+    const errEl = document.getElementById('cameraError');
+    if (errEl) { errEl.style.display = 'none'; errEl.innerHTML = ''; }
+    if (isUp) _stopCamera();
+};
+
+window.startCamera = async function() {
+    const errEl = document.getElementById('cameraError');
+    if (errEl) { errEl.style.display = 'none'; errEl.innerHTML = ''; }
+
+    // Secure context check
+    if (!window.isSecureContext) {
+        const port   = window.location.port || '8000';
+        const fixUrl = window.location.href.replace(window.location.host, 'localhost:' + port);
+        if (errEl) errEl.innerHTML =
+            '<strong>&#x26A0;&#xFE0F; Camera needs HTTPS or localhost.</strong><br>' +
+            'You are on <code>' + window.location.host + '</code>.<br><br>' +
+            '<b>&#x2705; Fix:</b> Restart as:<br>' +
+            '<code style="background:#f3f4f6;padding:2px 6px;border-radius:4px;">' +
+            'python manage.py runserver localhost:8000</code><br>' +
+            'Then visit: <a href="' + fixUrl + '" style="color:var(--primary)">' + fixUrl + '</a><br><br>' +
+            '<em>Or use the Upload File tab above.</em>';
+        if (errEl) errEl.style.display = 'block';
+        return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        if (errEl) { errEl.textContent = 'Camera API not available. Use Chrome 74+, Firefox 68+, or Edge 79+.'; errEl.style.display = 'block'; }
+        return;
+    }
+    try {
+        try {
+            _cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        } catch (ae) {
+            if (ae.name === 'NotFoundError' || ae.name === 'OverconstrainedError') {
+                _cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            } else throw ae;
+        }
+        const preview = document.getElementById('cameraPreview');
+        if (preview) preview.srcObject = _cameraStream;
+        const s = document.getElementById('btnStartCamera');
+        const c = document.getElementById('btnCapturePhoto');
+        const r = document.getElementById('btnStartRecord');
+        if (s) s.style.display = 'none';
+        if (c) c.style.display = 'inline-flex';
+        if (r) r.style.display = 'inline-flex';
+    } catch (e) {
+        const m = {
+            NotAllowedError:'&#x1F6AB; Permission denied — click the camera icon in the browser address bar.',
+            PermissionDeniedError:'&#x1F6AB; Permission denied — click the camera icon in the browser address bar.',
+            NotFoundError:'&#x1F4F7; No camera found. Connect a webcam and retry.',
+            DevicesNotFoundError:'&#x1F4F7; No camera found. Connect a webcam and retry.',
+            NotReadableError:'&#x26A0;&#xFE0F; Camera in use by another app — close it and retry.',
+            TrackStartError:'&#x26A0;&#xFE0F; Camera in use by another app — close it and retry.',
+        };
+        if (errEl) { errEl.innerHTML = m[e.name] || `Camera error (${e.name}): ${e.message}`; errEl.style.display = 'block'; }
+    }
+};
+
+window.capturePhoto = function() {
+    const video  = document.getElementById('cameraPreview');
+    const canvas = document.getElementById('cameraCanvas');
+    if (!video || !canvas) return;
+    canvas.width  = video.videoWidth  || 640;
+    canvas.height = video.videoHeight || 480;
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    canvas.toBlob(blob => {
+        if (!blob) return;
+        _capturedBlob = blob;
+        const btn = document.getElementById('btnUploadCapture');
+        if (btn) btn.style.display = 'inline-flex';
+    }, 'image/jpeg', 0.92);
+};
+
+window.startRecording = function() {
+    if (!_cameraStream) return;
+    _recordedChunks = [];
+    const opts = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
+        ? { mimeType: 'video/webm;codecs=vp9' }
+        : MediaRecorder.isTypeSupported('video/webm') ? { mimeType: 'video/webm' } : {};
+    _mediaRecorder = new MediaRecorder(_cameraStream, opts);
+    _mediaRecorder.ondataavailable = e => { if (e.data.size > 0) _recordedChunks.push(e.data); };
+    _mediaRecorder.onstop = () => {
+        _capturedBlob = new Blob(_recordedChunks, { type: _mediaRecorder.mimeType || 'video/webm' });
+        const btn = document.getElementById('btnUploadCapture');
+        if (btn) btn.style.display = 'inline-flex';
+    };
+    _mediaRecorder.start();
+    let elapsed = 0;
+    const timerEl = document.getElementById('recordTimer');
+    const startBtn = document.getElementById('btnStartRecord');
+    const stopBtn  = document.getElementById('btnStopRecord');
+    if (timerEl)  timerEl.style.display  = 'block';
+    if (startBtn) startBtn.style.display = 'none';
+    if (stopBtn)  stopBtn.style.display  = 'inline-flex';
+    _recordTimerInt = setInterval(() => {
+        elapsed++;
+        if (timerEl) timerEl.textContent = `Recording: ${elapsed}s / 30s`;
+        if (elapsed >= 30) window.stopRecording();
+    }, 1000);
+};
+
+window.stopRecording = function() {
+    if (_mediaRecorder && _mediaRecorder.state !== 'inactive') _mediaRecorder.stop();
+    clearInterval(_recordTimerInt);
+    const timerEl  = document.getElementById('recordTimer');
+    const startBtn = document.getElementById('btnStartRecord');
+    const stopBtn  = document.getElementById('btnStopRecord');
+    if (timerEl)  timerEl.style.display  = 'none';
+    if (startBtn) startBtn.style.display = 'inline-flex';
+    if (stopBtn)  stopBtn.style.display  = 'none';
+};
+
+window.uploadCapturedMedia = async function() {
+    if (!_capturedBlob) { alert('Nothing captured yet — take a photo or record a video first.'); return; }
+    const caption = document.getElementById('cameraCaptionInput')?.value?.trim() || '';
+    const ext     = _capturedBlob.type.includes('image') ? 'jpg' : 'webm';
+    const fd      = new FormData();
+    fd.append('service_order', selectedOrderId);
+    fd.append('file', _capturedBlob, `capture_${Date.now()}.${ext}`);
+    fd.append('caption', caption);
+    fd.append('media_type', _capturedBlob.type.includes('image') ? 'image' : 'video');
+    const btn   = document.getElementById('btnUploadCapture');
+    const errEl = document.getElementById('cameraError');
+    if (btn) { btn.textContent = 'Uploading...'; btn.disabled = true; }
+    try {
+        const res = await fetch(`${API}/services/servicemedias/`, {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${getToken()}` },
+            body: fd
+        });
+        if (!res.ok) { const d = await res.json(); throw new Error(d.detail || d.file?.[0] || 'Upload failed'); }
+        _capturedBlob = null;
+        _stopCamera();
+        window.switchMediaTab('upload');
+        closeModal('mediaModal');
+        selectOrder(selectedOrderId);
+        showToast('Media captured & uploaded!', 'success');
+    } catch (err) {
+        if (errEl) { errEl.textContent = err.message; errEl.style.display = 'block'; }
+    } finally {
+        if (btn) { btn.innerHTML = '&#x2B06;&#xFE0F; Upload to Server'; btn.disabled = false; }
+    }
+};
+// ════════════════════════════════════════════════════════════════════════════
 
 // ─── State ─────────────────────────────────────────────────────────────────────
 let allOrders = [];
 let selectedOrderId = null;
 let currentTab = 'all';
 
-// ─── Phase 1: Create Order ──────────────────────────────────────────────────────
-document.getElementById('openNewOrderBtn').addEventListener('click', () => openModal('newOrderModal'));
-document.getElementById('closeNewOrderModal').addEventListener('click', () => closeModal('newOrderModal'));
+// ─── Hide New Repair Ticket button for technicians ──────────────────────────────
+const newOrderBtn = document.getElementById('openNewOrderBtn');
+if (newOrderBtn) {
+    if (isTechnician) {
+        newOrderBtn.style.display = 'none';
+    } else {
+        newOrderBtn.addEventListener('click', () => openModal('newOrderModal'));
+    }
+}
 
 document.getElementById('newOrderForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -182,18 +385,18 @@ function renderAssignmentBanner(order) {
             <div style="background:#e6fcf5;border:1px solid #05cd99;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
                 <div>
                     <p style="font-size:11px;font-weight:700;color:#05cd99;text-transform:uppercase;">Assigned Technician</p>
-                    <p style="font-size:15px;font-weight:800;color:var(--text-main);">👤 ${order.assigned_technician_name || order.assigned_technician_username}</p>
+                    <p style="font-size:15px;font-weight:800;color:#0f172a;">👤 ${order.assigned_technician_name || order.assigned_technician_username}</p>
                 </div>
-                ${isAdmin ? `<button class="action-btn" onclick="openAssignModal('${order.id}')" style="font-size:12px;padding:8px 12px;">Re-assign</button>` : ''}
+                ${canAssign ? `<button class="action-btn" onclick="openAssignModal('${order.id}', '${order.department}')" style="font-size:12px;padding:8px 12px;">Re-assign</button>` : ''}
             </div>`;
     } else {
         container.innerHTML = `
             <div style="background:#fff3cd;border:1px solid #ffb547;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
                 <div>
                     <p style="font-size:11px;font-weight:700;color:#856404;text-transform:uppercase;">⚠ No Technician Assigned</p>
-                    <p style="font-size:13px;color:var(--text-muted);">Assign a technician before the repair can begin.</p>
+                    <p style="font-size:13px;color:#5c3e03;">Assign a technician before the repair can begin.</p>
                 </div>
-                ${isAdmin ? `<button class="action-btn" onclick="openAssignModal('${order.id}')" style="font-size:12px;padding:8px 12px;background:var(--warning);color:#fff;border-color:var(--warning);">Assign Now</button>` : ''}
+                ${canAssign ? `<button class="action-btn" onclick="openAssignModal('${order.id}', '${order.department}')" style="font-size:12px;padding:8px 12px;background:var(--warning);color:#fff;border-color:var(--warning);">Assign Now</button>` : ''}
             </div>`;
     }
 }
@@ -242,8 +445,12 @@ function renderStatusButtons(order) {
     if (order.status === 'in_progress') {
         html = `<button class="action-btn" onclick="updateOrderStatus('${order.id}', 'ready')">✅ Mark Ready</button>`;
         html += `<button class="action-btn" style="color:var(--danger);border-color:var(--danger);" onclick="updateOrderStatus('${order.id}', 'return')">↩ Return Unfixed</button>`;
-    } else if (order.status === 'ready' || order.status === 'return') {
+    } else if ((order.status === 'ready' || order.status === 'return') && canPay) {
         html = `<button class="action-btn" onclick="openPaymentModal('${order.id}')" style="background:var(--success);color:#fff;border-color:var(--success);">💳 Process Delivery</button>`;
+    }
+    // Admin-only soft-delete
+    if (isAdmin && order.status !== 'completed') {
+        html += `<button class="action-btn" style="color:var(--danger);border-color:var(--danger);margin-top:6px;" onclick="deleteServiceOrder('${order.id}')">🗑️ Delete Order</button>`;
     }
     container.innerHTML = html;
 }
@@ -266,21 +473,42 @@ async function startTechnicalPhase(orderId) {
     }
 }
 
-// ─── Assign Technician Modal (Admin only) ───────────────────────────────────────
-let technicians = [];
-async function loadTechnicians() {
-    if (technicians.length) return;
+// ─── Delete Service Order (Admin Only, Soft Delete) ──────────────────────────
+async function deleteServiceOrder(orderId) {
+    if (!confirm('Soft-delete this service order?\n\nAll financial records, receipts, and parts logs will be preserved.')) return;
     try {
-        const res = await fetch(`${API}/services/technicians/`, { headers: authHeaders() });
+        const res = await fetch(`${API}/services/serviceorders/${orderId}/`, {
+            method: 'DELETE', headers: authHeaders()
+        });
+        if (!res.ok && res.status !== 200) throw new Error('Delete failed');
+        selectedOrderId = null;
+        document.getElementById('detailContent').style.display    = 'none';
+        document.getElementById('detailPlaceholder').style.display = 'block';
+        await loadOrders();
+        showToast('Service order deleted.', 'success');
+    } catch(e) { showToast('Could not delete: ' + e.message, 'error'); }
+}
+
+let technicians = [];
+async function loadTechnicians(department) {
+    try {
+        // Filter by department so only the correct type of technician is shown
+        let url = `${API}/services/technicians/`;
+        if (department && department !== 'all') url += `?department=${department}`;
+        const res = await fetch(url, { headers: authHeaders() });
         technicians = await res.json();
     } catch(e) { console.error('Technician load failed:', e); }
 }
 
-async function openAssignModal(orderId) {
-    await loadTechnicians();
+async function openAssignModal(orderId, department) {
+    await loadTechnicians(department);
     const sel = document.getElementById('assignTechSelect');
-    sel.innerHTML = '<option value="">Select technician...</option>' +
-        technicians.map(t => `<option value="${t.id}">${t.full_name} (@${t.username})</option>`).join('');
+    if (!technicians.length) {
+        sel.innerHTML = `<option value="">No ${department || ''} technicians found</option>`;
+    } else {
+        sel.innerHTML = '<option value="">Select technician...</option>' +
+            technicians.map(t => `<option value="${t.id}">${t.full_name} (@${t.username}) — ${t.role_label}</option>`).join('');
+    }
     document.getElementById('assignOrderId').value = orderId;
     openModal('assignModal');
 }
@@ -405,9 +633,10 @@ async function loadVendors() {
     try {
         const res = await fetch(`${API}/inventory/vendors/`, { headers: authHeaders() });
         const data = await res.json();
+        const vendors = data.results || data;
         const sel = document.getElementById('partVendor');
-        sel.innerHTML = '<option value="">Select vendor...</option>' + (data.results || data).map(v =>
-            `<option value="${v.id}">${v.name}${v.balance > 0 ? ` (Payable: PKR ${parseFloat(v.balance).toLocaleString()})` : ''}</option>`
+        sel.innerHTML = '<option value="">Select vendor...</option>' + vendors.map(v =>
+            `<option value="${v.id}">${v.name}${(v.balance_due || 0) > 0 ? ` (Payable: PKR ${parseFloat(v.balance_due).toLocaleString()})` : ''}</option>`
         ).join('');
     } catch(e) { console.error('Vendor load failed:', e); }
 }
@@ -449,18 +678,78 @@ document.getElementById('partForm').addEventListener('submit', async (e) => {
 });
 
 // ─── Media Upload (multipart/form-data — no JSON headers) ───────────────────────
+function escapeHTML(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
 function renderMedia(mediaData) {
     const container = document.getElementById('mediaList');
     if (!mediaData.length) { container.innerHTML = '<p style="color:var(--text-muted);font-size:13px;">No media uploaded yet.</p>'; return; }
     container.innerHTML = mediaData.map(m => {
         const isVideo = m.media_type === 'video';
         const src = m.file;
-        const elm = isVideo
-            ? `<video src="${src}" controls style="border-radius:10px;max-width:140px;border:1px solid var(--border-light);"></video>`
-            : `<img src="${src}" style="border-radius:10px;max-width:140px;max-height:100px;object-fit:cover;border:1px solid var(--border-light);">`;
-        return `<div style="display:flex;flex-direction:column;gap:5px;">${elm}<span style="font-size:10px;color:var(--text-muted);max-width:140px;">${m.caption || ''}</span></div>`;
+        
+        const deleteBtnHtml = `<button onclick="event.stopPropagation(); window.deleteMedia('${m.id}')" 
+            style="position:absolute; top:5px; right:5px; background:rgba(238, 93, 80, 0.95); border:none; 
+            border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center; 
+            color:#fff; cursor:pointer; font-weight:bold; font-size:11px; box-shadow:0 2px 6px rgba(0,0,0,0.2); 
+            z-index:2; transition: all 0.2s;" title="Delete Media" onmouseover="this.style.background='#d83a2e'; this.style.transform='scale(1.1)';" onmouseout="this.style.background='rgba(238, 93, 80, 0.95)'; this.style.transform='scale(1)';">🗑️</button>`;
+
+        const mediaElm = isVideo
+            ? `<video src="${src}" style="border-radius:10px;width:140px;height:100px;object-fit:cover;border:1px solid var(--border-light);background:#000;pointer-events:none;"></video>`
+            : `<img src="${src}" style="border-radius:10px;width:140px;height:100px;object-fit:cover;border:1px solid var(--border-light);">`;
+
+        return `
+        <div onclick="window.previewMedia('${src}', '${m.media_type}', '${escapeHTML(m.caption || '')}', '${m.id}')" 
+            style="position:relative; display:flex; flex-direction:column; gap:5px; cursor:pointer; transition:transform 0.2s;" 
+            onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            ${deleteBtnHtml}
+            ${mediaElm}
+            <span style="font-size:10px; color:var(--text-muted); max-width:140px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">${escapeHTML(m.caption || '')}</span>
+        </div>`;
     }).join('');
 }
+
+window.previewMedia = function(src, type, caption, id) {
+    const previewContainer = document.getElementById('previewMediaContainer');
+    if (!previewContainer) return;
+    
+    const isVideo = type === 'video';
+    previewContainer.innerHTML = isVideo
+        ? `<video src="${src}" controls autoplay style="width:100%; max-height:420px; border-radius:8px; background:#000;"></video>`
+        : `<img src="${src}" style="width:100%; max-height:420px; object-fit:contain; border-radius:8px; border:1px solid var(--border-light);">`;
+        
+    document.getElementById('previewCaption').textContent = caption || 'Media Evidence';
+    
+    const delBtn = document.getElementById('btnDeletePreviewMedia');
+    if (delBtn) {
+        delBtn.onclick = () => {
+            closeModal('previewModal');
+            window.deleteMedia(id);
+        };
+    }
+    
+    openModal('previewModal');
+};
+
+window.deleteMedia = async function(id) {
+    if (!confirm('Are you sure you want to permanently delete this media evidence?')) return;
+    try {
+        const res = await fetch(`${API}/services/servicemedias/${id}/`, {
+            method: 'DELETE',
+            headers: { 'Authorization': `Bearer ${getToken()}` }
+        });
+        if (!res.ok) {
+            const d = await res.json();
+            throw new Error(d.detail || 'Delete failed');
+        }
+        showToast('Media deleted successfully!', 'success');
+        if (selectedOrderId) selectOrder(selectedOrderId);
+    } catch(err) {
+        showToast(err.message, 'error');
+    }
+};
 
 document.getElementById('mediaFile').addEventListener('change', function() {
     const file = this.files[0];
@@ -535,7 +824,14 @@ document.querySelectorAll('.p-btn').forEach(btn => btn.addEventListener('click',
     btn.classList.add('selected');
     const method = btn.dataset.method;
     document.getElementById('paymentMethod').value = method;
-    document.getElementById('cashLogic').style.display = method === 'cash' ? 'block' : 'none';
+    // Show received-amount section for CASH and CARD; hide for CREDIT
+    document.getElementById('cashLogic').style.display = (method === 'cash' || method === 'card') ? 'block' : 'none';
+    // Show credit info banner
+    const creditInfo = document.getElementById('creditInfoBanner');
+    if (creditInfo) creditInfo.style.display = method === 'credit' ? 'block' : 'none';
+    // Update label
+    const receivedLabel = document.getElementById('receivedAmtLabel');
+    if (receivedLabel) receivedLabel.textContent = method === 'card' ? 'CARD AMOUNT CHARGED' : 'CASH RECEIVED';
 }));
 
 function updateServiceChange() {
@@ -547,16 +843,43 @@ document.getElementById('paymentReceived').addEventListener('input', updateServi
 
 document.getElementById('paymentForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn     = e.target.querySelector('button[type="submit"]');
-    const amount  = document.getElementById('paymentAmount').value;
-    const method  = document.getElementById('paymentMethod').value;
-    const errEl   = document.getElementById('paymentError');
+    const btn    = e.target.querySelector('button[type="submit"]');
+    const amount = parseFloat(document.getElementById('paymentAmount').value || 0);
+    const method = document.getElementById('paymentMethod').value;
+    // !! Must be 'let' — credit flow reassigns received to 0
+    let received = parseFloat(document.getElementById('paymentReceived').value || 0);
+    const errEl  = document.getElementById('paymentError');
     errEl.style.display = 'none';
+
+    // ── STRICT PAYMENT VALIDATION ──
+    if (method === 'cash' || method === 'card') {
+        if (received < amount) {
+            errEl.textContent = `Full payment required. Due: PKR ${amount.toFixed(2)}, Received: PKR ${received.toFixed(2)}`;
+            errEl.style.display = 'block';
+            return;
+        }
+    }
+
+    if (method === 'credit') {
+        // Credit = no upfront cash. Backend logs it to customer ledger via Sale.save()
+        received = 0;
+    }
+
     btn.textContent = 'Processing...'; btn.disabled = true;
     try {
+        const payload = {
+            final_amount:    amount,
+            payment_method:  method,
+            received_amount: received,
+        };
+        // For credit: attach customer phone for ledger creation
+        if (method === 'credit') {
+            const phone = document.getElementById('creditCustomerPhone')?.value?.trim();
+            if (phone) payload.customer_phone = phone;
+        }
         const res = await fetch(`${API}/services/serviceorders/${selectedOrderId}/process_payment/`, {
             method: 'POST', headers: authHeaders(),
-            body: JSON.stringify({ final_amount: amount, payment_method: method })
+            body: JSON.stringify(payload)
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Payment failed');
@@ -616,7 +939,7 @@ function closeModal(id) {
     el.querySelectorAll('form').forEach(f => f.reset());
 }
 
-['logModal','partModal','mediaModal','paymentModal'].forEach(id => {
+['logModal','partModal','mediaModal','paymentModal','previewModal'].forEach(id => {
     const closeId = 'close' + id.charAt(0).toUpperCase() + id.slice(1);
     document.getElementById(closeId)?.addEventListener('click', () => closeModal(id));
 });
@@ -640,7 +963,16 @@ function showToast(msg, type = 'success') {
     toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
 }
 
-// ─── Init ────────────────────────────────────────────────────────────────────────
+
+// Stop camera when media modal closes
+['closeMediaModal'].forEach(id => {
+    document.getElementById(id)?.addEventListener('click', () => {
+        if (typeof _stopCamera === 'function') _stopCamera();
+        closeModal('mediaModal');
+    });
+});
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
 loadOrders();
 loadProducts();
 loadVendors();

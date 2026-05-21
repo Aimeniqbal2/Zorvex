@@ -1,7 +1,8 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
 from rest_framework_simplejwt.views import TokenRefreshView
 from accounts.views import CustomTokenObtainPairView
 from erp_core.search_views import GlobalSearchView
@@ -42,4 +43,9 @@ urlpatterns = [
 
     # Global cross-module search
     path('api/search/', GlobalSearchView.as_view(), name='global_search'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+# Serve media files in all environments (including DEBUG=False)
+urlpatterns += [
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+]

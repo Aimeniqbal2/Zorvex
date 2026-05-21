@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initDashboard() {
     // Session Guard
     const token = localStorage.getItem('access_token');
     if(!token) { window.location.href = '/login/'; return; }
@@ -288,4 +288,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     igniteEngine();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDashboard);
+} else {
+    initDashboard();
+}
+

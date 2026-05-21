@@ -2,7 +2,7 @@ function formatCurrency(amount) {
     return "₨ " + Number(amount).toLocaleString('en-PK');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function initPOS() {
     const token = localStorage.getItem('access_token');
     if (!token) { window.location.href = '/login/'; return; }
 
@@ -458,4 +458,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     checkSession();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPOS);
+} else {
+    initPOS();
+}
+

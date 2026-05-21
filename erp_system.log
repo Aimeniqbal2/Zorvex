@@ -10649,3 +10649,845 @@ C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\settings.py changed, reloading.
 Watching for file changes with StatReloader
 C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 200 23803
+"GET /static/dashboard.js HTTP/1.1" 200 13372
+"GET /static/shared-nav.js HTTP/1.1" 200 16721
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+Not Found: /static/assets/right_img.png
+Not Found: /static/assets/bg-new.png
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6441
+Not Found: /static/assets/bg-new.png
+Not Found: /static/assets/right_img.png
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/login.js HTTP/1.1" 200 4477
+Not Found: /static/assets/bg-new.png
+Not Found: /static/assets/right_img.png
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Not Found: /static/assets/bg-new.png
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+Not Found: /static/assets/right_img.png
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/login.js HTTP/1.1" 200 4477
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+Not Found: /static/assets/bg-new.png
+Not Found: /static/assets/right_img.png
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET / HTTP/1.1" 200 8466
+"GET /login/ HTTP/1.1" 200 6441
+Not Found: /static/assets/bg-new.png
+Not Found: /static/assets/right_img.png
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4080
+"GET /static/admin/css/base.css HTTP/1.1" 200 23100
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16273
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 179
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4249
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 23631
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+"GET /admin/accounts/user/ HTTP/1.1" 200 25907
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 7498
+"GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 200 87533
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/vendor/xregexp/xregexp.min.js HTTP/1.1" 200 163184
+"GET /static/admin/img/search.svg HTTP/1.1" 200 607
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 645
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 928
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+"GET /admin/accounts/user/1f37eaca-904c-4bbc-805d-22f43e6162a3/change/ HTTP/1.1" 200 46531
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8831
+"GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 16428
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19698
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9159
+"GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11811
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 2387
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1112
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 805
+"GET /admin/accounts/user/1f37eaca-904c-4bbc-805d-22f43e6162a3/password/ HTTP/1.1" 200 21701
+"GET /static/admin/css/unusable_password_field.css HTTP/1.1" 200 663
+"POST /admin/accounts/user/1f37eaca-904c-4bbc-805d-22f43e6162a3/password/ HTTP/1.1" 302 0
+"GET /admin/accounts/user/1f37eaca-904c-4bbc-805d-22f43e6162a3/change/ HTTP/1.1" 200 46667
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-yes-dark.svg HTTP/1.1" 200 558
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /static/login.js HTTP/1.1" 304 0
+Not Found: /static/assets/right_img.png
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+Not Found: /static/assets/bg-new.png
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 553
+- Broken pipe from ('127.0.0.1', 53568)
+"GET /pos/ HTTP/1.1" 200 21804
+"GET /static/pos.js HTTP/1.1" 200 21549
+"GET /api/sales/sessions/ HTTP/1.1" 200 2
+"GET /transactions/ HTTP/1.1" 200 6671
+"GET /static/sales-history.js HTTP/1.1" 200 8232
+"GET /api/sales/sales/ HTTP/1.1" 200 2
+"GET /inventory/ HTTP/1.1" 200 12566
+"GET /static/inventory.js HTTP/1.1" 200 15811
+"GET /api/inventory/categorys/ HTTP/1.1" 200 2
+"GET /api/inventory/products/ HTTP/1.1" 200 2
+"GET /inventory/ HTTP/1.1" 200 12566
+"GET /static/assets/logo-icon.png HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 2
+"GET /api/inventory/categorys/ HTTP/1.1" 200 2
+"GET /analytics/ HTTP/1.1" 200 7399
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+Not Found: /static/analytics.js
+"GET /static/analytics.js HTTP/1.1" 404 179
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 553
+"GET /analytics HTTP/1.1" 301 0
+"GET /analytics/ HTTP/1.1" 200 7399
+Not Found: /static/analytics.js
+"GET /static/analytics.js HTTP/1.1" 404 179
+Watching for file changes with StatReloader
+"GET /inventory/ HTTP/1.1" 200 12566
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/inventory.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+Unauthorized: /api/inventory/categorys/
+Unauthorized: /api/inventory/products/
+"GET /api/inventory/products/ HTTP/1.1" 401 172
+"GET /api/inventory/categorys/ HTTP/1.1" 401 172
+"GET /static/assets/logo-icon.png HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.js HTTP/1.1" 304 0
+Unauthorized: /api/reports/dashboard/
+"GET /api/reports/dashboard/ HTTP/1.1" 401 172
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/login.js HTTP/1.1" 304 0
+Not Found: /static/assets/bg-new.png
+Not Found: /static/assets/right_img.png
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 553
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /static/assets/logo-icon.png HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 553
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/login.js HTTP/1.1" 304 0
+Not Found: /static/assets/bg-new.png
+Not Found: /static/assets/right_img.png
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 553
+"GET /team/ HTTP/1.1" 200 10035
+"GET /static/team.js HTTP/1.1" 200 8392
+"GET /api/accounts/users/ HTTP/1.1" 200 360
+"POST /api/accounts/users/ HTTP/1.1" 201 334
+"GET /api/accounts/users/ HTTP/1.1" 200 695
+"GET /service-logs/ HTTP/1.1" 200 30048
+"GET /static/service-logs.js HTTP/1.1" 200 35670
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2
+"GET /api/inventory/products/ HTTP/1.1" 200 2
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /transactions/ HTTP/1.1" 200 6671
+"GET /static/sales-history.js HTTP/1.1" 200 8232
+"GET /api/sales/sales/ HTTP/1.1" 200 2
+"GET /service-logs/ HTTP/1.1" 200 30048
+"GET /api/services/serviceorders/ HTTP/1.1" 200 2
+"GET /api/inventory/products/ HTTP/1.1" 200 2
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"POST /api/services/serviceorders/ HTTP/1.1" 201 915
+"GET /api/services/serviceorders/ HTTP/1.1" 200 338
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 915
+"GET /api/services/technicians/ HTTP/1.1" 200 159
+"POST /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/assign_technician/ HTTP/1.1" 200 1101
+"GET /api/services/serviceorders/ HTTP/1.1" 200 490
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1101
+"GET /team/ HTTP/1.1" 200 10035
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/team.js HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/accounts/users/ HTTP/1.1" 200 695
+"POST /api/accounts/users/ HTTP/1.1" 201 335
+"GET /api/accounts/users/ HTTP/1.1" 200 1031
+"GET /service-logs/ HTTP/1.1" 200 30048
+"GET /static/service-logs.js HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/services/serviceorders/ HTTP/1.1" 200 490
+"GET /api/inventory/products/ HTTP/1.1" 200 2
+Internal Server Error: /api/accounts/users/
+Traceback (most recent call last):
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "accounts_user_username_key"
+DETAIL:  Key (username)=(david) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\accounts\views.py", line 52, in perform_create
+    serializer.save(company_id=company_id)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\accounts\serializers.py", line 43, in create
+    user.save()
+    ~~~~~~~~~^^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\contrib\auth\base_user.py", line 62, in save
+    super().save(**kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Aimen Iqbal\Desktop\ERP\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "accounts_user_username_key"
+DETAIL:  Key (username)=(david) already exists.
+
+"POST /api/accounts/users/ HTTP/1.1" 500 145
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1101
+"GET /api/services/technicians/ HTTP/1.1" 200 319
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/login.js HTTP/1.1" 304 0
+Not Found: /static/assets/right_img.png
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+Not Found: /static/assets/bg-new.png
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+"POST /api/auth/login/ HTTP/1.1" 200 798
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 555
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 555
+"GET /login/ HTTP/1.1" 200 6441
+Not Found: /static/assets/right_img.png
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+Not Found: /static/assets/bg-new.png
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+"POST /api/auth/login/ HTTP/1.1" 200 798
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 555
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 555
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 555
+"GET /static/assets/logo-icon.png HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 200 23914
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /static/shared-nav.js HTTP/1.1" 200 18113
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET / HTTP/1.1" 200 8466
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/login.js HTTP/1.1" 304 0
+Not Found: /static/assets/bg-new.png
+"GET /static/assets/bg-new.png HTTP/1.1" 404 179
+Not Found: /static/assets/right_img.png
+"GET /static/assets/right_img.png HTTP/1.1" 404 179
+"GET / HTTP/1.1" 200 8466
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /static/dashboard.css HTTP/1.1" 200 23914
+"GET /static/shared-nav.js HTTP/1.1" 200 18113
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8466
+"GET /inventory/ HTTP/1.1" 200 13987
+"GET /static/inventory.js HTTP/1.1" 200 18016
+"GET /static/dashboard.css HTTP/1.1" 200 23914
+"GET /static/shared-nav.js HTTP/1.1" 200 18113
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+Forbidden: /api/inventory/products/
+"GET /api/inventory/products/ HTTP/1.1" 403 63
+Forbidden: /api/inventory/categorys/
+"GET /api/inventory/categorys/ HTTP/1.1" 403 63
+"GET /service-logs/ HTTP/1.1" 200 30048
+"GET /static/service-logs.js HTTP/1.1" 200 48956
+Forbidden: /api/inventory/products/
+"GET /api/inventory/products/ HTTP/1.1" 403 63
+"GET /api/services/serviceorders/ HTTP/1.1" 200 490
+Forbidden: /api/inventory/vendors/
+"GET /api/inventory/vendors/ HTTP/1.1" 403 63
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1101
+"GET /login/ HTTP/1.1" 200 6441
+"GET /static/login.js HTTP/1.1" 304 0
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/bg-new.png HTTP/1.1" 200 3487298
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.js HTTP/1.1" 200 14428
+"GET /api/reports/dashboard/ HTTP/1.1" 200 555
+"GET /analytics/ HTTP/1.1" 200 7399
+"GET /static/analytics.js HTTP/1.1" 200 9414
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 153
+"GET /pos/ HTTP/1.1" 200 21804
+"GET /static/pos.js HTTP/1.1" 200 23180
+"GET /api/sales/sessions/ HTTP/1.1" 200 2
+"GET /inventory/ HTTP/1.1" 200 13987
+"GET /api/inventory/categorys/ HTTP/1.1" 200 2
+"GET /api/inventory/products/ HTTP/1.1" 200 2
+"GET /vendors/ HTTP/1.1" 200 16361
+"GET /static/vendors.js HTTP/1.1" 200 23413
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 2
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET / HTTP/1.1" 200 8466
+"GET /api/reports/dashboard/ HTTP/1.1" 200 555
+"GET /inventory/ HTTP/1.1" 200 13987
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/inventory.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 2
+"GET /api/inventory/categorys/ HTTP/1.1" 200 2
+"POST /api/inventory/categorys/ HTTP/1.1" 201 79
+"GET /api/inventory/categorys/ HTTP/1.1" 200 81
+"POST /api/inventory/products/ HTTP/1.1" 201 435
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /pos/ HTTP/1.1" 200 21804
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/pos.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/sales/sessions/ HTTP/1.1" 200 2
+"POST /api/sales/sessions/ HTTP/1.1" 201 385
+"GET /api/sales/customers/ HTTP/1.1" 200 2
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"POST /api/sales/customers/ HTTP/1.1" 201 302
+"GET /api/sales/customers/ HTTP/1.1" 200 304
+"POST /api/sales/sales/ HTTP/1.1" 201 893
+"POST /api/sales/saleitems/ HTTP/1.1" 201 431
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/sales/customers/ HTTP/1.1" 200 304
+Bad Request: /api/sales/sales/
+"POST /api/sales/sales/ HTTP/1.1" 400 84
+"POST /api/sales/sales/ HTTP/1.1" 201 893
+"POST /api/sales/saleitems/ HTTP/1.1" 201 431
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/sales/customers/ HTTP/1.1" 200 304
+"GET / HTTP/1.1" 200 8466
+"GET /static/dashboard.css HTTP/1.1" 304 0
+"GET /static/dashboard.js HTTP/1.1" 304 0
+"GET /static/shared-nav.js HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 963
+"GET /analytics/ HTTP/1.1" 200 7399
+"GET /static/analytics.js HTTP/1.1" 304 0
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 162
+"GET /analytics/ HTTP/1.1" 200 7417
+"GET /static/analytics.js?v=1.2 HTTP/1.1" 200 9414
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 200 18787
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 200 23914
+"GET /static/assets/logo-icon.png HTTP/1.1" 304 0
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 162
+"GET / HTTP/1.1" 200 8484
+"GET /static/dashboard.js?v=1.2 HTTP/1.1" 200 14547
+"GET / HTTP/1.1" 200 8484
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 200 23914
+"GET /static/dashboard.js?v=1.2 HTTP/1.1" 200 14547
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 200 18787
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8484
+"GET / HTTP/1.1" 200 8484
+"GET /static/dashboard.js?v=1.2 HTTP/1.1" 200 14547
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 200 23914
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 200 18787
+"GET /login/ HTTP/1.1" 200 6447
+"GET /static/login.js?v=1.2 HTTP/1.1" 200 4584
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/assets/bg-new.png HTTP/1.1" 200 3487298
+"GET /static/assets/right_img.png HTTP/1.1" 200 3484482
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8484
+"GET /api/reports/dashboard/ HTTP/1.1" 200 963
+"GET /pos/ HTTP/1.1" 200 21822
+"GET /static/pos.js?v=1.2 HTTP/1.1" 200 23281
+"GET /api/sales/sessions/ HTTP/1.1" 200 387
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/sales/customers/ HTTP/1.1" 200 304
+"GET /service-logs/ HTTP/1.1" 200 30066
+"GET /static/service-logs.js?v=1.2 HTTP/1.1" 200 48956
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/services/serviceorders/ HTTP/1.1" 200 490
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /transactions/ HTTP/1.1" 200 6689
+"GET /static/sales-history.js?v=1.2 HTTP/1.1" 200 8360
+"GET /api/sales/sales/ HTTP/1.1" 200 2659
+"GET /analytics/ HTTP/1.1" 200 7417
+"GET /static/analytics.js?v=1.2 HTTP/1.1" 200 9414
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 162
+"GET /service-logs/ HTTP/1.1" 200 30066
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/services/serviceorders/ HTTP/1.1" 200 490
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1101
+"POST /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/start_technical_phase/ HTTP/1.1" 200 1154
+"GET /api/services/serviceorders/ HTTP/1.1" 200 493
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1505
+Bad Request: /api/services/servicemedias/
+"POST /api/services/servicemedias/ HTTP/1.1" 400 42
+Bad Request: /api/services/servicemedias/
+"POST /api/services/servicemedias/ HTTP/1.1" 400 42
+Bad Request: /api/services/servicemedias/
+"POST /api/services/servicemedias/ HTTP/1.1" 400 42
+Bad Request: /api/services/servicemedias/
+"POST /api/services/servicemedias/ HTTP/1.1" 400 42
+Bad Request: /api/services/servicemedias/
+"POST /api/services/servicemedias/ HTTP/1.1" 400 42
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8484
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 304 0
+"GET /static/dashboard.js?v=1.2 HTTP/1.1" 200 14547
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 200 18787
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 963
+"GET /service-logs/ HTTP/1.1" 200 30066
+"GET /static/service-logs.js?v=1.3 HTTP/1.1" 200 49043
+"GET /api/services/serviceorders/ HTTP/1.1" 200 493
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1505
+"GET /static/assets/logo-icon.png HTTP/1.1" 304 0
+"POST /api/services/servicemedias/ HTTP/1.1" 201 354
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1859
+Not Found: /media/service_media/2026/05/capture_1779335932237.jpg
+"GET /media/service_media/2026/05/capture_1779335932237.jpg HTTP/1.1" 404 179
+"GET /service-logs/ HTTP/1.1" 200 30066
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 200 23914
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 200 18787
+"GET /static/service-logs.js?v=1.3 HTTP/1.1" 200 49043
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/services/serviceorders/ HTTP/1.1" 200 493
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1859
+Not Found: /media/service_media/2026/05/capture_1779335932237.jpg
+"GET /media/service_media/2026/05/capture_1779335932237.jpg HTTP/1.1" 404 179
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"POST /api/services/servicemedias/ HTTP/1.1" 201 355
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 2215
+Not Found: /media/service_media/2026/05/capture_1779335932237.jpg
+"GET /media/service_media/2026/05/capture_1779335932237.jpg HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/capture_1779335961872.webm
+"GET /media/service_media/2026/05/capture_1779335961872.webm HTTP/1.1" 404 179
+"GET /service-logs/ HTTP/1.1" 200 30066
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 200 23914
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 200 18787
+"GET /static/service-logs.js?v=1.3 HTTP/1.1" 200 49043
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/services/serviceorders/ HTTP/1.1" 200 493
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 2215
+Not Found: /media/service_media/2026/05/capture_1779335932237.jpg
+"GET /media/service_media/2026/05/capture_1779335932237.jpg HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/capture_1779335961872.webm
+"GET /media/service_media/2026/05/capture_1779335961872.webm HTTP/1.1" 404 179
+"POST /api/services/servicemedias/ HTTP/1.1" 201 359
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 2575
+Not Found: /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4
+"GET /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/capture_1779335961872.webm
+"GET /media/service_media/2026/05/capture_1779335961872.webm HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/capture_1779335932237.jpg
+"GET /media/service_media/2026/05/capture_1779335932237.jpg HTTP/1.1" 404 179
+C:\Users\Aimen Iqbal\Desktop\ERP\erp_core\urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /service-logs/ HTTP/1.1" 200 30066
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 200 23914
+"GET /static/service-logs.js?v=1.3 HTTP/1.1" 200 49043
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 200 18787
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /api/services/serviceorders/ HTTP/1.1" 200 493
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 2575
+Not Found: /media/service_media/2026/05/capture_1779335961872.webm
+"GET /media/service_media/2026/05/capture_1779335961872.webm HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4
+Not Found: /media/service_media/2026/05/capture_1779335932237.jpg
+"GET /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 404 179
+"GET /media/service_media/2026/05/capture_1779335932237.jpg HTTP/1.1" 404 179
+"POST /api/services/servicemedias/ HTTP/1.1" 201 354
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 2930
+Not Found: /media/service_media/2026/05/capture_1779335932237.jpg
+"GET /media/service_media/2026/05/capture_1779335932237.jpg HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4
+"GET /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/capture_1779335961872.webm
+"GET /media/service_media/2026/05/capture_1779335961872.webm HTTP/1.1" 404 179
+"GET /media/service_media/2026/05/capture_1779336159169.jpg HTTP/1.1" 200 49493
+"GET /media/service_media/2026/05/capture_1779336159169.jpg HTTP/1.1" 304 0
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 179
+"POST /api/services/servicemedias/ HTTP/1.1" 201 355
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 3286
+Not Found: /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4
+"GET /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/capture_1779335932237.jpg
+"GET /media/service_media/2026/05/capture_1779335932237.jpg HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/capture_1779335961872.webm
+"GET /media/service_media/2026/05/capture_1779335961872.webm HTTP/1.1" 404 179
+"GET /media/service_media/2026/05/capture_1779336212918.webm HTTP/1.1" 200 2838142
+"GET /service-logs/ HTTP/1.1" 200 31206
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 200 23914
+"GET /static/service-logs.js?v=1.4 HTTP/1.1" 200 51988
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 200 18787
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /pos/ HTTP/1.1" 200 21822
+"GET /static/pos.js?v=1.2 HTTP/1.1" 200 23281
+"GET /api/sales/sessions/ HTTP/1.1" 200 387
+"GET /api/sales/customers/ HTTP/1.1" 200 304
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /service-logs/ HTTP/1.1" 200 31206
+"GET / HTTP/1.1" 200 8484
+"GET /static/dashboard.js?v=1.2 HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 963
+"GET /transactions/ HTTP/1.1" 200 6689
+"GET /static/sales-history.js?v=1.2 HTTP/1.1" 200 8360
+"GET /api/sales/sales/ HTTP/1.1" 200 2659
+"GET /service-logs/ HTTP/1.1" 200 31206
+"GET /analytics/ HTTP/1.1" 200 7417
+"GET /static/analytics.js?v=1.2 HTTP/1.1" 304 0
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 162
+"GET /service-logs/ HTTP/1.1" 200 31206
+"GET /service-logs/ HTTP/1.1" 200 31206
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 200 23914
+"GET /static/service-logs.js?v=1.4 HTTP/1.1" 200 51988
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 200 18787
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET /login/ HTTP/1.1" 200 6447
+"GET /static/login.js?v=1.2 HTTP/1.1" 200 4584
+"GET /static/assets/bg-new.png HTTP/1.1" 304 0
+"GET /static/assets/right_img.png HTTP/1.1" 304 0
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8484
+"GET /api/reports/dashboard/ HTTP/1.1" 200 963
+"GET /service-logs/ HTTP/1.1" 200 31206
+"GET /team/ HTTP/1.1" 200 10053
+"GET /static/team.js?v=1.2 HTTP/1.1" 200 9178
+"GET /api/accounts/users/ HTTP/1.1" 200 1081
+"GET / HTTP/1.1" 200 8484
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 304 0
+"GET /static/dashboard.js?v=1.2 HTTP/1.1" 304 0
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 963
+"GET /service-logs/ HTTP/1.1" 200 31206
+"GET /static/service-logs.js?v=1.4 HTTP/1.1" 304 0
+"GET /login/ HTTP/1.1" 200 6447
+"GET /static/login.js?v=1.2 HTTP/1.1" 304 0
+"GET /static/assets/bg-new.png HTTP/1.1" 304 0
+"GET /static/assets/right_img.png HTTP/1.1" 304 0
+"POST /api/auth/login/ HTTP/1.1" 200 761
+"GET / HTTP/1.1" 200 8484
+"GET /api/reports/dashboard/ HTTP/1.1" 200 963
+"GET /service-logs/ HTTP/1.1" 200 31206
+"GET /static/assets/logo-icon.png HTTP/1.1" 304 0
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 8484
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 304 0
+"GET /static/dashboard.js?v=1.2 HTTP/1.1" 304 0
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 963
+"GET /service-logs/ HTTP/1.1" 200 31206
+"GET /static/service-logs.js?v=1.4 HTTP/1.1" 200 51988
+"GET /api/services/serviceorders/ HTTP/1.1" 200 493
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 3286
+Not Found: /media/service_media/2026/05/capture_1779335932237.jpg
+"GET /media/service_media/2026/05/capture_1779335932237.jpg HTTP/1.1" 404 179
+"GET /media/service_media/2026/05/capture_1779336159169.jpg HTTP/1.1" 304 0
+Not Found: /media/service_media/2026/05/capture_1779335961872.webm
+"GET /media/service_media/2026/05/capture_1779335961872.webm HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4
+"GET /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 404 179
+"GET /media/service_media/2026/05/capture_1779336212918.webm HTTP/1.1" 304 0
+"DELETE /api/services/servicemedias/744f43dd-20cc-4092-b446-6d57d577e76b/ HTTP/1.1" 200 64
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 2931
+Not Found: /media/service_media/2026/05/capture_1779335961872.webm
+"GET /media/service_media/2026/05/capture_1779335961872.webm HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/capture_1779335932237.jpg
+"GET /media/service_media/2026/05/capture_1779335932237.jpg HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4
+"GET /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/capture_1779335932237.jpg
+"GET /media/service_media/2026/05/capture_1779335932237.jpg HTTP/1.1" 404 179
+"DELETE /api/services/servicemedias/664f1832-b894-4d92-80d0-c427f750aa5a/ HTTP/1.1" 200 64
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 2576
+Not Found: /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4
+"GET /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/capture_1779335961872.webm
+"GET /media/service_media/2026/05/capture_1779335961872.webm HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/capture_1779335961872.webm
+"GET /media/service_media/2026/05/capture_1779335961872.webm HTTP/1.1" 404 179
+"DELETE /api/services/servicemedias/7caca42e-08c9-4370-838f-83932ae39735/ HTTP/1.1" 200 64
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 2220
+Not Found: /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4
+"GET /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 404 179
+Not Found: /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4
+"GET /media/service_media/2026/05/1196530-hd_1920_1080_30fps.mp4 HTTP/1.1" 404 179
+"DELETE /api/services/servicemedias/e9cbf4fc-1fc1-4381-a8aa-dbbb0e094977/ HTTP/1.1" 200 64
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1860
+"GET /static/assets/logo-icon.png HTTP/1.1" 304 0
+"DELETE /api/services/servicemedias/78842f8e-963a-4081-9a3c-938bc1e5c7c6/ HTTP/1.1" 200 64
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1505
+"GET / HTTP/1.1" 200 8484
+"GET /api/reports/dashboard/ HTTP/1.1" 200 963
+"GET /pos/ HTTP/1.1" 200 21822
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 304 0
+"GET /static/pos.js?v=1.2 HTTP/1.1" 304 0
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/sales/sessions/ HTTP/1.1" 200 387
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/sales/customers/ HTTP/1.1" 200 304
+"GET /service-logs/ HTTP/1.1" 200 31206
+"GET /static/service-logs.js?v=1.4 HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/services/serviceorders/ HTTP/1.1" 200 493
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1505
+"GET /transactions/ HTTP/1.1" 200 6689
+"GET /static/sales-history.js?v=1.2 HTTP/1.1" 304 0
+"GET /api/sales/sales/ HTTP/1.1" 200 2659
+"GET /api/sales/sales/795d9b98-490d-4ea0-9232-67432776ec1b/ HTTP/1.1" 200 1328
+"GET /api/sales/sales/fafe4be9-bbc0-4764-9500-1752a16f5c3e/ HTTP/1.1" 200 1328
+"GET /analytics/ HTTP/1.1" 200 7417
+"GET /static/analytics.js?v=1.2 HTTP/1.1" 304 0
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 162
+"GET /analytics/ HTTP/1.1" 200 7417
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 162
+"GET /transactions/ HTTP/1.1" 200 6689
+"GET /api/sales/sales/ HTTP/1.1" 200 2659
+"GET /analytics/ HTTP/1.1" 200 7417
+"GET /api/reports/monthly/?year=2026&month=5 HTTP/1.1" 200 162
+"GET /inventory/ HTTP/1.1" 200 14005
+"GET /static/inventory.js?v=1.2 HTTP/1.1" 200 18135
+"GET /api/inventory/categorys/ HTTP/1.1" 200 81
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /vendors/ HTTP/1.1" 200 16379
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 304 0
+"GET /static/vendors.js?v=1.2 HTTP/1.1" 200 23413
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"POST /api/inventory/vendorledger/recalculate_balances/ HTTP/1.1" 200 33
+"GET /api/inventory/purchaseorders/ HTTP/1.1" 200 2
+"GET /credit/ HTTP/1.1" 200 15876
+"GET /static/credit.js?v=1.2 HTTP/1.1" 200 17934
+"POST /api/sales/customers/recalculate_balances/ HTTP/1.1" 200 35
+"GET /api/sales/customers/ HTTP/1.1" 200 304
+"GET /api/sales/ledger/?customer=ce3c3f5c-608a-4b82-bf2b-5d5667dba2e4 HTTP/1.1" 200 2
+"GET /team/ HTTP/1.1" 200 10053
+"GET /static/team.js?v=1.2 HTTP/1.1" 304 0
+"GET /api/accounts/users/ HTTP/1.1" 200 1081
+"GET /service-logs/ HTTP/1.1" 200 31206
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 304 0
+"GET /static/service-logs.js?v=1.4 HTTP/1.1" 304 0
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/services/serviceorders/ HTTP/1.1" 200 493
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1505
+"GET /static/assets/logo-icon.png HTTP/1.1" 304 0
+Watching for file changes with StatReloader
+"GET /service-logs/ HTTP/1.1" 200 31274
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 200 24149
+"GET /static/service-logs.js?v=1.4 HTTP/1.1" 200 51969
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 200 18823
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/services/serviceorders/ HTTP/1.1" 200 493
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /static/assets/logo-icon.png HTTP/1.1" 304 0
+"GET /service-logs/ HTTP/1.1" 200 31274
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 200 24149
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 200 18823
+"GET /static/service-logs.js?v=1.4 HTTP/1.1" 200 51969
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /static/assets/logo-full.png HTTP/1.1" 200 34419
+"GET /api/services/serviceorders/ HTTP/1.1" 200 493
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /static/assets/logo-icon.png HTTP/1.1" 200 92820
+"GET / HTTP/1.1" 200 8450
+"GET /static/dashboard.js?v=1.2 HTTP/1.1" 304 0
+"GET /api/reports/dashboard/ HTTP/1.1" 200 963
+"GET /service-logs/ HTTP/1.1" 200 31274
+"GET /api/services/serviceorders/ HTTP/1.1" 200 493
+"GET /api/inventory/products/ HTTP/1.1" 200 437
+"GET /api/inventory/vendors/ HTTP/1.1" 200 2
+"GET /api/services/serviceorders/c4f0f74b-1817-4ba2-a27c-b4934423404f/ HTTP/1.1" 200 1505
+"GET /transactions/ HTTP/1.1" 200 6691
+"GET /static/sales-history.js?v=1.2 HTTP/1.1" 304 0
+"GET /api/sales/sales/ HTTP/1.1" 200 2659
+"GET /api/sales/sales/795d9b98-490d-4ea0-9232-67432776ec1b/ HTTP/1.1" 200 1328
+"GET /api/sales/sales/795d9b98-490d-4ea0-9232-67432776ec1b/ HTTP/1.1" 200 1328
+"GET /inventory/ HTTP/1.1" 200 14208
+"GET /static/dashboard.css?v=1.2 HTTP/1.1" 304 0
+"GET /static/inventory.js?v=1.2 HTTP/1.1" 304 0
+"GET /static/shared-nav.js?v=1.2 HTTP/1.1" 304 0
+"GET /static/assets/logo-full.png HTTP/1.1" 304 0
+"GET /api/inventory/categorys/ HTTP/1.1" 200 81
+"GET /api/inventory/products/ HTTP/1.1" 200 437

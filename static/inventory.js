@@ -30,7 +30,7 @@ function initInventory() {
     editModal.innerHTML = `
         <div style="background:var(--modal-bg);border:1px solid var(--border-color);border-radius:24px;padding:30px;width:500px;max-height:90vh;overflow-y:auto;box-shadow:0 25px 50px rgba(0,0,0,0.3);">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid var(--border-color);padding-bottom:14px;">
-                <h3 style="font-size:20px;font-weight:800;color:var(--text-main);">✏️ Edit Product</h3>
+                <h3 style="font-size:20px;font-weight:800;color:var(--text-main);"><i class="bx bx-edit"></i> Edit Product</h3>
                 <button id="closeEditProductModal" style="background:none;border:none;font-size:22px;color:var(--text-muted);cursor:pointer;">×</button>
             </div>
             <form id="editProductForm">
@@ -180,7 +180,7 @@ function initInventory() {
                 </td>
                 <td>
                     <span style="font-weight:800;">${p.brand}</span> <span style="color:var(--text-muted)">${p.model_name} ${p.storage_capacity ? `(${p.storage_capacity})` : ''}</span>
-                    <div style="font-size:11px; color:var(--danger); margin-top:2px;">${p.is_low_stock ? '⚠️ Low Stock' : ''}</div>
+                    <div style="font-size:11px; color:var(--danger); margin-top:2px;">${p.is_low_stock ? '<i class="bx bx-error-alt"></i> Low Stock' : ''}</div>
                 </td>
                 <td>${p.category_name || '-'}</td>
                 <td><span class="badge" style="color:${stockColor}; background:${stockBg}; font-size:12px;">${p.stock_quantity} Units</span></td>
@@ -190,9 +190,9 @@ function initInventory() {
                 <td>
                     <div style="display:flex; gap:6px;">
                         <button onclick="window._editProduct('${p.id}')" 
-                            style="background:var(--primary-light);color:var(--primary);border:none;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700;font-size:12px;">✏️ Edit</button>
+                            style="background:var(--primary-light);color:var(--primary);border:none;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700;font-size:12px;"><i class="bx bx-edit"></i> Edit</button>
                         <button onclick="window._deleteProduct('${p.id}', '${p.brand} ${p.model_name}')" 
-                            style="background:var(--danger-light);color:var(--danger);border:none;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700;font-size:12px;">🗑️</button>
+                            style="background:var(--danger-light);color:var(--danger);border:none;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700;font-size:12px;"><i class="bx bx-trash"></i></button>
                     </div>
                 </td>
             `;

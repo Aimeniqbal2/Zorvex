@@ -79,7 +79,7 @@ function initDashboard() {
                 </td>
                 <td><span class="badge" style="background:var(--bg-secondary); color:var(--text-muted); font-size:11px;">${s.sale_type.toUpperCase()}</span></td>
                 <td style="font-weight:800; color:var(--text-main);">PKR${parseFloat(s.amount).toFixed(2)}</td>
-                <td><button onclick="viewReceipt('${s.id}')" style="background:var(--primary-light); color:var(--primary); border:none; padding:6px 12px; border-radius:8px; cursor:pointer; font-weight:700; font-size:12px;">📄 View</button></td>
+                <td><button onclick="viewReceipt('${s.id}')" style="background:var(--primary-light); color:var(--primary); border:none; padding:6px 12px; border-radius:8px; cursor:pointer; font-weight:700; font-size:12px;"><i class="bx bx-file"></i> View</button></td>
             `;
             salesTableBody.appendChild(tr);
         });

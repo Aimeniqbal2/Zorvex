@@ -3,11 +3,12 @@
 <html lang="en">
 
 <head>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Desk Operations</title>
     <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=1.2">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=4.2">
     <style>
         .service-layout {
             display: grid;
@@ -277,7 +278,7 @@
                 <!-- Right Panel: Order Execution Detail -->
                 <div class="detail-panel" id="orderDetailPanel">
                     <div id="detailPlaceholder" style="text-align:center; padding:100px 20px; color:var(--text-muted);">
-                        <div style="font-size:48px; margin-bottom:15px; opacity:0.5;">🛠️</div>
+                        <div style="font-size:48px; margin-bottom:15px; opacity:0.5;"><i class="bx bx-wrench"></i></div>
                         <h3>Select a Service Order</h3>
                         <p style="font-size:14px;">View details, assign technicians, log work, and process delivery.</p>
                     </div>
@@ -593,16 +594,16 @@
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:15px;">
                     <span style="font-size:12px; color:var(--text-muted);">Media Evidence Asset</span>
-                    <button id="btnDeletePreviewMedia" class="action-btn" style="color:var(--danger); border-color:var(--danger); background:transparent; font-weight:700;">🗑️ Delete Asset</button>
+                    <button id="btnDeletePreviewMedia" class="action-btn" style="color:var(--danger); border-color:var(--danger); background:transparent; font-weight:700;"><i class="bx bx-trash"></i> Delete Asset</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Floating Theme Toggle Button -->
-    <button id="themeToggleBtn" title="Toggle dark/light theme">🌙</button>
+    <button id="themeToggleBtn" title="Toggle dark/light theme"><i class="bx bx-moon"></i></button>
 
-    <script src="{% static 'service-logs.js' %}?v=1.4"></script>
-    <script src="{% static 'shared-nav.js' %}?v=1.2"></script>
+    <script src="{% static 'service-logs.js' %}?v=4.2"></script>
+    <script src="{% static 'shared-nav.js' %}?v=4.2"></script>
 </body>
 </html>

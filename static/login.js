@@ -16,10 +16,12 @@ function initLogin() {
         window.location.href = '/';
     }
 
-    // Load saved username if exists
+    // Load saved username and password if exists
     const savedUser = localStorage.getItem('remembered_username');
+    const savedPass = localStorage.getItem('remembered_password');
     if (savedUser) {
         usernameInput.value = savedUser;
+        if (savedPass) passwordInput.value = savedPass;
         rememberMeCheckbox.checked = true;
     }
 
@@ -50,8 +52,10 @@ function initLogin() {
         // Save username locally if remember me is checked
         if (rememberMeCheckbox.checked) {
             localStorage.setItem('remembered_username', credentials.username);
+            localStorage.setItem('remembered_password', credentials.password);
         } else {
             localStorage.removeItem('remembered_username');
+            localStorage.removeItem('remembered_password');
         }
 
         try {
@@ -71,13 +75,13 @@ function initLogin() {
                 localStorage.setItem('access_token', data.access);
                 localStorage.setItem('refresh_token', data.refresh);
                 
-                // Trigger a beautiful outward fade animation before redirect
-                minimalCard.style.transform = 'scale(0.95)';
-                minimalCard.style.opacity = '0';
+                // Trigger a beautiful global loader before redirect
+                const loader = document.getElementById('globalLoader');
+                if (loader) loader.classList.add('active');
                 
                 setTimeout(() => {
                     window.location.href = '/';
-                }, 400); // 400ms CSS match
+                }, 800); // 800ms for smooth load display
             } else {
                 showError(data.detail || 'Access Denied. Account expired or invalid credentials.');
                 triggerShake();
@@ -111,6 +115,29 @@ function initLogin() {
             { transform: 'translateX(10px)' },
             { transform: 'translateX(0)' }
         ], { duration: 500, easing: 'ease-in-out' });
+    }
+
+    // Modal Logic
+    const forgotBtn = document.getElementById('forgotBtn');
+    const forgotModal = document.getElementById('forgotModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    if (forgotBtn && forgotModal && closeModalBtn) {
+        forgotBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            forgotModal.classList.add('active');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            forgotModal.classList.remove('active');
+        });
+
+        // Close when clicking outside modal box
+        forgotModal.addEventListener('click', (e) => {
+            if (e.target === forgotModal) {
+                forgotModal.classList.remove('active');
+            }
+        });
     }
 }
 

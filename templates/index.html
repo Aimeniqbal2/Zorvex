@@ -3,13 +3,14 @@
 <html lang="en">
 
 <head>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zorvex ERP - Authenticate</title>
     <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'style.css' %}?v=1.2">
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=4.2">
 </head>
 
 <body>
@@ -45,7 +46,7 @@
                 <div class="input-group ui-anim" style="--delay: 2;">
                     <label for="password">Password</label>
                     <div class="input-wrapper password-wrapper">
-                        <i class="icon">🔒</i>
+                        <i class="icon"><i class="bx bx-lock-alt"></i></i>
                         <input type="password" id="password" required placeholder="••••••••••••">
                         <span class="toggle-password" id="togglePassword">Show</span>
                     </div>
@@ -71,7 +72,7 @@
     </div>
 
     <!-- The logic script handles the API mappings flawlessly without DOM breakage -->
-    <script src="{% static 'login.js' %}?v=1.2"></script>
+    <script src="{% static 'login.js' %}?v=4.2"></script>
 </body>
 
 </html>

@@ -3,12 +3,13 @@
 <html lang="en">
 
 <head>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enterprise Inventory Matrix</title>
     <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
     <!-- Utilizing the core UI framework established in Phase 12 -->
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=1.2">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=4.2">
     <style>
         /* Native Modal Sub-Framework */
         .modal-overlay {
@@ -180,7 +181,7 @@
             </div>
             <div class="header-actions">
                 <input type="text" class="search-box" id="searchInput" placeholder="Search product ID or brand...">
-                <button class="icon-btn">🔔</button>
+                <button class="icon-btn"><i class="bx bx-bell"></i></button>
                 <div class="user-profile">
                     <img src="https://ui-avatars.com/api/?name=Admin&background=4318ff&color=fff&rounded=true"
                         alt="Admin Badge">
@@ -192,7 +193,7 @@
 
             <div class="kpi-grid">
                 <div class="kpi-card">
-                    <div class="kpi-icon" style="color: #4318ff; background: #e9e3ff;">📦</div>
+                    <div class="kpi-icon" style="color: #4318ff; background: #e9e3ff;"><i class="bx bx-box"></i></div>
                     <div class="kpi-info">
                         <p class="kpi-title">Global Active SKUs</p>
                         <span class="kpi-value" id="totalItems">0</span>
@@ -200,7 +201,7 @@
                 </div>
 
                 <div class="kpi-card">
-                    <div class="kpi-icon" style="color: #05cd99; background: #e6fcf5;">💰</div>
+                    <div class="kpi-icon" style="color: #05cd99; background: #e6fcf5;"><i class="bx bx-wallet"></i></div>
                     <div class="kpi-info">
                         <p class="kpi-title">Calculated Asset Value</p>
                         <span class="kpi-value" id="totalValue">PKR0.00</span>
@@ -208,7 +209,7 @@
                 </div>
 
                 <div class="kpi-card">
-                    <div class="kpi-icon" style="color: #ee5d50; background: #ffe2e0;">⚠️</div>
+                    <div class="kpi-icon" style="color: #ee5d50; background: #ffe2e0;"><i class="bx bx-error-alt"></i></div>
                     <div class="kpi-info">
                         <p class="kpi-title">Hardware Shortages</p>
                         <span class="kpi-value" id="lowStock">0</span>
@@ -360,8 +361,8 @@
     </div>
 
     <!-- Inventory Async Engine -->
-    <script src="{% static 'inventory.js' %}?v=1.2"></script>
-    <script src="{% static 'shared-nav.js' %}?v=1.2"></script>
+    <script src="{% static 'inventory.js' %}?v=4.2"></script>
+    <script src="{% static 'shared-nav.js' %}?v=4.2"></script>
 </body>
 
 </html>

@@ -54,12 +54,12 @@ function filterAndRender() {
         tr.style.animationDelay = `${index * 0.08}s`;
         
         const ROLE_LABELS = {
-            'admin':               '🛡️ Administrator',
-            'manager':             '📋 Manager',
-            'cashier':             '💳 Cashier',
-            'hardware_technician': '🔧 Hardware Technician',
+            'admin':               '<i class="bx bx-shield"></i> Administrator',
+            'manager':             '<i class="bx bx-clipboard"></i> Manager',
+            'cashier':             '<i class="bx bx-credit-card"></i> Cashier',
+            'hardware_technician': '<i class="bx bx-wrench"></i> Hardware Technician',
             'software_technician': '💻 Software Technician',
-            'staff':               '👤 Staff',
+            'staff':               '<i class="bx bx-user"></i> Staff',
         };
         const roleLabel = ROLE_LABELS[u.role] || u.role.replace('_', ' ').toUpperCase();
 
@@ -77,8 +77,8 @@ function filterAndRender() {
             <td><span class="badge" style="${badgeStyle} font-size:12px;">${roleLabel}</span></td>
             <td style="color:var(--text-muted); font-weight:600;">${joinedDate}</td>
             <td>
-                <button onclick="openEditModal('${u.id}', '${u.username}', '${u.role}')" style="background:transparent; border:none; cursor:pointer; font-size:16px; margin-right:10px;" title="Edit">✏️</button>
-                <button onclick="deleteUser('${u.id}', '${u.username}')" style="background:transparent; border:none; cursor:pointer; font-size:16px;" title="Flush">🗑️</button>
+                <button onclick="openEditModal('${u.id}', '${u.username}', '${u.role}')" style="background:transparent; border:none; cursor:pointer; font-size:16px; margin-right:10px;" title="Edit"><i class="bx bx-edit"></i></button>
+                <button onclick="deleteUser('${u.id}', '${u.username}')" style="background:transparent; border:none; cursor:pointer; font-size:16px;" title="Flush"><i class="bx bx-trash"></i></button>
             </td>
         `;
         tbody.appendChild(tr);

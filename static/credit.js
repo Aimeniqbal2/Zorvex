@@ -111,8 +111,8 @@ function renderCustomers(customers) {
                 <p class="customer-name">${c.name}</p>
                 <p class="customer-phone">${c.phone || 'No phone'}</p>
                 <div style="display:flex;gap:10px;margin-top:6px;font-size:11px;color:var(--text-muted);flex-wrap:wrap;">
-                    <span>📤 Credit: <strong style="color:var(--danger);">PKR ${fmt(cred)}</strong></span>
-                    <span>📥 Paid: <strong style="color:var(--success);">PKR ${fmt(paid)}</strong></span>
+                    <span><i class="bx bx-upload"></i> Credit: <strong style="color:var(--danger);">PKR ${fmt(cred)}</strong></span>
+                    <span><i class="bx bx-download"></i> Paid: <strong style="color:var(--success);">PKR ${fmt(paid)}</strong></span>
                 </div>
             </div>
             <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
@@ -121,9 +121,9 @@ function renderCustomers(customers) {
                 </p>
                 <div style="display:flex;gap:4px;">
                     <button class="action-btn" style="font-size:11px;padding:5px 10px;"
-                        onclick="event.stopPropagation();openEditCustomer('${c.id}')">✏️ Edit</button>
+                        onclick="event.stopPropagation();openEditCustomer('${c.id}')"><i class="bx bx-edit"></i> Edit</button>
                     <button class="action-btn" style="font-size:11px;padding:5px 10px;color:var(--danger);border-color:var(--danger);"
-                        onclick="event.stopPropagation();deleteCustomer('${c.id}','${c.name.replace(/'/g,'\\\'') }')">🗑️</button>
+                        onclick="event.stopPropagation();deleteCustomer('${c.id}','${c.name.replace(/'/g,'\\\'') }')"><i class="bx bx-trash"></i></button>
                 </div>
             </div>
         </div>`;
@@ -161,9 +161,9 @@ async function selectCustomer(customerId) {
     if (aggEl) {
         aggEl.innerHTML = `
             <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:13px;">
-                <span>📤 Total Credit Issued: <strong style="color:var(--danger);">PKR ${fmt(credited)}</strong></span>
-                <span>📥 Total Paid Back: <strong style="color:var(--success);">PKR ${fmt(paid)}</strong></span>
-                <span>📊 Outstanding: <strong style="color:${bal>0?'var(--danger)':'var(--success)'};">PKR ${fmt(bal)}</strong></span>
+                <span><i class="bx bx-upload"></i> Total Credit Issued: <strong style="color:var(--danger);">PKR ${fmt(credited)}</strong></span>
+                <span><i class="bx bx-download"></i> Total Paid Back: <strong style="color:var(--success);">PKR ${fmt(paid)}</strong></span>
+                <span><i class="bx bxs-dashboard"></i> Outstanding: <strong style="color:${bal>0?'var(--danger)':'var(--success)'};">PKR ${fmt(bal)}</strong></span>
             </div>`;
     }
 

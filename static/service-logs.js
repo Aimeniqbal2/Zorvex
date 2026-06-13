@@ -385,7 +385,7 @@ function renderAssignmentBanner(order) {
             <div style="background:#e6fcf5;border:1px solid #05cd99;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
                 <div>
                     <p style="font-size:11px;font-weight:700;color:#05cd99;text-transform:uppercase;">Assigned Technician</p>
-                    <p style="font-size:15px;font-weight:800;color:#0f172a;">👤 ${order.assigned_technician_name || order.assigned_technician_username}</p>
+                    <p style="font-size:15px;font-weight:800;color:#0f172a;"><i class="bx bx-user"></i> ${order.assigned_technician_name || order.assigned_technician_username}</p>
                 </div>
                 ${canAssign ? `<button class="action-btn" onclick="openAssignModal('${order.id}', '${order.department}')" style="font-size:12px;padding:8px 12px;">Re-assign</button>` : ''}
             </div>`;
@@ -443,14 +443,14 @@ function renderStatusButtons(order) {
     const container = document.getElementById('statusButtons');
     let html = '';
     if (order.status === 'in_progress') {
-        html = `<button class="action-btn" onclick="updateOrderStatus('${order.id}', 'ready')">✅ Mark Ready</button>`;
+        html = `<button class="action-btn" onclick="updateOrderStatus('${order.id}', 'ready')"><i class="bx bx-check"></i> Mark Ready</button>`;
         html += `<button class="action-btn" style="color:var(--danger);border-color:var(--danger);" onclick="updateOrderStatus('${order.id}', 'return')">↩ Return Unfixed</button>`;
     } else if ((order.status === 'ready' || order.status === 'return') && canPay) {
-        html = `<button class="action-btn" onclick="openPaymentModal('${order.id}')" style="background:var(--success);color:#fff;border-color:var(--success);">💳 Process Delivery</button>`;
+        html = `<button class="action-btn" onclick="openPaymentModal('${order.id}')" style="background:var(--success);color:#fff;border-color:var(--success);"><i class="bx bx-credit-card"></i> Process Delivery</button>`;
     }
     // Admin-only soft-delete
     if (isAdmin && order.status !== 'completed') {
-        html += `<button class="action-btn" style="color:var(--danger);border-color:var(--danger);margin-top:6px;" onclick="deleteServiceOrder('${order.id}')">🗑️ Delete Order</button>`;
+        html += `<button class="action-btn" style="color:var(--danger);border-color:var(--danger);margin-top:6px;" onclick="deleteServiceOrder('${order.id}')"><i class="bx bx-trash"></i> Delete Order</button>`;
     }
     container.innerHTML = html;
 }
@@ -566,7 +566,7 @@ function renderWorkLogs(logs) {
     container.innerHTML = logs.map(log => `
         <div style="background:var(--input-bg,#f8fafc);padding:15px;border-radius:10px;margin-bottom:10px;border-left:4px solid var(--primary);">
             <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:12px;color:var(--text-muted);font-weight:700;">
-                <span>👤 ${log.technician_name || log.technician_username || 'Tech'}</span>
+                <span><i class="bx bx-user"></i> ${log.technician_name || log.technician_username || 'Tech'}</span>
                 <span>⏱️ ${new Date(log.created_at).toLocaleString()}</span>
             </div>
             <p style="font-size:14px;font-weight:500;color:var(--text-main);">${log.notes}</p>
@@ -597,7 +597,7 @@ function renderPartsUsed(parts) {
     container.innerHTML = parts.map(p => `
         <div style="display:flex;justify-content:space-between;align-items:center;background:var(--card-bg,#fff);padding:14px;border-radius:10px;margin-bottom:8px;border:1px solid var(--border-light);">
             <div>
-                <p style="font-weight:800;font-size:14px;color:var(--text-main);">📦 ${p.product_name || p.part_name || 'Unknown'}
+                <p style="font-weight:800;font-size:14px;color:var(--text-main);"><i class="bx bx-box"></i> ${p.product_name || p.part_name || 'Unknown'}
                     <span style="font-size:11px;color:#fff;background:${p.source === 'vendor' ? '#ee5d50' : '#05cd99'};padding:2px 6px;border-radius:5px;margin-left:6px;">${p.source.toUpperCase()}</span>
                     ${p.vendor_name ? `<span style="font-size:11px;color:var(--text-muted);"> · ${p.vendor_name}</span>` : ''}
                 </p>
@@ -694,7 +694,7 @@ function renderMedia(mediaData) {
             style="position:absolute; top:5px; right:5px; background:rgba(238, 93, 80, 0.95); border:none; 
             border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center; 
             color:#fff; cursor:pointer; font-weight:bold; font-size:11px; box-shadow:0 2px 6px rgba(0,0,0,0.2); 
-            z-index:2; transition: all 0.2s;" title="Delete Media" onmouseover="this.style.background='#d83a2e'; this.style.transform='scale(1.1)';" onmouseout="this.style.background='rgba(238, 93, 80, 0.95)'; this.style.transform='scale(1)';">🗑️</button>`;
+            z-index:2; transition: all 0.2s;" title="Delete Media" onmouseover="this.style.background='#d83a2e'; this.style.transform='scale(1.1)';" onmouseout="this.style.background='rgba(238, 93, 80, 0.95)'; this.style.transform='scale(1)';"><i class="bx bx-trash"></i></button>`;
 
         const mediaElm = isVideo
             ? `<video src="${src}" style="border-radius:10px;width:140px;height:100px;object-fit:cover;border:1px solid var(--border-light);background:#000;pointer-events:none;"></video>`

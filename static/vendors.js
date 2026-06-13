@@ -88,16 +88,16 @@ function renderVendors(vendors) {
             <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
                 <div style="flex:1;min-width:0;">
                     <h4 style="font-size:16px;font-weight:800;color:var(--text-main);margin-bottom:4px;">
-                        🏭 ${v.name}
+                        <i class="bx bx-buildings"></i> ${v.name}
                     </h4>
                     <p style="font-size:13px;color:var(--text-muted);">
                         ${v.contact_email || 'No email'} &nbsp;·&nbsp; ${v.contact_phone || 'No phone'}
                     </p>
                     ${v.address ? `<p style="font-size:12px;color:var(--text-muted);margin-top:3px;">${v.address}</p>` : ''}
                     <div style="display:flex;gap:16px;margin-top:10px;font-size:12px;flex-wrap:wrap;">
-                        <span>📦 Purchased: <strong style="color:var(--text-main);">PKR ${fmt(purch)}</strong></span>
-                        <span>✅ Paid: <strong style="color:var(--success);">PKR ${fmt(paid)}</strong></span>
-                        <span>⚠️ Due: <strong style="color:${dueColor};">PKR ${fmt(due)}</strong></span>
+                        <span><i class="bx bx-box"></i> Purchased: <strong style="color:var(--text-main);">PKR ${fmt(purch)}</strong></span>
+                        <span><i class="bx bx-check"></i> Paid: <strong style="color:var(--success);">PKR ${fmt(paid)}</strong></span>
+                        <span><i class="bx bx-error-alt"></i> Due: <strong style="color:${dueColor};">PKR ${fmt(due)}</strong></span>
                     </div>
                 </div>
                 <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
@@ -106,11 +106,11 @@ function renderVendors(vendors) {
                         <button class="action-btn" onclick="event.stopPropagation();newPOForVendor('${v.id}','${v.name.replace(/'/g,"\\'")}');"
                             style="font-size:11px;padding:5px 9px;">+ PO</button>
                         <button class="action-btn" onclick="event.stopPropagation();openPayVendorModal('${v.id}','${v.name.replace(/'/g,"\\'")}',${due});"
-                            style="font-size:11px;padding:5px 9px;background:var(--success);color:#fff;border-color:var(--success);">💰 Pay</button>
+                            style="font-size:11px;padding:5px 9px;background:var(--success);color:#fff;border-color:var(--success);"><i class="bx bx-wallet"></i> Pay</button>
                         <button class="action-btn" onclick="event.stopPropagation();openEditVendor('${v.id}');"
-                            style="font-size:11px;padding:5px 9px;">✏️ Edit</button>
+                            style="font-size:11px;padding:5px 9px;"><i class="bx bx-edit"></i> Edit</button>
                         <button class="action-btn" onclick="event.stopPropagation();deleteVendor('${v.id}','${v.name.replace(/'/g,"\\'")}');"
-                            style="font-size:11px;padding:5px 9px;color:var(--danger);border-color:var(--danger);">🗑️</button>
+                            style="font-size:11px;padding:5px 9px;color:var(--danger);border-color:var(--danger);"><i class="bx bx-trash"></i></button>
                     </div>
                 </div>
             </div>
@@ -141,9 +141,9 @@ async function selectVendor(vendorId) {
     const aggEl = document.getElementById('vendorLedgerAggregates');
     if (aggEl) aggEl.innerHTML = `
         <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:13px;">
-            <span>📦 Total Purchased: <strong style="color:var(--text-main);">PKR ${fmt(purch)}</strong></span>
-            <span>✅ Total Paid: <strong style="color:var(--success);">PKR ${fmt(paid)}</strong></span>
-            <span>⚠️ Balance Due: <strong style="color:${due > 0 ? 'var(--danger)' : 'var(--success)'};">PKR ${fmt(due)}</strong></span>
+            <span><i class="bx bx-box"></i> Total Purchased: <strong style="color:var(--text-main);">PKR ${fmt(purch)}</strong></span>
+            <span><i class="bx bx-check"></i> Total Paid: <strong style="color:var(--success);">PKR ${fmt(paid)}</strong></span>
+            <span><i class="bx bx-error-alt"></i> Balance Due: <strong style="color:${due > 0 ? 'var(--danger)' : 'var(--success)'};">PKR ${fmt(due)}</strong></span>
         </div>`;
 
     try {
@@ -360,7 +360,7 @@ function renderPOTable(orders) {
             <td>
                 ${o.status === 'ORDERED' ? `
                     <button onclick="receivePO('${o.id}')" style="background:var(--success);color:#fff;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:700;font-size:12px;">
-                        ✅ Mark Received
+                        <i class="bx bx-check"></i> Mark Received
                     </button>` : ''}
             </td>
         </tr>`;

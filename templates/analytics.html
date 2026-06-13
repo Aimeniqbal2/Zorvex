@@ -2,12 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analytics & Reports — Zorvex ERP</title>
     <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
     <meta name="description" content="Monthly analytics and reports for revenue, profit, orders, and vendor payables.">
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=1.2">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=4.2">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .analytics-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:28px; }
@@ -74,12 +75,12 @@
         <!-- KPI Summary Row -->
         <div class="kpi-summary" id="kpiSummary">
             <div class="summary-card">
-                <div class="sc-label">💰 Total Revenue</div>
+                <div class="sc-label"><i class="bx bx-wallet"></i> Total Revenue</div>
                 <div class="sc-value" id="sumRevenue">—</div>
                 <div class="sc-sub">For selected period</div>
             </div>
             <div class="summary-card">
-                <div class="sc-label">📈 Net Profit</div>
+                <div class="sc-label"><i class="bx bx-line-chart"></i> Net Profit</div>
                 <div class="sc-value" id="sumProfit">—</div>
                 <div class="sc-sub">Revenue minus all costs</div>
             </div>
@@ -89,12 +90,12 @@
                 <div class="sc-sub">Total POS transactions</div>
             </div>
             <div class="summary-card">
-                <div class="sc-label">🛠️ Work Orders</div>
+                <div class="sc-label"><i class="bx bx-wrench"></i> Work Orders</div>
                 <div class="sc-value" id="sumWorkOrders">—</div>
                 <div class="sc-sub">Service repairs created</div>
             </div>
             <div class="summary-card">
-                <div class="sc-label">⚠️ Vendor Payables</div>
+                <div class="sc-label"><i class="bx bx-error-alt"></i> Vendor Payables</div>
                 <div class="sc-value" id="sumPayables">—</div>
                 <div class="sc-sub">New payables this period</div>
             </div>
@@ -143,8 +144,8 @@
     </main>
 </div>
 
-<button id="themeToggleBtn" title="Toggle dark/light mode">🌙</button>
-<script src="{% static 'analytics.js' %}?v=1.2"></script>
-<script src="{% static 'shared-nav.js' %}?v=1.2"></script>
+<button id="themeToggleBtn" title="Toggle dark/light mode"><i class="bx bx-moon"></i></button>
+<script src="{% static 'analytics.js' %}?v=4.2"></script>
+<script src="{% static 'shared-nav.js' %}?v=4.2"></script>
 </body>
 </html>

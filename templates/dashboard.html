@@ -2,11 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enterprise ERP</title>
     <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=1.2">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=4.2">
     <!-- Load Chart.js CDN for robust analytics graphics -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -26,7 +27,7 @@
             
             <div class="header-actions">
                 <input type="text" class="search-box" placeholder="Search products, customers, orders..." data-global-search>
-                <button class="icon-btn">🔔</button>
+                <button class="icon-btn"><i class="bx bx-bell"></i></button>
                 <div class="user-profile">
                     <img src="https://ui-avatars.com/api/?name=Admin&background=4318ff&color=fff&rounded=true" alt="Admin Badge">
                 </div>
@@ -38,7 +39,7 @@
             <!-- Statistical Cards -->
             <div class="kpi-grid">
                 <div class="kpi-card">
-                    <div class="kpi-icon" style="color: #4318ff; background: #e9e3ff;">💰</div>
+                    <div class="kpi-icon" style="color: #4318ff; background: #e9e3ff;"><i class="bx bx-wallet"></i></div>
                     <div class="kpi-info">
                         <p class="kpi-title">Gross Revenue</p>
                         <div class="kpi-row">
@@ -49,7 +50,7 @@
                 </div>
 
                 <div class="kpi-card">
-                    <div class="kpi-icon" style="color: #05cd99; background: #e6fcf5;">📈</div>
+                    <div class="kpi-icon" style="color: #05cd99; background: #e6fcf5;"><i class="bx bx-line-chart"></i></div>
                     <div class="kpi-info">
                         <p class="kpi-title">Net Profit Margin</p>
                         <div class="kpi-row">
@@ -60,7 +61,7 @@
                 </div>
 
                 <div class="kpi-card">
-                    <div class="kpi-icon" style="color: var(--warning); background: var(--warning-light);">🛠️</div>
+                    <div class="kpi-icon" style="color: var(--warning); background: var(--warning-light);"><i class="bx bx-wrench"></i></div>
                     <div class="kpi-info">
                         <p class="kpi-title">Active Work Orders</p>
                         <div class="kpi-row">
@@ -71,7 +72,7 @@
                 </div>
 
                 <div class="kpi-card">
-                    <div class="kpi-icon" style="color: #ee5d50; background: #ffe2e0;">⚠️</div>
+                    <div class="kpi-icon" style="color: #ee5d50; background: #ffe2e0;"><i class="bx bx-error-alt"></i></div>
                     <div class="kpi-info">
                         <p class="kpi-title">Supply Chain Danger</p>
                         <div class="kpi-row">
@@ -169,8 +170,8 @@
         </div>
     </div>
 
-    <button id="themeToggleBtn" title="Toggle dark/light mode">🌙</button>
-    <script src="{% static 'dashboard.js' %}?v=1.2"></script>
-<script src="{% static 'shared-nav.js' %}?v=1.2"></script>
+    <button id="themeToggleBtn" title="Toggle dark/light mode"><i class="bx bx-moon"></i></button>
+    <script src="{% static 'dashboard.js' %}?v=4.2"></script>
+<script src="{% static 'shared-nav.js' %}?v=4.2"></script>
 </body>
 </html>

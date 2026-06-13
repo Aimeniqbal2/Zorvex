@@ -2,11 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Credit Ledger – Zorvex ERP</title>
     <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=1.2">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=4.2">
     <style>
         /* ─── Modal System ───────────────────────────── */
         .modal-overlay {
@@ -147,14 +148,14 @@
                 </div>
             </div>
             <div class="kpi-card kpi-span-3">
-                <div class="kpi-icon" style="color:var(--warning);background:var(--warning-light);width:45px;height:45px;font-size:18px;">👥</div>
+                <div class="kpi-icon" style="color:var(--warning);background:var(--warning-light);width:45px;height:45px;font-size:18px;"><i class="bx bx-group"></i></div>
                 <div class="kpi-info">
                     <p class="kpi-title" style="font-size:11px;">Clients With Balance</p>
                     <span class="kpi-value" id="clientsWithBalance" style="font-size:20px;">0</span>
                 </div>
             </div>
             <div class="kpi-card kpi-span-3">
-                <div class="kpi-icon" style="color:var(--success);background:var(--success-light);width:45px;height:45px;font-size:18px;">✅</div>
+                <div class="kpi-icon" style="color:var(--success);background:var(--success-light);width:45px;height:45px;font-size:18px;"><i class="bx bx-check-circle"></i></div>
                 <div class="kpi-info">
                     <p class="kpi-title" style="font-size:11px;">Cleared Accounts</p>
                     <span class="kpi-value" id="clearedAccounts" style="font-size:20px;">0</span>
@@ -181,7 +182,7 @@
 
                 <!-- Placeholder (when no customer selected) -->
                 <div id="ledgerPlaceholder" style="text-align:center;padding:60px 20px;">
-                    <div style="font-size:48px;margin-bottom:16px;">📊</div>
+                    <div style="font-size:48px;margin-bottom:16px;"><i class="bx bx-trending-up"></i></div>
                     <h3 style="color:var(--text-main);font-size:18px;font-weight:700;">Select a Customer</h3>
                     <p style="color:var(--text-muted);font-size:13px;margin-top:6px;">Click any customer on the left to view their credit history and outstanding balance.</p>
                 </div>
@@ -242,7 +243,7 @@
 <div class="modal-overlay" id="editCustomerModal">
     <div class="modal-box">
         <div class="modal-header">
-            <h3>✏️ Edit Customer</h3>
+            <h3><i class="bx bx-edit"></i> Edit Customer</h3>
             <button class="close-btn" id="closeEditCustomerModal">×</button>
         </div>
         <form id="editCustomerForm">
@@ -265,7 +266,7 @@
 <div class="modal-overlay" id="paymentModal">
     <div class="modal-box">
         <div class="modal-header">
-            <h3>💳 Record Payment</h3>
+            <h3><i class="bx bx-credit-card"></i> Record Payment</h3>
             <button class="close-btn" id="closePaymentModal">×</button>
         </div>
         <form id="paymentForm">
@@ -279,12 +280,12 @@
             <div class="form-group"><label>Notes (optional)</label>
                 <input type="text" id="paymentNotes" class="form-input" placeholder="e.g. Cash received, Bank transfer..."></div>
             <p class="err-msg" id="paymentError"></p>
-            <button type="submit" class="primary-btn" style="background:var(--success);">💳 Record Payment</button>
+            <button type="submit" class="primary-btn" style="background:var(--success);"><i class="bx bx-credit-card"></i> Record Payment</button>
         </form>
     </div>
 </div>
 
-<script src="{% static 'credit.js' %}?v=1.2"></script>
-<script src="{% static 'shared-nav.js' %}?v=1.2"></script>
+<script src="{% static 'credit.js' %}?v=4.2"></script>
+<script src="{% static 'shared-nav.js' %}?v=4.2"></script>
 </body>
 </html>

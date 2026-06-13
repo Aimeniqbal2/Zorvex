@@ -2,11 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transactions System</title>
     <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=1.2">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=4.2">
     <style>
         .filters-row {
             display: flex; gap: 15px; margin-bottom: 25px; align-items: center; justify-content: space-between;
@@ -43,7 +44,7 @@
             
             <div class="header-actions">
                 <input type="text" class="search-box" placeholder="Search across ERP..." data-global-search>
-                <button class="icon-btn">🔔</button>
+                <button class="icon-btn"><i class="bx bx-bell"></i></button>
                 <div class="user-profile">
                     <img src="" alt="Badge">
                 </div>
@@ -130,7 +131,7 @@
         </div>
     </div>
 
-    <script src="{% static 'sales-history.js' %}?v=1.2"></script>
-    <script src="{% static 'shared-nav.js' %}?v=1.2"></script>
+    <script src="{% static 'sales-history.js' %}?v=4.2"></script>
+    <script src="{% static 'shared-nav.js' %}?v=4.2"></script>
 </body>
 </html>

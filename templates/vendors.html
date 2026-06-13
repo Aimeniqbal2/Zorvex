@@ -2,11 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendors & Procurement – Zorvex ERP</title>
     <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=1.2">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=4.2">
     <style>
         /* ─── Modal System ───────────────────────────── */
         .modal-overlay {
@@ -102,23 +103,23 @@
         <!-- KPI Cards -->
         <div class="kpi-grid-5">
             <div class="kpi-card">
-                <div class="kpi-icon" style="color:#4318ff;background:var(--primary-light);">🏭</div>
+                <div class="kpi-icon" style="color:#4318ff;background:var(--primary-light);"><i class="bx bx-buildings"></i></div>
                 <div class="kpi-info"><p class="kpi-title">Total Vendors</p><span class="kpi-value" id="totalVendors">0</span></div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-icon" style="color:#2563eb;background:var(--primary-light);">📋</div>
+                <div class="kpi-icon" style="color:#2563eb;background:var(--primary-light);"><i class="bx bx-receipt"></i></div>
                 <div class="kpi-info"><p class="kpi-title">Open Orders</p><span class="kpi-value" id="openOrders">0</span></div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-icon" style="color:var(--success);background:var(--success-light);">✅</div>
+                <div class="kpi-icon" style="color:var(--success);background:var(--success-light);"><i class="bx bx-check-circle"></i></div>
                 <div class="kpi-info"><p class="kpi-title">Received This Month</p><span class="kpi-value" id="receivedOrders">0</span></div>
             </div>
         </div>
 
         <!-- Tabs -->
         <div class="tab-bar">
-            <button class="tab-btn active" data-tab="vendors-panel">🏭 Vendors</button>
-            <button class="tab-btn" data-tab="po-panel">📋 Purchase Orders</button>
+            <button class="tab-btn active" data-tab="vendors-panel"><i class="bx bx-buildings"></i> Vendors</button>
+            <button class="tab-btn" data-tab="po-panel"><i class="bx bx-receipt"></i> Purchase Orders</button>
         </div>
 
         <!-- ─── Vendors Panel ──────────────────────────────────────── -->
@@ -185,7 +186,7 @@
 <div class="modal-overlay" id="vendorModal">
     <div class="modal-box">
         <div class="modal-header">
-            <h3>🏭 Add Vendor</h3>
+            <h3><i class="bx bx-buildings"></i> Add Vendor</h3>
             <button class="close-btn" id="closeVendorModal">×</button>
         </div>
         <form id="vendorForm">
@@ -209,7 +210,7 @@
 <div class="modal-overlay" id="editVendorModal">
     <div class="modal-box">
         <div class="modal-header">
-            <h3>✏️ Edit Vendor</h3>
+            <h3><i class="bx bx-edit"></i> Edit Vendor</h3>
             <button class="close-btn" id="closeEditVendorModal">×</button>
         </div>
         <form id="editVendorForm">
@@ -234,7 +235,7 @@
 <div class="modal-overlay" id="payVendorModal">
     <div class="modal-box">
         <div class="modal-header">
-            <h3>💰 Pay Vendor</h3>
+            <h3><i class="bx bx-wallet"></i> Pay Vendor</h3>
             <button class="close-btn" id="closePayVendorModal">×</button>
         </div>
         <div style="padding:14px;background:var(--input-bg);border-radius:12px;border:1px solid var(--border-color);margin-bottom:20px;">
@@ -250,7 +251,7 @@
             <div class="form-group"><label>Notes (optional)</label>
                 <input type="text" id="payVendorNotes" class="form-input" placeholder="e.g. Bank transfer ref #..."></div>
             <p class="err-msg" id="payVendorError"></p>
-            <button type="submit" class="primary-btn success-btn">💰 Pay Vendor</button>
+            <button type="submit" class="primary-btn success-btn"><i class="bx bx-wallet"></i> Pay Vendor</button>
         </form>
     </div>
 </div>
@@ -259,7 +260,7 @@
 <div class="modal-overlay" id="poModal">
     <div class="modal-box">
         <div class="modal-header">
-            <h3>📋 New Purchase Order</h3>
+            <h3><i class="bx bx-receipt"></i> New Purchase Order</h3>
             <button class="close-btn" id="closePOModal">×</button>
         </div>
         <form id="poForm">
@@ -278,7 +279,7 @@
     </div>
 </div>
 
-<script src="{% static 'vendors.js' %}?v=1.2"></script>
-<script src="{% static 'shared-nav.js' %}?v=1.2"></script>
+<script src="{% static 'vendors.js' %}?v=4.2"></script>
+<script src="{% static 'shared-nav.js' %}?v=4.2"></script>
 </body>
 </html>

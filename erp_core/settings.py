@@ -33,17 +33,17 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-replace-this')
 DEBUG = env('DEBUG', default=True)
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://46.224.187.226",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-    "http://softech.ltd"
+    "http://softech.ltd",
+    "https://softech.ltd",
+    "https://www.softech.ltd",
 ]
 
-ALLOWED_HOSTS = ["*",
+ALLOWED_HOSTS = [
+    "softech.ltd",
+    "www.softech.ltd",
+    "46.224.187.226",
     "localhost",
     "127.0.0.1",
-    "www.softech.ltd",
-    "softech.ltd"
 ]
 
 # Application definition

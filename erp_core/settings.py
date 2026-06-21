@@ -36,13 +36,16 @@ CSRF_TRUSTED_ORIGINS = [
     "http://46.224.187.226",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+    "www.softech.ltd",
+    "softech.ltd"
 ]
 
 ALLOWED_HOSTS = ["*",
     "localhost",
     "127.0.0.1",
+    "www.softech.ltd",
+    "softech.ltd"
 ]
-
 
 # Application definition
 

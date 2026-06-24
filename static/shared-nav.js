@@ -393,27 +393,14 @@
             if (!document.querySelector('link[rel="manifest"]')) {
                 var manifestLink = document.createElement('link');
                 manifestLink.rel = 'manifest';
-                manifestLink.href = '/static/manifest.json';
+                manifestLink.href = '/static/manifest.json?v=2';
                 document.head.appendChild(manifestLink);
             }
 
             // Register Service Worker
             if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('/sw.js')
-                        .then(function(registration) {
-                            console.log('PWA ServiceWorker registration successful with scope: ', registration.scope);
-                        })
-                        .catch(function(err) {
-                            console.log('PWA ServiceWorker registration failed: ', err);
-                        });
-                });
-                
-                // If the load event already fired
-                if (document.readyState === 'complete') {
-                    navigator.serviceWorker.register('/sw.js')
-                        .catch(function(err) { console.log('PWA SW err: ', err); });
-                }
+                navigator.serviceWorker.register('/sw.js')
+                    .catch(function(err) { console.log('PWA SW err: ', err); });
             }
         }
         initPWA();

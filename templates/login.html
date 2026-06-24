@@ -7,6 +7,7 @@
   <meta charset="UTF-8">
   <title>ZORVEX</title>
   <link rel="icon" type="image/png" href="{% static 'assets/logo-icon.png' %}">
+  <link rel="manifest" href="{% static 'manifest.json' %}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -156,6 +157,8 @@
       display: flex;
       justify-content: flex-end;
       padding-right: 15%;
+      position: relative;
+      z-index: 10;
     }
 
     /* 🔥 ULTRA GLASS CARD */
@@ -165,6 +168,7 @@
       display: flex;
       border-radius: 24px;
       overflow: hidden;
+      position: relative;
 
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(25px);
@@ -362,6 +366,70 @@
         margin-bottom: 20px;
       }
     }
+    /* Shining particles */
+    .particle {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      pointer-events: none;
+      box-shadow: 0 0 8px white, 0 0 15px rgba(255,255,255,0.8);
+      animation: floatUp linear forwards;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0); opacity: 0; }
+      20% { transform: translateY(-20vh) scale(1); opacity: 1; }
+      80% { transform: translateY(-80vh) scale(0.8); opacity: 0.8; }
+      100% { transform: translateY(-100vh) scale(0); opacity: 0; }
+    }
+
+    /* Messenger popups */
+    #marketing-popups {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+      pointer-events: none;
+    }
+    .marketing-popup {
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 16px 20px;
+      color: #fff;
+      font-size: 13px;
+      line-height: 1.5;
+      width: 320px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      height: auto;
+    }
+    .marketing-popup.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .marketing-popup.hide {
+      opacity: 0;
+      transform: translateY(-30px);
+      margin-top: -80px; /* collapse height */
+    }
+    .marketing-popup i {
+      font-size: 22px;
+      color: #2d78f5;
+      background: rgba(45,120,245,0.15);
+      padding: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 
@@ -431,6 +499,71 @@
   </div>
 
   <script src="{% static 'login.js' %}?v=4.2"></script>
+  
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered');
+          })
+          .catch(err => console.log('SW error', err));
+      });
+    }
+  </script>
+  <script>
+    // Particle Generator
+    setInterval(() => {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = (Math.random() * 100) + '%';
+      p.style.top = (90 + Math.random() * 10) + 'vh';
+      const size = Math.random() * 4 + 2;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.animationDuration = (Math.random() * 7 + 8) + 's';
+      p.style.zIndex = '1';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 16000);
+    }, 150);
+
+    // Marketing Popups
+    const messages = [
+      { icon: 'bx-rocket', text: 'Boost your business productivity by up to 40% with Zorvex ERP.' },
+      { icon: 'bx-shield-quarter', text: 'Bank-grade security ensures your company data is always safe.' },
+      { icon: 'bx-line-chart', text: 'Real-time analytics to help you make smarter business decisions.' },
+      { icon: 'bx-group', text: 'Seamlessly manage your entire team across multiple locations.' },
+      { icon: 'bx-money', text: 'Automated POS and billing integrated directly with your inventory.' }
+    ];
+    
+    const popupContainer = document.createElement('div');
+    popupContainer.id = 'marketing-popups';
+    document.body.appendChild(popupContainer);
+
+    let msgIndex = 0;
+    setInterval(() => {
+      const children = popupContainer.querySelectorAll('.marketing-popup');
+      
+      // The first message fades out when the 4th is ABOUT to come
+      if (children.length >= 3) {
+        const oldest = children[0];
+        oldest.classList.remove('show');
+        oldest.classList.add('hide');
+        setTimeout(() => oldest.remove(), 600); // Wait for CSS transition
+      }
+
+      if (msgIndex >= messages.length) msgIndex = 0;
+      const msg = messages[msgIndex++];
+      const el = document.createElement('div');
+      el.className = 'marketing-popup';
+      el.innerHTML = `<i class='bx ${msg.icon}'></i><div>${msg.text}</div>`;
+      popupContainer.appendChild(el);
+      
+      // trigger animation
+      setTimeout(() => el.classList.add('show'), 50);
+      
+    }, 4500);
+  </script>
 </body>
 
 </html>

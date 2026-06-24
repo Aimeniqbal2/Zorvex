@@ -1,0 +1,21 @@
+{
+  "name": "Zorvex ERP",
+  "short_name": "Zorvex",
+  "description": "Zorvex Enterprise Resource Planning System",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050a19",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/static/assets/logo-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/assets/logo-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

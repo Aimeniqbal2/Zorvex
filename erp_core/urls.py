@@ -6,9 +6,12 @@ from django.views.static import serve
 from rest_framework_simplejwt.views import TokenRefreshView
 from accounts.views import CustomTokenObtainPairView
 from erp_core.search_views import GlobalSearchView
+from django.views.generic import TemplateView
 from erp_core import views
 
 urlpatterns = [
+    # PWA Service Worker (Served at root level)
+    path('sw.js', TemplateView.as_view(template_name='sw.js', content_type='application/javascript'), name='sw.js'),
     # Frontend Views (Templates)
     path('', views.dashboard_view, name='dashboard'),
     path('login/', views.index_view, name='login'),

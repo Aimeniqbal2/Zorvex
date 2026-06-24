@@ -386,6 +386,193 @@
         }
 
         initGlobalLoader();
+        
+        // PWA Setup (Manifest & Service Worker)
+        function initPWA() {
+            // Inject manifest link if not present
+            if (!document.querySelector('link[rel="manifest"]')) {
+                var manifestLink = document.createElement('link');
+                manifestLink.rel = 'manifest';
+                manifestLink.href = '/static/manifest.json';
+                document.head.appendChild(manifestLink);
+            }
+
+            // Register Service Worker
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(function(registration) {
+                            console.log('PWA ServiceWorker registration successful with scope: ', registration.scope);
+                        })
+                        .catch(function(err) {
+                            console.log('PWA ServiceWorker registration failed: ', err);
+                        });
+                });
+                
+                // If the load event already fired
+                if (document.readyState === 'complete') {
+                    navigator.serviceWorker.register('/sw.js')
+                        .catch(function(err) { console.log('PWA SW err: ', err); });
+                }
+            }
+        }
+        initPWA();
+
+        function initNotifications() {
+            var bellBtns = document.querySelectorAll('.header-actions .bx-bell');
+            if (!bellBtns.length) return;
+
+            var bellBtn = bellBtns[0].closest('button');
+            if (!bellBtn) return;
+
+            var panel = document.createElement('div');
+            panel.id = 'notificationPanel';
+            panel.style.position = 'absolute';
+            // Determine position based on bell button bounding rect
+            var rect = bellBtn.getBoundingClientRect();
+            panel.style.top = (rect.bottom + 10) + 'px';
+            panel.style.right = (window.innerWidth - rect.right - 10) + 'px';
+            panel.style.width = '350px';
+            panel.style.background = 'var(--card-bg, #fff)';
+            panel.style.boxShadow = '0 10px 40px rgba(0,0,0,0.15)';
+            panel.style.borderRadius = '12px';
+            panel.style.border = '1px solid var(--border-color, #eee)';
+            panel.style.zIndex = '9999';
+            panel.style.display = 'none';
+            panel.style.flexDirection = 'column';
+            panel.style.maxHeight = '400px';
+            panel.style.overflowY = 'auto';
+
+            var header = document.createElement('div');
+            header.style.padding = '15px';
+            header.style.borderBottom = '1px solid var(--border-color, #eee)';
+            header.style.fontWeight = '700';
+            header.style.fontSize = '14px';
+            header.style.color = 'var(--text-main, #333)';
+            header.innerHTML = 'Notifications <span id="notifCount" style="background:var(--danger, #ff4d4f);color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;margin-left:8px;">0</span>';
+            panel.appendChild(header);
+
+            var list = document.createElement('div');
+            list.id = 'notificationList';
+            list.style.padding = '10px 0';
+            panel.appendChild(list);
+
+            document.body.appendChild(panel);
+
+            // Positioning relatively for badge
+            bellBtn.style.position = 'relative';
+            var badge = document.createElement('span');
+            badge.style.position = 'absolute';
+            badge.style.top = '0px';
+            badge.style.right = '0px';
+            badge.style.width = '8px';
+            badge.style.height = '8px';
+            badge.style.background = 'var(--danger, #ff4d4f)';
+            badge.style.borderRadius = '50%';
+            badge.style.display = 'none';
+            bellBtn.appendChild(badge);
+
+            bellBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                // recalculate position in case of window resize
+                var r = bellBtn.getBoundingClientRect();
+                panel.style.top = (r.bottom + 10) + 'px';
+                panel.style.right = (window.innerWidth - r.right - 10) + 'px';
+                panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!panel.contains(e.target) && !bellBtn.contains(e.target)) {
+                    panel.style.display = 'none';
+                }
+            });
+
+            function addNotificationItem(title, message, isWarning) {
+                var item = document.createElement('div');
+                item.style.padding = '12px 15px';
+                item.style.borderBottom = '1px solid var(--border-light, #eee)';
+                item.style.display = 'flex';
+                item.style.gap = '12px';
+                item.style.alignItems = 'flex-start';
+                item.style.cursor = 'pointer';
+                
+                var iconColor = isWarning ? 'var(--danger, #ff4d4f)' : 'var(--primary, #2563eb)';
+                var iconBg = isWarning ? 'rgba(255, 77, 79, 0.1)' : 'rgba(37, 99, 235, 0.1)';
+                var iconClass = isWarning ? 'bx-error' : 'bx-info-circle';
+
+                item.innerHTML = `
+                    <div style="width:32px;height:32px;border-radius:50%;background:${iconBg};color:${iconColor};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class='bx ${iconClass}'></i>
+                    </div>
+                    <div>
+                        <p style="margin:0;font-size:13px;font-weight:600;color:var(--text-main, #333);">${title}</p>
+                        <p style="margin:3px 0 0 0;font-size:12px;color:var(--text-muted, #666);line-height:1.4;">${message}</p>
+                    </div>
+                `;
+                item.addEventListener('mouseover', function() { item.style.background = 'var(--bg-secondary, #fafafa)'; });
+                item.addEventListener('mouseout', function() { item.style.background = 'transparent'; });
+                list.appendChild(item);
+            }
+
+            async function fetchNotifications() {
+                var token = localStorage.getItem('access_token');
+                if (!token) return;
+
+                try {
+                    var items = [];
+                    
+                    // 1. Fetch low stock products
+                    var prodRes = await fetch('/api/inventory/products/low_stock/', { headers: { 'Authorization': 'Bearer ' + token } });
+                    if (prodRes.ok) {
+                        var products = await prodRes.json();
+                        if (Array.isArray(products)) {
+                            // strictly less than 5
+                            var lowStock = products.filter(p => parseFloat(p.stock_quantity) < 5);
+                            lowStock.forEach(p => {
+                                items.push({
+                                    title: 'Low Stock Alert',
+                                    message: `${p.brand} ${p.model_name} stock is critically low (${parseFloat(p.stock_quantity)} remaining).`,
+                                    isWarning: true
+                                });
+                            });
+                        }
+                    }
+
+                    // 2. Fetch general system notifications
+                    var notifRes = await fetch('/api/notifications/notifications/', { headers: { 'Authorization': 'Bearer ' + token } });
+                    if (notifRes.ok) {
+                        var notifs = await notifRes.json();
+                        if (Array.isArray(notifs)) {
+                            notifs.forEach(n => {
+                                if (!n.is_read) {
+                                    items.push({ title: n.title, message: n.message, isWarning: false });
+                                }
+                            });
+                        }
+                    }
+
+                    list.innerHTML = '';
+                    if (items.length > 0) {
+                        badge.style.display = 'block';
+                        document.getElementById('notifCount').innerText = items.length;
+                        items.forEach(i => addNotificationItem(i.title, i.message, i.isWarning));
+                    } else {
+                        badge.style.display = 'none';
+                        document.getElementById('notifCount').innerText = '0';
+                        list.innerHTML = '<p style="text-align:center;padding:20px;color:var(--text-muted);font-size:13px;">No new notifications</p>';
+                    }
+                } catch (e) {
+                    console.error("Notifications fetch error", e);
+                }
+            }
+
+            // Fetch immediately, then poll every 30 seconds
+            fetchNotifications();
+            setInterval(fetchNotifications, 30000);
+        }
+
+        initNotifications();
 
     } // end initSharedNav
 

@@ -500,7 +500,7 @@
 
   <script src="{% static 'login.js' %}?v=4.2"></script>
   
-  <script>
+  <script data-cfasync="false">
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js')
         .then(registration => {

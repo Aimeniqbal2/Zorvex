@@ -24,7 +24,7 @@ urlpatterns = [
     path('team/', views.team_view, name='team'),
     path('transactions/', views.sales_history_view, name='transactions'),
     path('analytics/', views.analytics_view, name='analytics'),
-
+    path('zorvex/', TemplateView.as_view(template_name='zorvex_landing.html'), name='zorvex'),
 
     path('admin/', admin.site.urls),
     

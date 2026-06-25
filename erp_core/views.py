@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from django.views.decorators.cache import cache_control
 
 
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def index_view(request):
     return render(request, 'login.html')
 
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def dashboard_view(request):
     return render(request, 'dashboard.html')
 
